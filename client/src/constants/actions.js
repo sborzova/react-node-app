@@ -1,0 +1,3 @@
+export default {
+    NEWSITEM_LOADING: 'NEWSITEM_LOADING'
+}
