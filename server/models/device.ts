@@ -1,46 +1,50 @@
 const sequelize = require('../database.ts');
 const Sequelize = require('sequelize');
-const License = require('../models/license.ts');
+const Feedback = require('../models/feedback.ts');
 
-const Feedback = sequelize.define('feedback', {
-    fa_id: {
-        type: Sequelize.INTEGER(11), primaryKey: true
-    },
-    determined_customer: {
-        type: Sequelize.STRING
-    },
-    upload_start: {
-        type: Sequelize.DATE
-    },
-    upload_finish: {
-        type: Sequelize.DATE
-    },
-    processed: {
-        type: Sequelize.DATE
-    },
-    feedback_ip: {
-        type: Sequelize.STRING
-    },
-    feedback_hostname: {
-        type: Sequelize.STRING
-    },
-    fn: {
-        type: Sequelize.STRING
-    },
-    size: {
-        type: Sequelize.INTEGER(11)
-    },
-    hits: {
-        type: Sequelize.INTEGER(11)
-    },
-    domains: {
-        type: Sequelize.INTEGER(11)
-    }},
-    {
-        timestamps: false,
-        tableName: 'feedback'
-    }
+
+const Device = sequelize.define('device', {
+        id: {
+            type: Sequelize.INTEGER(11), primaryKey: true
+        },
+        fa_id: {
+            type: Sequelize.INTEGER(11),
+            references: {
+                model: Feedback,
+                key: 'fa_id'
+            }
+        },
+        hostid: {
+            type: Sequelize.STRING
+        },
+        hostname: {
+            type: Sequelize.STRING
+        },
+        kernun_variant: {
+            type: Sequelize.STRING
+        },
+        kernun_version: {
+            type: Sequelize.STRING
+        },
+        dmi_product: {
+            type: Sequelize.STRING
+        },
+        cpu_model: {
+            type: Sequelize.STRING
+        },
+        cpu_number: {
+            type: Sequelize.STRING
+        },
+        vm_guest: {
+            type: Sequelize.STRING
+        },
+        callhome_status: {
+            type: Sequelize.STRING
+        }},
+        {
+            timestamps: false,
+            tableName: 'device'
+        }
 );
 
-Feedback.hasOne(License, {foreignKey: 'fa_id'});
-module.exports = Feedback;
+module.exports = Device;

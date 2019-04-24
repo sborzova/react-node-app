@@ -1,14 +1,21 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import newsReducer from '../reducers/newsReducer';
+import * as actionTypes from '../constants/actions';
 
-const store = createStore(
-    combineReducers({
-        news: newsReducer
-    }),
-    applyMiddleware(
-        thunk
-    )
-);
+const initialState = {
+    keycloak: null,
+    authenticated: false
+};
 
-export default store;
+const reducer = (state = initialState, action) => {
+        switch(action.type) {
+            case actionTypes.NAME_OF_ACTION:
+                return {
+                    ...state,
+                    keycloak: action.keycloak.token,
+                    authenticated: true
+                };
+            default:
+                return state;
+    }
+};
+
+export default reducer;

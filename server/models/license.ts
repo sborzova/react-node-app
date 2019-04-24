@@ -1,39 +1,52 @@
+const Feedback = require('../models/feedback.ts');
+
 const sequelize = require('../database.ts');
 const Sequelize = require('sequelize');
 
-const Feedback = sequelize.define('feedback', {
-    fa_id: {
+const License = sequelize.define('license', {
+    id: {
         type: Sequelize.INTEGER(11), primaryKey: true
     },
-    determined_customer: {
+    fa_id: {
+        type: Sequelize.INTEGER(11),
+        references: {
+            model: Feedback,
+            key: 'fa_id',
+        }
+    },
+    ident: {
         type: Sequelize.STRING
     },
-    upload_start: {
-        type: Sequelize.DATE
-    },
-    upload_finish: {
-        type: Sequelize.DATE
-    },
-    processed: {
-        type: Sequelize.DATE
-    },
-    feedback_ip: {
+    customer: {
         type: Sequelize.STRING
     },
-    feedback_hostname: {
+    serial: {
         type: Sequelize.STRING
     },
-    fn: {
+    devcount: {
         type: Sequelize.STRING
     },
-    size: {
-        type: Sequelize.INTEGER(11)
+    hw: {
+        type: Sequelize.STRING
     },
-    hits: {
-        type: Sequelize.INTEGER(11)
+    expiration: {
+        type: Sequelize.TEXT
     },
-    domains: {
-        type: Sequelize.INTEGER(11)
+    upgrade: {
+        type: Sequelize.STRING
+    },
+    group_type: {
+        type: Sequelize.STRING
+    },
+    saleType: Sequelize.VIRTUAL,
+    licenseType: Sequelize.VIRTUAL,
+    },
+    {
+        timestamps: false,
+        tableName: 'license'
     }
+);
 
-});
+
+//License.hasOne(Feedback, {foreignKey: 'fa_id'});
+module.exports = License;

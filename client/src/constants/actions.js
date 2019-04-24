@@ -1,3 +1,1 @@
-export default {
-    NEWSITEM_LOADING: 'NEWSITEM_LOADING'
-}
+export const NAME_OF_ACTION = 'NAME_OF_ACTION';

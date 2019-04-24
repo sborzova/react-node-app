@@ -1,46 +1,46 @@
 const sequelize = require('../database.ts');
 const Sequelize = require('sequelize');
-const License = require('../models/license.ts');
+const Feedback = require('../models/feedback.ts');
 
-const Feedback = sequelize.define('feedback', {
-    fa_id: {
-        type: Sequelize.INTEGER(11), primaryKey: true
-    },
-    determined_customer: {
+const Reporter = sequelize.define('reporter', {
+        id: {
+            type: Sequelize.INTEGER(11), primaryKey: true
+        },
+        fa_id: {
+            type: Sequelize.INTEGER(11),
+            references: {
+                model: Feedback,
+                key: 'fa_id'
+            }
+        },
+        reporter_min_time: {
         type: Sequelize.STRING
-    },
-    upload_start: {
-        type: Sequelize.DATE
-    },
-    upload_finish: {
-        type: Sequelize.DATE
-    },
-    processed: {
-        type: Sequelize.DATE
-    },
-    feedback_ip: {
+        },
+        reporter_max_time: {
         type: Sequelize.STRING
-    },
-    feedback_hostname: {
+        },
+        reporter_users: {
         type: Sequelize.STRING
-    },
-    fn: {
+        },
+        reporter_clients: {
         type: Sequelize.STRING
-    },
-    size: {
-        type: Sequelize.INTEGER(11)
-    },
-    hits: {
-        type: Sequelize.INTEGER(11)
-    },
-    domains: {
-        type: Sequelize.INTEGER(11)
-    }},
+        },
+        reporter_cw_categorized: {
+        type: Sequelize.STRING
+        },
+        reporter_cw_total: {
+        type: Sequelize.STRING
+        },
+        reporter_web_categorized: {
+        type: Sequelize.STRING
+        },
+        reporter_web_total: {
+        type: Sequelize.STRING
+        }},
     {
         timestamps: false,
-        tableName: 'feedback'
+        tableName: 'reporter'
     }
 );
 
-Feedback.hasOne(License, {foreignKey: 'fa_id'});
-module.exports = Feedback;
+module.exports = Reporter;
