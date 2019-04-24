@@ -1,0 +1,102 @@
+/*.App {*/
+  /*text-align: center;*/
+/*}*/
+
+/*.App-logo {*/
+  /*animation: App-logo-spin infinite 20s linear;*/
+  /*height: 40vmin;*/
+/*}*/
+
+/*.App-header {*/
+  /*background-color: #282c34;*/
+  /*min-height: 100vh;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  /*font-size: calc(10px + 2vmin);*/
+  /*color: white;*/
+/*}*/
+
+/*.App-link {*/
+  /*color: #61dafb;*/
+/*}*/
+
+/*@keyframes App-logo-spin {*/
+  /*from {*/
+    /*transform: rotate(0deg);*/
+  /*}*/
+  /*to {*/
+    /*transform: rotate(360deg);*/
+  /*}*/
+/*}*/
+
+#components-layout-demo-fixed .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+
+#wrapper {
+  width:600px;
+  margin:0 auto;
+}
+#first {
+  float:left;
+  width:300px;
+}
+#second {
+  float:right;
+  width:300px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  /*padding: 10px;*/
+}
+
+.left {
+  width: 20%;
+}
+
+.right {
+  width: 80%;
+}
+
+ /*Clear floats after the columns*/
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.table-vertical {
+  /*border: 1px solid black;*/
+  border-collapse: collapse;
+  width: 100%
+
+}
+
+.table-vertical th {
+  width: 20%;
+  padding: 5px;
+  text-align: left;
+}
+
+.table-vertical td {
+  width: 80%;
+  padding: 5px;
+  text-align: left;
+}
+
+.table-vertical tr:hover {
+  background-color: #e6f9ff;
+}
