@@ -3,6 +3,7 @@ import {Table, Tag, Input, Button, Icon,} from 'antd';
 import axios from "axios";
 import Highlighter from 'react-highlight-words';
 import moment from 'moment';
+import {Link} from "react-router-dom";
 
 
 class Licenses extends Component {
@@ -107,37 +108,69 @@ class Licenses extends Component {
     render() {
         const columns = [
             {
-                title: 'Customer',
+                title: 'CustomerDetail',
                 dataIndex: 'determined_customer',
-                width: '16%',
+                //width: '16%',
                 ...this.getColumnSearchProps('determined_customer'),
+                render: (customer) =>
+                    <div>
+                        <Link to={`/customers/detail/${customer}`}>{customer}</Link>
+
+                    </div>
+            },
+            {
+                title: 'Ident',
+                dataIndex: 'license.ident',
+            },{
+                title: 'Serial',
+                dataIndex: 'license.serial',
+                render: (serial) =>
+                    <div>
+                        <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
+                    </div>
             },
              {
                 title: 'Expiration',
                 dataIndex: 'license.expiration',
-                width: '10%',
-                defaultSortOrder: 'descend',
+                //width: '10%',
+                //defaultSortOrder: 'descend',
                 //sorter: (a, b) => a.license.expiration.localeCompare(b.license.expiration),
-                 render: (datetime) =>{
+                 render: (datetime) => {
                      if (datetime !== 'undefined' && datetime !== 'unlimited'){
-                         return <div>{moment(datetime).format('L')}</div>
+                         let className = '';
+                         if (moment(datetime).isBefore(moment())){
+                             className = 'font-red'
+                         }else if (moment().diff(moment(datetime)) <= 7){
+                             className = 'font-orange'
+                         }else if (moment().diff(moment(datetime)) <= 31){
+                             className = 'font-yellow'
+                         }
+                         return <div className={className}>{moment(datetime).format('L')}</div>
                      }}
             },
             {
                 title: 'Upgrade',
                 dataIndex: 'license.upgrade',
-                width: '10%',
+                //width: '10%',
                 defaultSortOrder: 'descend',
                 //sorter: (a, b) => a.license.expiration.localeCompare(b.license.expiration),
-                render: (datetime) =>{
+                render: (datetime) => {
                     if (datetime !== 'undefined' && datetime !== 'unlimited'){
-                        return <div>{moment(datetime).format('L')}</div>
+                        let className = '';
+                        if (moment(datetime).isBefore(moment())){
+                            className = 'font-red'
+                        }else if (moment(datetime).diff(moment(), 'days') <= 7){
+                            className = 'font-orange'
+                        }else if (moment(datetime).diff(moment(), 'days') <= 31){
+                            className = 'font-yellow'
+                        }
+                        return <div className={className}>{moment(datetime).format('L')}</div>
                     }}
             },
             {
                 title: 'Sale',
                 dataIndex: 'license.saleType',
-                width: '5%',
+                //width: '5%',
                 filters: [
                     { text: 'sale', value: 'sale' },
                     { text: 'rental', value: 'rental' },
@@ -152,7 +185,7 @@ class Licenses extends Component {
             {
                 title: 'Type',
                 dataIndex: 'license.licenseType',
-                width: '5%',
+                //width: '5%',
                 filters: [
                     { text: 'edu', value: 'edu' },
                     { text: 'test', value: 'test' },
@@ -180,7 +213,7 @@ class Licenses extends Component {
             },{
                 title: 'Kernun variant',
                 dataIndex: 'device.kernun_variant',
-                width: '10%',
+                //width: '10%',
                 filters: [
                     { text: 'kcw', value: 'kernun_clear_web' },
                     { text: 'utm', value: 'kernun' },
@@ -207,6 +240,23 @@ class Licenses extends Component {
                         return <Tag color={color} key={ker_var}>{ker_var}</Tag>
                     }}
             },
+            {
+                title: 'Upload start',
+                dataIndex: 'upload_start',
+                //width: '15%',
+                render: (datetime) =>
+                    <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
+            },
+            {
+                title: 'Fa id',
+                dataIndex: 'fa_id',
+                width: '5%',
+                render: (id) =>
+                    <div>
+                        <Link to={`/feedback/detail/${id}`}>{id}</Link>
+                    </div>
+            },
+
 
         ];
         return (
