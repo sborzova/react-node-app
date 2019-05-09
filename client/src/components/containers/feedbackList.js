@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Badge, Radio, Table, Tooltip} from 'antd';
+import {Badge, Radio, Table, Tooltip, Icon, Popover} from 'antd';
 import {Link} from "react-router-dom";
 
 import 'antd/dist/antd.css';
@@ -18,6 +18,19 @@ const tooltips  = {
     blue: 'devcount greater than reporter_users',
     pink: 'devcount greater than reporter_clients'
 };
+
+
+const popup = (
+    <div>
+        <Badge color="black" text={tooltips['black']}/><br/>
+        <Badge color="red" text={tooltips['red']}/><br/>
+        <Badge color="yellow" text={tooltips['yellow']}/><br/>
+        <Badge color="orange" text={tooltips['orange']}/><br/>
+        <Badge color="green" text={tooltips['green']}/><br/>
+        <Badge color="blue" text={tooltips['blue']}/><br/>
+        <Badge color="pink" text={tooltips['pink']}/><br/>
+    </div>
+);
 
 const columns = [
     {
@@ -56,7 +69,7 @@ const columns = [
     title: 'Feedback hostname',
     dataIndex: 'feedback_hostname',
 },{
-    title: null,
+    title: 'Status',
     dataIndex: 'color',
     render: color => (
         <span>
@@ -159,14 +172,12 @@ class FeedbackList extends Component {
                 size="small"
             />
                 <div>
-                    <h2>Legend</h2>
-                    <Badge color="black" text={tooltips['black']}/><br/>
-                    <Badge color="red" text={tooltips['red']}/><br/>
-                    <Badge color="yellow" text={tooltips['yellow']}/><br/>
-                    <Badge color="orange" text={tooltips['orange']}/><br/>
-                    <Badge color="green" text={tooltips['green']}/><br/>
-                    <Badge color="blue" text={tooltips['blue']}/><br/>
-                    <Badge color="pink" text={tooltips['pink']}/><br/>
+                    <h2>Legend for status
+                        <Popover  content={popup} placement="right">
+                            &nbsp;<Icon type="info-circle" theme="filled"/>
+                        </Popover>
+                    </h2>
+
                 </div>
             </React.Fragment>)
     }

@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Table, Badge, Tooltip} from 'antd';
+import {Table, Badge, Tooltip, Popover, Icon} from 'antd';
 import {Link} from "react-router-dom";
 import moment from 'moment';
 import {getAllCustomers} from "../../services/api";
@@ -11,6 +11,25 @@ const tooltips  = {
     yellow: 'Inactive with no today\'s feedback',
     grey: 'Other'
 };
+
+
+const popup = (
+    <div>
+        <h4>Active customers (license upgrade in the future)</h4>
+        <Badge color="green" text="There was a feedback today" />
+        <br />
+        <Badge color="red" text="There was no feedback today" />
+        <br />
+        <br />
+        <h4>Inactive customers</h4>
+        <Badge color="blue" text="There was a feedback today" />
+        <br />
+        <Badge color="yellow" text="There was no feedback today" />
+        <br />
+        <br />
+        <Badge color="grey" text="Other" />
+    </div>
+);
 
 const columns = [
     {
@@ -165,20 +184,11 @@ class CustomerList extends Component {
                     loading={this.state.loading}
                 />
                 <div>
-                    <h2>Legend</h2>
-                    <h4>Active customers (license upgrade in the future)</h4>
-                    <Badge color="green" text="There was a feedback today" />
-                    <br />
-                    <Badge color="red" text="There was no feedback today" />
-                    <br />
-                    <br />
-                    <h4>Inactive customers</h4>
-                    <Badge color="blue" text="There was a feedback today" />
-                    <br />
-                    <Badge color="yellow" text="There was no feedback today" />
-                    <br />
-                    <br />
-                    <Badge color="grey" text="Other" />
+                    <h2>Legend for customer
+                        <Popover  content={popup} placement="right">
+                            &nbsp;<Icon type="info-circle" theme="filled"/>
+                        </Popover>
+                    </h2>
                 </div>
             </Fragment>
         )
