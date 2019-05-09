@@ -12,27 +12,30 @@ class Statistic extends Component {
     _isMounted = false;
 
     kcw = {
-        cw_antivirus: { true: 0, false: 0},
-        cw_auto_update: { true: 0, false: 0},
-        cw_dhcp_client: { true: 0, false: 0},
-        cw_dhcp_server: { true: 0, false: 0},
-        cw_hand_off: { true: 0, false: 0},
-        cw_https_insp: { true: 0, false: 0},
-        cw_sshd_enabled: {true: 0, false: 0},
-        cw_sshd_kernun: {true: 0, false: 0}
+        cw_antivirus: { 'true': 0, 'false': 0},
+        cw_auto_update: { 'true': 0, 'false': 0},
+        cw_dhcp_client: { 'true': 0, 'false': 0},
+        cw_dhcp_server: { 'true': 0, 'false': 0},
+        cw_hand_off: { 'true': 0, 'false': 0},
+        cw_https_insp: { 'true': 0, 'false': 0},
+        cw_sshd_enabled: {'true': 0, 'false': 0},
+        cw_sshd_kernun: {'true': 0, 'false': 0},
+        cw_auth: {'<ntlm/>': 0, '<kerberos/>': 0, '<disabled/>': 0}
     };
 
     state = {
         loading : false,
+        date: moment().format(dateFormat),
         data: {},
         graphs: [],
-        dataKcw: []
+        dataKcw: [],
+        dataAuth: {}
     };
 
     componentDidMount() {
         this._isMounted = true;
-        this.fetchKernun(moment().format(dateFormat));
-        this.fetchKcw(moment().format(dateFormat));
+        this.fetchKernun(this.date);
+        this.fetchKcw(this.date);
     }
 
     componentWillUnmount() {
@@ -40,8 +43,9 @@ class Statistic extends Component {
     }
 
     onCalendar(date, dateString){
-        this.fetch(dateString);
+        this.fetchKernun(dateString);
         this.fetchKcw(dateString);
+        this.setState({date: dateString})
     }
 
     fetchKcw = (date) => {
@@ -52,7 +56,15 @@ class Statistic extends Component {
                 response.data.data.forEach(d => {
                         for (const prop in d) {
                             if (d.hasOwnProperty(prop) && this.kcw[prop]) {
-                                if (d[prop] == 'true'){
+                                if (prop == 'cw_auth'){
+                                    if (d[prop] == '<ntlm/>'){
+                                        this.kcw[prop]['<ntlm/>']++;
+                                    }else if (d[prop] == '<kerberos/>'){
+                                        this.kcw[prop]['<kerberos/>']++;
+                                    }else if (d[prop] == '<disabled/>'){
+                                        this.kcw[prop]['<disabled/>']++;
+                                    }
+                                }else if (d[prop] == 'true'){
                                     this.kcw[prop].true++;
                                 }else if (d[prop] == 'false'){
                                     this.kcw[prop].false++;
@@ -60,47 +72,21 @@ class Statistic extends Component {
                             }
                         }
                 });
-                let graphsKcw = [];
                 let trueSerie = [];
                 let falseSerie = [];
                 for (const prop in this.kcw) {
                     trueSerie.push(this.kcw[prop].true);
                     falseSerie.push(this.kcw[prop].false);
-                    const options = {
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie',
-                        },
-                        title: { text: prop, margin: 0},
-                        tooltip: {pointFormat: '{title.text}{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
-                        plotOptions: {
-                            pie: {
-                                allowPointSelect: false,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: false
-                                },
-                                showInLegend: true,
-                                point: {
-                                    events: {
-                                        click: function () {
-                                            alert('Category: ' + this.name);
-                                        }
-                                    }
-                                },
-                                size: 80
-                            }
-                        },
-                        series: [{name: 'Count', colorByPoint: true,
-                            data: [{ name: 'True', y: this.kcw[prop].true}, {name:'False', y:this.kcw[prop].false}]}]
-                    };
                 }
 
+                let series = [{name: 'true', data: trueSerie}, {name: 'false', data: falseSerie}];
                 if (this._isMounted) {
                     this.setState({
-                        graphsKcw: graphsKcw
+                        dataKcw: series,
+                        dataAuth: [
+                            {name: 'ntlm', y: this.kcw.cw_auth['<ntlm/>']},
+                            {name: 'kerberos', y: this.kcw.cw_auth['<kerberos/>']},
+                            {name: 'disabled', y: this.kcw.cw_auth['<disabled/>']}]
                     });
                 }
             })
@@ -136,7 +122,7 @@ class Statistic extends Component {
                         tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
                         plotOptions: {
                             pie: {
-                                allowPointSelect: true,
+                                allowPointSelect: false,
                                 cursor: 'pointer',
                                 dataLabels: {
                                     enabled: false
@@ -145,7 +131,7 @@ class Statistic extends Component {
                                 point: {
                                     events: {
                                         click: function () {
-                                            alert('Category: ' + this.name);
+                                            alert(this.name);
                                         }
                                     }
                                 }
@@ -207,12 +193,48 @@ class Statistic extends Component {
             }]
         };
 
+        const optionsAuth = {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'cw_auth'
+            },
+            tooltip: {
+                pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            click: function () {
+                                alert('Category: ' + this.name);
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Count',
+                colorByPoint: true,
+                data: this.state.dataAuth
+            }]
+        };
+
         const optionsKcw = {
             chart: {
                 type: 'column',
             },
             title: {
-                text: 'summary of hits'
+                text: 'kcw functions'
             },
             xAxis: {
                 categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
@@ -224,7 +246,7 @@ class Statistic extends Component {
                 }
             },
             tooltip: {
-                headerFormat: '<span style="font-size:11px">{point.key}</span><br/>',
+                headerFormat: '<span style="font-size:11px">{series.name} </span>',
                 pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}'
             },
             plotOptions: {
@@ -232,10 +254,17 @@ class Statistic extends Component {
                     stacking: 'normal',
                     dataLabels: {
                         enabled: false,
+                    },
+                    point: {
+                        events: {
+                            click: function () {
+                                alert(this.category + this.series.name);
+                            }
+                        }
                     }
                 }
             },
-            series: this.state.data
+            series: this.state.dataKcw
         };
 
         return (
@@ -247,11 +276,14 @@ class Statistic extends Component {
                         <div className="column-left">
                             <HighchartsReact highcharts={Highcharts} options={options}/>
                         </div>
-                        <div className="column-center">{this.state.graphs}</div>
+                        <div className="column-center">
+                            {this.state.graphs}
+                            <div className="center-chart">
+                                <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
+                            </div>
+                        </div>
                     </div><br/><br/>
-                    <h1 style={{ textAlign: "center"}}>Kcw functions</h1><br/> <br/>
                     <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
-                    <div>{this.state.graphsKcw}</div>
                 </Spin>
             </Fragment>
         )

@@ -156,7 +156,6 @@ class FeedbackList extends Component {
                 columns={columns}
                 rowKey={record => record.fa_id}
                 dataSource={this.state.feedback}
-                pagination={this.state.pagination}
                 loading={this.state.loading}
                 size="small"
             />
