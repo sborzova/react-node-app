@@ -6,7 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
 
-class DevicesHeatMap extends Component{
+class HeatMapDevice extends Component{
     state = {
         loading: false,
         data: [],
@@ -115,7 +115,6 @@ class DevicesHeatMap extends Component{
                         options={opt}/>)
                 });
 
-
                 if (this._isMounted){
                     this.setState({
                         loading: false,
@@ -127,8 +126,6 @@ class DevicesHeatMap extends Component{
     };
 
     render () {
-
-
         return (
             <Spin spinning={this.state.loading}>
                 {this.state.data}
@@ -136,4 +133,4 @@ class DevicesHeatMap extends Component{
     }
 }
 
-export default DevicesHeatMap;
+export default HeatMapDevice;

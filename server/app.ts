@@ -1,6 +1,13 @@
-const moment = require('moment');
 const express = require('express');
-const routes = require('./routes/routes.ts');
+
+const hitRouter = require('./routes/hitRouter.ts');
+const feedbackRouter = require('./routes/feedbackRouter.ts');
+const customerRouter = require('./routes/customerRouter.ts');
+const domainRouter = require('./routes/domainRouter.ts');
+const licenseRouter = require('./routes/licenseRouter.ts');
+const deviceRouter = require('./routes/deviceRouter.ts');
+const statisticRouter = require('./routes/statisticRouter.ts');
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -11,18 +18,15 @@ const Keycloak = require('keycloak-connect');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
-const memoryStore = new session.MemoryStore();
-const fse = require('fs-extra');
-// const https = require('https');
  const uuid = require('uuid/v4');
 // @ts-ignore
 const crypto = require('crypto');
-const RedisStore = require('connect-redis')(session);
 // @ts-ignore
 const sessionSecret =  crypto.randomBytes(100);
 const sequelize = require('./database.ts');
 
 const app = express();
+
 app.use(helmet());
 app.use(cookieParser());
 
@@ -47,10 +51,15 @@ app.use(session({
 
 store.sync();
 
-
 app.use(bodyParser.json());
 app.use(kc.middleware());
 
-app.use('/api', kc.protect(), routes);
+app.use('/api', kc.protect(), hitRouter);
+app.use('/api', kc.protect(), feedbackRouter);
+app.use('/api', kc.protect(), customerRouter);
+app.use('/api', kc.protect(), domainRouter);
+app.use('/api', kc.protect(), deviceRouter);
+app.use('/api', kc.protect(), licenseRouter);
+app.use('/api', kc.protect(), statisticRouter);
 
 app.listen(port);

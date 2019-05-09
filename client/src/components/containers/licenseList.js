@@ -5,18 +5,25 @@ import Highlighter from 'react-highlight-words';
 import moment from 'moment';
 import {Link} from "react-router-dom";
 
-
-class Licenses extends Component {
+class LicenseList extends Component {
     _isMounted = false;
 
     state = {
         customers: [],
-        pagination: {},
         loading: false,
         redirect: false,
         redirectTo: null,
         searchText: '',
     };
+
+    componentDidMount(){
+        this._isMounted = true;
+        this.fetch();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({
@@ -76,29 +83,15 @@ class Licenses extends Component {
         this.setState({ searchText: '' });
     };
 
-    componentDidMount(){
-        this._isMounted = true;
-        this.fetch();
-    }
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
-
-    fetch = (params = {}) => {
+    fetch = () => {
         this.setState({ loading: true });
-        const results = 10;
         axios.get(`/api/licenses`, )
             .then((response) => {
-                const data = response.data;
-                const pagination = { ...this.state.pagination };
-                pagination.total = data.data.length;
                 if (this._isMounted) {
                     this.setState({
                         loading: false,
-                        customers: data.data,
-                        pagination,
+                        customers: response.data.data,
                     });
                 }
             })
@@ -108,9 +101,8 @@ class Licenses extends Component {
     render() {
         const columns = [
             {
-                title: 'CustomerDetail',
+                title: 'Customer',
                 dataIndex: 'determined_customer',
-                //width: '16%',
                 ...this.getColumnSearchProps('determined_customer'),
                 render: (customer) =>
                     <div>
@@ -120,10 +112,10 @@ class Licenses extends Component {
             },
             {
                 title: 'Ident',
-                dataIndex: 'license.ident',
+                dataIndex: 'ident',
             },{
                 title: 'Serial',
-                dataIndex: 'license.serial',
+                dataIndex: 'serial',
                 render: (serial) =>
                     <div>
                         <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
@@ -131,12 +123,9 @@ class Licenses extends Component {
             },
              {
                 title: 'Expiration',
-                dataIndex: 'license.expiration',
-                //width: '10%',
-                //defaultSortOrder: 'descend',
-                //sorter: (a, b) => a.license.expiration.localeCompare(b.license.expiration),
+                dataIndex: 'expiration',
                  render: (datetime) => {
-                     if (datetime !== 'undefined' && datetime !== 'unlimited'){
+                     if (datetime !== '∞' && datetime !== 'unlimited'){
                          let className = '';
                          if (moment(datetime).isBefore(moment())){
                              className = 'font-red'
@@ -146,12 +135,13 @@ class Licenses extends Component {
                              className = 'font-yellow'
                          }
                          return <div className={className}>{moment(datetime).format('L')}</div>
+                     }else{
+                         return <div className="infinity">∞</div>
                      }}
             },
             {
                 title: 'Upgrade',
-                dataIndex: 'license.upgrade',
-                //width: '10%',
+                dataIndex: 'upgrade',
                 defaultSortOrder: 'descend',
                 //sorter: (a, b) => a.license.expiration.localeCompare(b.license.expiration),
                 render: (datetime) => {
@@ -169,29 +159,27 @@ class Licenses extends Component {
             },
             {
                 title: 'Sale',
-                dataIndex: 'license.saleType',
-                //width: '5%',
+                dataIndex: 'saleType',
                 filters: [
                     { text: 'sale', value: 'sale' },
                     { text: 'rental', value: 'rental' },
                 ],
-                onFilter: (value, record) => {if (record.license && record.license.saleType){return record.license.saleType.includes(value)}},
+                onFilter: (value, record) => {if (record.saleType){return record.saleType.includes(value)}},
                 render: (saleType) => {
                     if (saleType){
                         const color = saleType == 'sale' ? 'yellow' : 'blue';
                         return <Tag color={color} key={saleType}>{saleType}</Tag>
                     }}
             },
-            {
+             {
                 title: 'Type',
-                dataIndex: 'license.licenseType',
-                //width: '5%',
+                dataIndex: 'licenseType',
                 filters: [
                     { text: 'edu', value: 'edu' },
                     { text: 'test', value: 'test' },
                     { text: 'nfr', value: 'nfr' },
                 ],
-                onFilter: (value, record) => {if (record.license && record.license.licenseType){return record.license.licenseType.includes(value)}},
+                onFilter: (value, record) => {if (record && record.licenseType){return record.licenseType.includes(value)}},
                 render: (licenseType) => {
                     if (licenseType){
                         let color;
@@ -212,8 +200,7 @@ class Licenses extends Component {
                     }}
             },{
                 title: 'Kernun variant',
-                dataIndex: 'device.kernun_variant',
-                //width: '10%',
+                dataIndex: 'kernun_variant',
                 filters: [
                     { text: 'kcw', value: 'kernun_clear_web' },
                     { text: 'utm', value: 'kernun' },
@@ -243,7 +230,6 @@ class Licenses extends Component {
             {
                 title: 'Upload start',
                 dataIndex: 'upload_start',
-                //width: '15%',
                 render: (datetime) =>
                     <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
             },
@@ -256,19 +242,16 @@ class Licenses extends Component {
                         <Link to={`/feedback/detail/${id}`}>{id}</Link>
                     </div>
             },
-
-
         ];
         return (
             <Table
                 columns={columns}
-                rowKey={record => record.fa_id}
+                rowKey={record => record.serial}
                 dataSource={this.state.customers}
                 loading={this.state.loading}
             />
-
         )
     }
 }
 
-export default Licenses;
+export default LicenseList;

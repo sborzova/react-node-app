@@ -19,7 +19,6 @@ class HeatMap extends Component{
 
     componentDidMount(){
         const min = this.props.type == 'year' ? 60 : 1;
-        //let max; 90 : 3
         this._isMounted = true;
         let date = new Date();
         let categories = [];
@@ -37,10 +36,6 @@ class HeatMap extends Component{
         this._isMounted = false;
     }
 
-    handlePeriodChange = (e) => {
-        this.fetch(e.target.value);
-    };
-
     fetch = () => {
         this.setState({ loading: true });
         axios.get(`/api/feedback/${this.props.type}`)
@@ -48,7 +43,6 @@ class HeatMap extends Component{
                 let days = [];
                 const array = response.data.data;
                 array.forEach(e => {
-                    // days.push([moment(e.date).date()-1,this.mapper.get(moment(e.date).month()+'-'+ moment(e.date).year()),e.count, 1]);
                     days.push({
                         x: moment(e.date).date()-1,
                         y: this.mapper.get(moment(e.date).month()+'-'+ moment(e.date).year()),
@@ -82,16 +76,11 @@ class HeatMap extends Component{
             },
             colorAxis : {
                 min: this.state.min,
-                //max: this.state.max,
                 stops: [
-                    [0, '#3060cf'],
-                    [0.25, '#4CA64C'],
-                    [0.5, '#FFFF4D'],
-                    [0.7, '#FFAE19'],
+                    [0, '#FFFF4D'],
+                    [0.5, '#FFAE19'],
                     [0.9, '#c4463a']
                 ],
-                // minColor: '#FFFFFF',
-                // maxColor: Highcharts.getOptions().colors[0]
             },
             legend : {
                 margin: 10,
@@ -99,15 +88,15 @@ class HeatMap extends Component{
             },
             tooltip : {
                 formatter: function () {
-                    return '<b>' + this.point.name + '</b>';
+                    return this.point.name + '<br/>' + 'Count: ' + '<b>' +
+                            this.point.value + '</b>';
                 }
             },
             series : [{
                 name: 'Count',
-                borderWidth: 1,
                 data: this.state.data,
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     color: '#000000'
                 }
             }]

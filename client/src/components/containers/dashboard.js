@@ -6,7 +6,7 @@ import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import HeatMap from "./HeatMap";
+import HeatMap from "./heatMap";
 
 class Dashboard extends Component {
     state = {
@@ -27,7 +27,7 @@ class Dashboard extends Component {
 
     fetch = (period) => {
         this.setState({ loading: true });
-        axios.get(`/api/feedback/${period}`)
+        axios.get(`/api/feedback/all/${period}`)
             .then((response) => {
                 let categories = [];
                 let count = [];
@@ -52,7 +52,7 @@ class Dashboard extends Component {
             case 'month':
                 return <HighchartsReact highcharts={Highcharts} options={options}/>;
             case 'year':
-                return <HeatMap type="year"/>;
+                return <HeatMap type="all/year"/>;
         }
     };
 

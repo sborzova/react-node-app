@@ -1,22 +1,18 @@
-const Feedback = require('../models/feedback.ts');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
-const Reporter = require('../models/reporter.ts');
-const db = require('../database.ts');
-
 const Sequelize = require('sequelize');
 const express = require('express');
 const moment = require('moment');
 const underscore = require('underscore');
 
+const db = require('../database.ts');
+
 const hitRouter = express.Router();
 
 hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+        "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
+        "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 6 DAY) AND NOW() " +
-        "order by DATE(upload_start)",
+        "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
             let groups = underscore.groupBy(data, function(object) {
@@ -29,11 +25,11 @@ hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
 });
 
 hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+        "FROM feedback left join device ON feedback.fa_id = device.fa_id " +
+        "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() " +
-        "order by DATE(upload_start)",
+        "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
             let groups = underscore.groupBy(data, function(object) {
@@ -46,11 +42,11 @@ hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
 });
 
 hitRouter.get('/hits/year/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+        "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
+        "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() " +
-        "order by DATE(upload_start)",
+        "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
             let groups = underscore.groupBy(data, function(object) {

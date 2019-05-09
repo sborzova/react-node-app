@@ -38,17 +38,15 @@ class LayoutMenu extends Component {
                             <Menu.Item key="licenses">
                                 <NavLink to="/licenses">Licenses</NavLink>
                             </Menu.Item>
-                            {/*<Menu.Item key="dev">*/}
-                            {/*    <NavLink to="/dev">Dev</NavLink>*/}
-                            {/*</Menu.Item>*/}
-
+                            <Menu.Item key="statistics">
+                                <NavLink to="/statistics">Statistics</NavLink>
+                            </Menu.Item>
                             <Menu.Item style={{float: 'right'}} key="4">
                                 <span onClick={() => this.logout()}>Logout</span>
                             </Menu.Item>
                             <Menu.Item style={{float: 'right'}} key="5">
                                 <a target="_blank" rel="noopener noreferrer" href="http://localhost:8080/auth/realms/demo/account/">User</a>
                             </Menu.Item>
-
                         </Menu>
                     </Header>
                 </Layout>

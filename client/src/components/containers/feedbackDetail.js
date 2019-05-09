@@ -5,7 +5,7 @@ import moment from 'moment';
 
 const { TabPane } = Tabs;
 
-class Feedback extends Component {
+class FeedbackDetail extends Component {
     state = {
         feedback: {},
         device: {},
@@ -326,4 +326,4 @@ class Feedback extends Component {
     }
 }
 
-export default Feedback;
+export default FeedbackDetail;

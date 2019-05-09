@@ -1,7 +1,3 @@
-const Feedback = require('../models/feedback.ts');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
-const Reporter = require('../models/reporter.ts');
 const db = require('../database.ts');
 
 const Sequelize = require('sequelize');
@@ -9,18 +5,23 @@ const express = require('express');
 const moment = require('moment');
 const underscore = require('underscore');
 
-const hitRouter = express.Router();
+const statisticRouter = express.Router();
 
-hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
-        "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 6 DAY) AND NOW() " +
-        "order by DATE(upload_start)",
-        { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
+statisticRouter.get('/statistic/kernun' ,function(req, res, next) {
+    db.query("SELECT count(*) AS count, kernun_variant, kernun_version  " +
+        "FROM " +
+        "(SELECT a.fa_id, determined_customer  " +
+        "FROM  " +
+        "(SELECT fa_id, determined_customer, upload_start  " +
+        "  FROM feedback WHERE DATE(upload_start) = :date) AS a  " +
+        " LEFT JOIN license ON a.fa_id = license.fa_id " +
+        " WHERE DATE(upload_start) < DATE(upgrade)) AS b " +
+        "LEFT JOIN device ON b.fa_id = device.fa_id " +
+        "GROUP BY kernun_variant, kernun_version",
+        { replacements: {date: req.query.date }, type: db.QueryTypes.SELECT})
         .then(data => {
             let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
+                return object.kernun_variant;
             });
             res.status(200).send({
                 data: groups
@@ -28,38 +29,22 @@ hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
         })
 });
 
-hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
-        "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() " +
-        "order by DATE(upload_start)",
-        { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
+statisticRouter.get('/statistic/kcw' ,function(req, res, next) {
+    db.query("SELECT kcw_function.* FROM (SELECT b.fa_id FROM (SELECT a.fa_id, determined_customer  " +
+        "FROM (SELECT fa_id, determined_customer, upload_start  " +
+        " FROM feedback WHERE DATE(upload_start) = :date) AS a  " +
+        " LEFT JOIN license ON a.fa_id = license.fa_id " +
+        " WHERE DATE(upload_start) < DATE(upgrade)) AS b " +
+        "LEFT JOIN device ON b.fa_id = device.fa_id " +
+        "WHERE kernun_variant = 'kernun_clear_web') AS c " +
+        "LEFT JOIN kcw_function on kcw_function.fa_id = c.fa_id",
+        { replacements: {date: req.query.date }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+
             res.status(200).send({
-                data: groups
+                data: data
             })
         })
 });
 
-hitRouter.get('/hits/year/:customer' ,function(req, res, next) {
-    db.query("select feedback.fa_id, hits as count, date(upload_start) as date, hostid, hostname " +
-        "from feedback left join device on feedback.fa_id = device.fa_id " +
-        "where determined_customer = :customer AND " +
-        "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() " +
-        "order by DATE(upload_start)",
-        { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
-        .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
-            res.status(200).send({
-                data: groups
-            })
-        })
-});
-
-module.exports = hitRouter;
+module.exports = statisticRouter;

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {
-    Table, Badge, Menu, Dropdown, Icon, Tag, Tooltip
+    Table, Badge, Tooltip
 } from 'antd';import {Link} from "react-router-dom";
 import axios from "axios";
 import moment from 'moment';
@@ -37,41 +37,7 @@ const columns = [
         <div>
             <Link to={`/customers/detail/${customer}`}>{customer}</Link>
         </div>
-    },
-//     {
-//     title: 'Fa_id',
-//     dataIndex: 'fa_id',
-//     width: '10%',
-//     render: (id) =>
-//         <div>
-//             <Link to={`/feedback/detail/${id}`}>{id}</Link>
-//         </div>
-// }, {
-//     title: 'Upload_start',
-//     dataIndex: 'upload_start',
-//     width: '20%',
-//     render: (datetime) =>
-//         <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
-// }, {
-//     title: 'License expiration',
-//     dataIndex: 'license',
-//     width: '20%',
-//     render: (datetime) =>{
-//     if (datetime !== '' && datetime !== 'unlimited'){
-//         return <div>{moment(datetime).format('L')}</div>
-//     }
-//     }}, {
-//     title: 'Info',
-//     dataIndex: 'info',
-//     filters: [
-//         { text: 'possible problem', value: 'possible problem' },
-//     ],
-//     onFilter: (value, record) => {if (record.info){return record.info.includes(value)}},
-//     render: (info) => {
-//         if (info){
-//             return <Tag color='volcano' key={info}>{info}</Tag>
-// }}}
-
+    }
 ];
 
 
@@ -101,7 +67,7 @@ const columnsNested = [
             <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
     }, {
         title: 'License expiration',
-        dataIndex: 'license.expiration',
+        dataIndex: 'expiration',
         width: '20%',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
@@ -114,10 +80,12 @@ const columnsNested = [
                     className = 'font-yellow'
                 }
                 return <div className={className}>{moment(datetime).format('L')}</div>
+            }else {
+                return <div className="infinity">∞</div>
             }}
     }, {
         title: 'License upgrade',
-        dataIndex: 'license.upgrade',
+        dataIndex: 'upgrade',
         width: '20%',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
@@ -133,10 +101,10 @@ const columnsNested = [
             }}
     }, {
         title: 'Ident',
-        dataIndex: 'license.ident',
+        dataIndex: 'ident',
     },{
         title: 'Serial',
-        dataIndex: 'license.serial',
+        dataIndex: 'serial',
         render: (serial) =>
             <div>
                 <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
@@ -145,7 +113,7 @@ const columnsNested = [
 
 ];
 
-class Customers extends Component {
+class CustomerList extends Component {
     _isMounted = false;
     state = {
         data: [],
@@ -181,13 +149,12 @@ class Customers extends Component {
     };
 
     expandedRowRender = record => {
-        console.log(record);
         return (
             <Table
                 columns={columnsNested}
                 dataSource={record.feedbacks}
                 pagination={false}
-                rowKey={record => record.fa_id}
+                rowKey={record => record.serial}
             />
         );
     };
@@ -224,4 +191,4 @@ class Customers extends Component {
     }
 }
 
-export default Customers;
+export default CustomerList;

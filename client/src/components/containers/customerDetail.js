@@ -1,15 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import HeatMap from "./HeatMap";
-import FeedbackList from "./FeedbackList";
+import HeatMap from "./heatMap";
+import FeedbackList from "./feedbackList";
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import {Radio, Spin} from "antd";
 import axios from "axios";
-import DevicesHeatMap from "./DevicesHeatMap";
+import HeatMapDevice from "./heatMapDevice";
 
-class Customer extends Component{
+class CustomerDetail extends Component{
     state = {
         period: 'week',
         periodDomains: 'week',
@@ -99,9 +99,6 @@ class Customer extends Component{
             }).catch(error => console.log(error));
     };
 
-
-
-
     render(){
         const options = {
             chart: {
@@ -112,7 +109,6 @@ class Customer extends Component{
             },
             xAxis: {
                 categories: this.state.categories,
-                //crosshair: true,
             },
             yAxis: {
                 title: {
@@ -170,24 +166,16 @@ class Customer extends Component{
         return (
             <Fragment>
                 <h1>{this.props.match.params.customer}</h1>
-                <HeatMap type={this.heatMapType}/>
-                <br/>
-                <br/>
-                <br/>
+                <HeatMap type={this.heatMapType}/><br/><br/><br/>
                 <h2>Feedback list</h2>
-                <FeedbackList type={this.feedbackListType}/>
-                <br/>
-                <br/>
-                <br/>
+                <FeedbackList type={this.feedbackListType}/><br/><br/><br/>
                 <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
                     <Radio.Button value="week">Week</Radio.Button>
                     <Radio.Button value="month">Month</Radio.Button>
                     <Radio.Button value="year">Year</Radio.Button>
                 </Radio.Group>
                 <Spin spinning={this.state.loading}>
-                    <HighchartsReact highcharts={Highcharts} options={options}
-                        //constructorType={"stockChart"}
-                    />
+                    <HighchartsReact highcharts={Highcharts} options={options}/>
                 </Spin>
                 <Radio.Group value={this.state.periodDomains} onChange={this.handlePeriodDomainsChange}>
                     <Radio.Button value="week">Week</Radio.Button>
@@ -195,18 +183,13 @@ class Customer extends Component{
                     <Radio.Button value="year">Year</Radio.Button>
                 </Radio.Group>
                 <Spin spinning={this.state.loadingDomains}>
-                    <HighchartsReact highcharts={Highcharts} options={optionsDomains}
-                        //constructorType={"stockChart"}
-                    />
+                    <HighchartsReact highcharts={Highcharts} options={optionsDomains}/>
                 </Spin>
-                <br/>
-                <br/>
-                <br/>
-                <DevicesHeatMap customer={this.props.match.params.customer}/>
-
+                <br/><br/><br/>
+                <HeatMapDevice customer={this.props.match.params.customer}/>
             </Fragment>
         )
     }
 }
 
-export default Customer;
+export default CustomerDetail;

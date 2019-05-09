@@ -1,5 +1,5 @@
 /*.App {*/
-  /*text-align: center;*/
+/*  font-size: 5px;*/
 /*}*/
 
 /*.App-logo {*/
@@ -100,3 +100,68 @@
 .table-vertical tr:hover {
   background-color: #e6f9ff;
 }
+
+.font-red {
+  color: red;
+  font-weight: bold;
+}
+
+.font-orange {
+  color: orange;
+  font-weight: bold;
+
+}
+
+.font-yellow {
+  color: #ffff00;
+  font-weight: bold;
+
+}
+
+.infinity {
+  font-size: 16px;
+  text-align: center;
+}
+
+.pie-chart {
+  width: 60%
+}
+
+/*.left-chart {*/
+/*  float: left;*/
+/*  width: 60%;*/
+/*  !*margin-right: 100px;*!*/
+/*}*/
+
+.center-chart {
+  float: left;
+  width: 300px;
+  /*height: 200px;*/
+  /*padding:30px;*/
+  /*margin-right: 30px;*/
+}
+
+.right-chart {
+  float: left;
+  width: 200px;
+  /*height: 100px;*/
+  /*padding:30px;*/
+  /*margin-right: 30px;*/
+}
+
+.column-left {
+  float: left;
+  width: 30%;
+}
+
+.column-center {
+  display: inline-block;
+  width: 70%;
+}
+
+/*.column-right {*/
+/*  float: right;*/
+/*  width: 50%;*/
+/*  flex: 1;*/
+/*  !*flex-wrap: nowrap*!*/
+/*}*/

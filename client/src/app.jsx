@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
+import './app.css';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
-import FeedbackList from './components/containers/FeedbackList';
-import Customers from './components/containers/Customers';
-import LayoutMenu from "./components/layouts/Layout";
-import Feedback from "./components/containers/Feedback";
-import Licenses from "./components/containers/Licenses";
-import Dev from "./components/containers/Dev";
+import FeedbackList from './components/containers/feedbackList';
+import CustomerList from './components/containers/customerList';
+import LayoutMenu from "./components/layouts/layout";
+import FeedbackDetail from "./components/containers/feedbackDetail";
+import LicenseList from "./components/containers/licenseList";
+import Statistic from "./components/containers/statistic";
 import moment from 'moment';
 import 'moment/locale/cs';
-import Dashboard from "./components/containers/Dashboard";
-import Notfound from "./components/layouts/404";
+import Dashboard from "./components/containers/dashboard";
+import Notfound from "./components/layouts/notFound";
 import { HashRouter } from "react-router-dom";
-import Customer from "./components/containers/Customer";
+import CustomerDetail from "./components/containers/customerDetail";
+import LicenseDetail from "./components/containers/licenseDetail";
 
 moment.locale('cs'); // change the global locale
 
@@ -24,12 +25,13 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" component={Dashboard}/>
                             <Route exact path="/feedback"
-                                   render={() => <FeedbackList type="feedback"/>}/>
-                            <Route exact path="/customers" component={Customers}/>
-                            <Route exact path="/customers/detail/:customer" component={Customer}/>
-                            <Route path="/licenses" component={Licenses}/>
-                            <Route path="/dev" component={Dev}/>
-                            <Route path="/feedback/detail/:id" component={Feedback}/>
+                                   render={() => <FeedbackList type="feedback/all"/>}/>
+                            <Route exact path="/customers" component={CustomerList}/>
+                            <Route exact path="/customers/detail/:customer" component={CustomerDetail}/>
+                            <Route exact path="/licenses" component={LicenseList}/>
+                            <Route exact path="/licenses/detail/:serial" component={LicenseDetail}/>
+                            <Route exact path="/statistics" component={Statistic}/>
+                            <Route exact path="/feedback/detail/:id" component={FeedbackDetail}/>
                             <Route component={Notfound} />
                         </Switch>
                     </LayoutMenu>

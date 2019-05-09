@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Radio, Table} from 'antd';
+import React, {Component} from 'react';
+import {Badge, Radio, Table, Tooltip} from 'antd';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
@@ -8,7 +8,18 @@ import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 const dateFormat = 'DD.MM.YYYY';
 
-const columns = [{
+const tooltips  = {
+    black : 'Reboot',
+    red: 'LicenseDetail expiration',
+    yellow: 'Nonzero n_panics',
+    orange: 'Nonzero n_aborts',
+    green: 'Nonempty core_dumps',
+    blue: 'devcount greater than reporter_users',
+    pink: 'devcount greater than reporter_clients'
+};
+
+const columns = [
+    {
     title: 'Fa id',
     dataIndex: 'fa_id',
     width: '5%',
@@ -19,13 +30,11 @@ const columns = [{
 }, {
     title: 'Upload start',
     dataIndex: 'upload_start',
-    width: '15%',
     render: (datetime) =>
         <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
 },{
-    title: 'Customer',
+    title: 'CustomerDetail',
     dataIndex: 'determined_customer',
-    width: '20%',
     render: (customer) =>
         <div>
             <Link to={`/customers/detail/${customer}`}>{customer}</Link>
@@ -33,17 +42,32 @@ const columns = [{
 },{
     title: 'Hostname',
     dataIndex: 'device.hostname',
-    width: '20%',
 },{
     title: 'Ident',
     dataIndex: 'license.ident',
-    width: '20%',
 },{
+    title: 'Serial',
+    dataIndex: 'license.serial',
+    render: (serial) =>
+        <div>
+            <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
+        </div>
+    },{
     title: 'Feedback hostname',
     dataIndex: 'feedback_hostname',
-    width: '20%',
-},
-
+},{
+    title: null,
+    dataIndex: 'color',
+    render: color => (
+        <span>
+          {color.map(c => {
+              return(
+                  <Tooltip placement="top" title={tooltips[c]}>
+                      <Badge color={c}/>
+                  </Tooltip>)
+          })}
+        </span>),
+    },
 ];
 
 class FeedbackList extends Component {
@@ -54,7 +78,6 @@ class FeedbackList extends Component {
 
         this.state = {
             feedback: [],
-            pagination: {},
             loading: false,
             redirect: false,
             redirectTo: null,
@@ -105,16 +128,14 @@ class FeedbackList extends Component {
 
     fetch = (from, to) => {
         this.setState({ loading: true });
-        axios.post(`/api/${this.props.type}`, {from: from, to: to})
+        axios.get(`/api/${this.props.type}`,
+            {params: {from: from, to: to}})
             .then((response) => {
                 const data = response.data;
-                const pagination = { ...this.state.pagination };
-                 pagination.total = data.data.length;
                 if (this._isMounted) {
                     this.setState({
                         loading: false,
                         feedback: data.data,
-                        pagination,
                     });
                 }
         })
@@ -139,6 +160,16 @@ class FeedbackList extends Component {
                 loading={this.state.loading}
                 size="small"
             />
+                <div>
+                    <h2>Legend</h2>
+                    <Badge color="black" text={tooltips['black']}/><br/>
+                    <Badge color="red" text={tooltips['red']}/><br/>
+                    <Badge color="yellow" text={tooltips['yellow']}/><br/>
+                    <Badge color="orange" text={tooltips['orange']}/><br/>
+                    <Badge color="green" text={tooltips['green']}/><br/>
+                    <Badge color="blue" text={tooltips['blue']}/><br/>
+                    <Badge color="pink" text={tooltips['pink']}/><br/>
+                </div>
             </React.Fragment>)
     }
 }
