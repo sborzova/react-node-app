@@ -1,87 +1,13 @@
 import React, {Component} from 'react';
-import {Badge, Radio, Table, Tooltip, Icon, Popover} from 'antd';
-import {Link} from "react-router-dom";
+import { Radio } from 'antd';
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import {getAllFeedbacksForInterval} from "../../services/api";
+import FeedbackTable from "./feedbacTable";
 const { RangePicker } = DatePicker;
 const dateFormat = 'DD.MM.YYYY';
-
-const tooltips  = {
-    black : 'Reboot',
-    red: 'LicenseDetail expiration',
-    yellow: 'Nonzero n_panics',
-    orange: 'Nonzero n_aborts',
-    green: 'Nonempty core_dumps',
-    blue: 'devcount greater than reporter_users',
-    pink: 'devcount greater than reporter_clients'
-};
-
-
-const popup = (
-    <div>
-        <Badge color="black" text={tooltips['black']}/><br/>
-        <Badge color="red" text={tooltips['red']}/><br/>
-        <Badge color="yellow" text={tooltips['yellow']}/><br/>
-        <Badge color="orange" text={tooltips['orange']}/><br/>
-        <Badge color="green" text={tooltips['green']}/><br/>
-        <Badge color="blue" text={tooltips['blue']}/><br/>
-        <Badge color="pink" text={tooltips['pink']}/><br/>
-    </div>
-);
-
-const columns = [
-    {
-    title: 'Fa id',
-    dataIndex: 'fa_id',
-    render: (id) =>
-        <div>
-            <Link to={`/feedback/detail/${id}`}>{id}</Link>
-        </div>
-}, {
-    title: 'Upload start',
-    dataIndex: 'upload_start',
-    render: (datetime) =>
-        <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
-},{
-    title: 'CustomerDetail',
-    dataIndex: 'determined_customer',
-    render: (customer) =>
-        <div>
-            <Link to={`/customers/detail/${customer}`}>{customer}</Link>
-        </div>
-},{
-    title: 'Hostname',
-    dataIndex: 'device.hostname',
-},{
-    title: 'Ident',
-    dataIndex: 'license.ident',
-},{
-    title: 'Serial',
-    dataIndex: 'license.serial',
-    render: (serial) =>
-        <div>
-            <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
-        </div>
-    },{
-    title: 'Feedback hostname',
-    dataIndex: 'feedback_hostname',
-},{
-    title: 'Status',
-    dataIndex: 'color',
-    render: color => (
-        <span>
-          {color.map(c => {
-              return(
-                  <Tooltip placement="top" title={tooltips[c]}>
-                      <Badge color={c}/>
-                  </Tooltip>)
-          })}
-        </span>),
-    },
-];
 
 class FeedbackList extends Component {
     _isMounted = false;
@@ -149,6 +75,7 @@ class FeedbackList extends Component {
                         loading: false,
                         feedback: data.data,
                     });
+                    console.log(this.state.feedback);
                 }
         })
         .catch(error => console.log(error));
@@ -164,21 +91,7 @@ class FeedbackList extends Component {
                     <Radio.Button value="year" onClick={this.onYear.bind(this)}>Year</Radio.Button>
                 </Radio.Group>
                 <RangePicker format={dateFormat} onChange={this.onCalendar.bind(this)}/>
-            <Table
-                columns={columns}
-                rowKey={record => record.fa_id}
-                dataSource={this.state.feedback}
-                loading={this.state.loading}
-                size="small"
-            />
-                <div>
-                    <h2>Legend for status
-                        <Popover  content={popup} placement="right">
-                            &nbsp;<Icon type="info-circle" theme="filled"/>
-                        </Popover>
-                    </h2>
-
-                </div>
+            <FeedbackTable feedback={this.state.feedback} loading={this.state.loading}/>
             </React.Fragment>)
     }
 }
