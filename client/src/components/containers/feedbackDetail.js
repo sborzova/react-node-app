@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {Tabs} from "antd";
 import moment from 'moment';
+import {getFeedback} from "../../services/api";
 
 const { TabPane } = Tabs;
 
@@ -20,7 +20,7 @@ class FeedbackDetail extends Component {
     }
 
     fetch = () => {
-        return axios.get(`/api/feedback/detail/${this.props.match.params.id}`)
+        getFeedback(this.props.match.params.id)
             .then( (response) => {
                 const data = response.data;
                 this.setState({

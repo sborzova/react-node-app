@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import {Spin} from 'antd';
 
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
+import {getCountDevices} from "../../services/api";
 
 class HeatMapDevice extends Component{
     state = {
@@ -37,7 +37,7 @@ class HeatMapDevice extends Component{
 
     fetch = () => {
         this.setState({ loading: true });
-        axios.get(`/api/devices/${this.props.customer}`)
+        getCountDevices(this.props.customer)
             .then((response) => {
                 const hostIds = Object.keys(response.data.data);
                 let data = [];

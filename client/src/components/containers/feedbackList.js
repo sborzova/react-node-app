@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Badge, Radio, Table, Tooltip} from 'antd';
 import {Link} from "react-router-dom";
-import axios from "axios";
-import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
+
+import 'antd/dist/antd.css';
 import moment from 'moment';
 import { DatePicker } from 'antd';
+import {getAllFeedbacksForInterval} from "../../services/api";
 const { RangePicker } = DatePicker;
 const dateFormat = 'DD.MM.YYYY';
 
@@ -128,8 +129,7 @@ class FeedbackList extends Component {
 
     fetch = (from, to) => {
         this.setState({ loading: true });
-        axios.get(`/api/${this.props.type}`,
-            {params: {from: from, to: to}})
+        getAllFeedbacksForInterval(this.props.type, from, to)
             .then((response) => {
                 const data = response.data;
                 if (this._isMounted) {

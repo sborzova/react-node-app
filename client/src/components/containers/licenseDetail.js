@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import HeatMap from "./heatMap";
 import FeedbackList from "./feedbackList";
-import axios from "axios";
+
 import {Link} from "react-router-dom";
+import {getLicense} from "../../services/api";
 
 class LicenseDetail extends Component{
     state = {
@@ -18,7 +19,7 @@ class LicenseDetail extends Component{
     }
 
     fetch = () => {
-            axios.get(`/api/license/detail/${this.props.match.params.serial}`)
+        getLicense(this.props.match.params.serial)
             .then( (response) => {
                 this.setState({
                     loading: false,

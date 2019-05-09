@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import {Spin} from 'antd';
 
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
+import {getCountFeedback} from "../../services/api";
 
 class HeatMap extends Component{
     state = {
@@ -38,7 +38,7 @@ class HeatMap extends Component{
 
     fetch = () => {
         this.setState({ loading: true });
-        axios.get(`/api/feedback/${this.props.type}`)
+        getCountFeedback(this.props.type)
             .then((response) => {
                 let days = [];
                 const array = response.data.data;

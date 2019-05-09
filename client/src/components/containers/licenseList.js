@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Table, Tag, Input, Button, Icon,} from 'antd';
-import axios from "axios";
 import Highlighter from 'react-highlight-words';
 import moment from 'moment';
 import {Link} from "react-router-dom";
+import {getAllLicenses} from "../../services/api";
 
 class LicenseList extends Component {
     _isMounted = false;
@@ -86,7 +86,7 @@ class LicenseList extends Component {
 
     fetch = () => {
         this.setState({ loading: true });
-        axios.get(`/api/licenses`, )
+        getAllLicenses()
             .then((response) => {
                 if (this._isMounted) {
                     this.setState({

@@ -6,8 +6,9 @@ import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import {Radio, Spin} from "antd";
-import axios from "axios";
 import HeatMapDevice from "./heatMapDevice";
+
+import {getCountDomains, getCountHits} from "../../services/api";
 
 class CustomerDetail extends Component{
     state = {
@@ -38,7 +39,7 @@ class CustomerDetail extends Component{
 
     fetchHits = (period) => {
         this.setState({ loading: true });
-        axios.get(`/api/hits/${period}/` + this.props.match.params.customer)
+        getCountHits(period, this.props.match.params.customer)
             .then((response) => {
                 let categories = [];
                 const hostIds = Object.keys(response.data.data);
@@ -70,7 +71,7 @@ class CustomerDetail extends Component{
 
     fetchDomains = (period) => {
         this.setState({ loadingDomains: true });
-        axios.get(`/api/domains/${period}/` + this.props.match.params.customer)
+        getCountDomains(period, this.props.match.params.customer)
             .then((response) => {
                 let categories = [];
                 const hostIds = Object.keys(response.data.data);

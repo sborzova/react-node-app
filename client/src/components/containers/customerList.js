@@ -1,9 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {
-    Table, Badge, Tooltip
-} from 'antd';import {Link} from "react-router-dom";
-import axios from "axios";
+import {Table, Badge, Tooltip} from 'antd';
+import {Link} from "react-router-dom";
 import moment from 'moment';
+import {getAllCustomers} from "../../services/api";
 
 const tooltips  = {
     green : 'Active with today\'s feedback',
@@ -135,7 +134,7 @@ class CustomerList extends Component {
 
     fetch = () => {
         this.setState({ loading: true });
-        axios.get(`/api/customers`, )
+        getAllCustomers()
             .then((response) => {
                 if(this._isMounted){
                     this.setState({

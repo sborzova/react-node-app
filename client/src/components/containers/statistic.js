@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
-import axios from "axios";
 import {Spin} from "antd";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import { DatePicker } from 'antd';
+import {getCountKcw, getCountKernunVersion} from "../../services/api";
 
 const dateFormat = 'DD.MM.YYYY';
 
@@ -50,8 +50,7 @@ class Statistic extends Component {
 
     fetchKcw = (date) => {
         this.setState({ loading: true });
-        axios.get(`/api/statistic/kcw`,
-            {params: {date: moment(date).format('YYYY-MM-DD')}})
+        getCountKcw(moment(date).format('YYYY-MM-DD'))
             .then((response) => {
                 response.data.data.forEach(d => {
                         for (const prop in d) {
@@ -95,8 +94,7 @@ class Statistic extends Component {
 
     fetchKernun = (date) => {
         this.setState({ loading: true });
-        axios.get(`/api/statistic/kernun`,
-            {params: {date: moment(date).format('YYYY-MM-DD')}})
+        getCountKernunVersion(moment(date).format('YYYY-MM-DD'))
             .then((response) => {
                 const data = response.data.data;
                 const variantNames = Object.keys(data);

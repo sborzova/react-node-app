@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import axios from "axios";
-import {Radio} from "antd";
+import { Radio} from "antd";
 
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import HeatMap from "./heatMap";
+import {getCountAllFeedback} from "../../services/api";
 
 class Dashboard extends Component {
     state = {
@@ -27,7 +27,7 @@ class Dashboard extends Component {
 
     fetch = (period) => {
         this.setState({ loading: true });
-        axios.get(`/api/feedback/all/${period}`)
+            getCountAllFeedback(period)
             .then((response) => {
                 let categories = [];
                 let count = [];
