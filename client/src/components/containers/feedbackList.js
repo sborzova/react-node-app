@@ -23,7 +23,6 @@ const columns = [
     {
     title: 'Fa id',
     dataIndex: 'fa_id',
-    width: '5%',
     render: (id) =>
         <div>
             <Link to={`/feedback/detail/${id}`}>{id}</Link>

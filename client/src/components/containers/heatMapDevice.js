@@ -64,23 +64,15 @@ class HeatMapDevice extends Component{
                         }
                     });
                     const opt = {
-                        chart : {
-                            type: 'heatmap',
-
-                        },
-                        title : {
-                            text: 'host id: ' + hostid
-                        },
+                        chart : { type: 'heatmap' },
+                        title : { text: 'host id: ' + hostid },
                         subtitle: {
                             text: 'hostname: ' + hosts[0].device.hostname + ', ident: ' + hosts[0].license.ident
                         },
                         xAxis : {
                             categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
                         },
-                        yAxis : {
-                            categories: this.state.categories,
-                            title: 'Months'
-                        },
+                        yAxis : { categories: this.state.categories, title: 'Months' },
                         colorAxis : {
                             min: 0,
                             stops: [
@@ -89,25 +81,12 @@ class HeatMapDevice extends Component{
                                 [0.9, '#c4463a']
                             ],
                         },
-                        legend : {
-                            margin: 10,
-                            verticalAlign: 'bottom',
-                        },
                         tooltip : {
                             formatter: function () {
                                 return this.point.name;
                             }
                         },
-                        series : [{
-                            name: 'Count',
-                            borderWidth: 0,
-                            data: days,
-                            dataLabels: {
-                                enabled: false,
-                                color: '#000000'
-                            }
-                        }]
-
+                        series : [{ name: 'Count', data: days }]
                     };
                     data.push(<HighchartsReact
                         key={hostid}

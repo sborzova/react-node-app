@@ -38,8 +38,6 @@ const License = sequelize.define('license', {
     group_type: {
         type: Sequelize.STRING
     },
-    // saleType: Sequelize.VIRTUAL,
-    // licenseType: Sequelize.VIRTUAL,
     },
     {
         timestamps: false,
@@ -47,6 +45,4 @@ const License = sequelize.define('license', {
     }
 );
 
-
-//LicenseDetail.hasOne(FeedbackDetail, {foreignKey: 'fa_id'});
 module.exports = License;

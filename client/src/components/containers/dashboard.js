@@ -25,7 +25,7 @@ class Dashboard extends Component {
         this.fetch(e.target.value);
     };
 
-    fetch = (period) => {
+    fetch(period){
         this.setState({ loading: true });
             getCountAllFeedback(period)
             .then((response) => {
@@ -56,45 +56,22 @@ class Dashboard extends Component {
         }
     };
 
-
     render() {
+        const options = {
+                title: { text: this.state.title },
+                xAxis: { categories: this.state.categories },
+                yAxis: { title: { text: 'Count' } },
+                series: [{ name: 'Count', data: this.state.data }]
+          };
 
-      const options = {
-            title: {
-                text: this.state.title
-            },
-            xAxis: {
-                categories: this.state.categories,
-                crosshair: true
-            },
-            yAxis: {
-                title: {
-                    text: 'Count'
-                }
-            },
-            tooltip: {
-                style: {
-                    width: '200px'
-                },
-                shared: true
-            },
-            series: [{
-                name: 'Count',
-                data: this.state.data
-            },
-            ]
-        };
-
-        return (
-            <Fragment>
+        return (<Fragment>
                 <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
                     <Radio.Button value="week">Week</Radio.Button>
                     <Radio.Button value="month">Month</Radio.Button>
                     <Radio.Button value="year">Year</Radio.Button>
                 </Radio.Group>
                 {this.renderSwitch(this.state.period, options)}
-            </Fragment>
-        )
+            </Fragment>)
     }
 }
 

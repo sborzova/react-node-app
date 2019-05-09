@@ -143,7 +143,6 @@ class LicenseList extends Component {
                 title: 'Upgrade',
                 dataIndex: 'upgrade',
                 defaultSortOrder: 'descend',
-                //sorter: (a, b) => a.license.expiration.localeCompare(b.license.expiration),
                 render: (datetime) => {
                     if (datetime !== 'undefined' && datetime !== 'unlimited'){
                         let className = '';
@@ -236,7 +235,6 @@ class LicenseList extends Component {
             {
                 title: 'Fa id',
                 dataIndex: 'fa_id',
-                width: '5%',
                 render: (id) =>
                     <div>
                         <Link to={`/feedback/detail/${id}`}>{id}</Link>

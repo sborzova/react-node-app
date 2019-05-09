@@ -17,7 +17,7 @@ const columns = [
         title: null,
         key: 'feedbacks',
         dataIndex: 'feedbacks',
-        width: '5%',
+        width: '10%',
         render: feedbacks => (
             <span>
               {feedbacks.map(fb => {
@@ -44,7 +44,6 @@ const columnsNested = [
     {
         title: null,
         dataIndex: 'color',
-        width: '5%',
         render: (color) =>
             <Tooltip placement="top" title={tooltips[color]}>
                 <Badge color={color}/>
@@ -53,7 +52,6 @@ const columnsNested = [
     {
         title: 'Fa_id',
         dataIndex: 'fa_id',
-        width: '10%',
         render: (id) =>
             <div>
                 <Link to={`/feedback/detail/${id}`}>{id}</Link>
@@ -61,13 +59,11 @@ const columnsNested = [
     }, {
         title: 'Upload_start',
         dataIndex: 'upload_start',
-        width: '20%',
         render: (datetime) =>
             <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
     }, {
         title: 'License expiration',
         dataIndex: 'expiration',
-        width: '20%',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
                 let className = '';
@@ -85,7 +81,6 @@ const columnsNested = [
     }, {
         title: 'License upgrade',
         dataIndex: 'upgrade',
-        width: '20%',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
                 let className = '';

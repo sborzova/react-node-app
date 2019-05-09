@@ -102,51 +102,23 @@ class CustomerDetail extends Component{
 
     render(){
         const options = {
-            chart: {
-                type: 'column',
-            },
-            title: {
-                text: 'summary of hits'
-            },
-            xAxis: {
-                categories: this.state.categories,
-            },
-            yAxis: {
-                title: {
-                    text: 'Count'
-                }
-            },
+            chart: { type: 'column' },
+            title: { text: 'summary of hits' },
+            xAxis: { categories: this.state.categories },
+            yAxis: { title: { text: 'Count' } },
             tooltip: {
-                headerFormat: '<span style="font-size:11px">{point.key}</span><br/>',
-                pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}'
+                headerFormat: '<span>{point.key}</span><br/>',
+                pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}',
             },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: false,
-                    }
-                }
-            },
+            plotOptions: { column: { stacking: 'normal' } },
             series: this.state.data
         };
 
         const optionsDomains = {
-            chart: {
-                type: 'column',
-            },
-            title: {
-                text: 'summary of domains'
-            },
-            xAxis: {
-                categories: this.state.categories,
-                crosshair: true,
-            },
-            yAxis: {
-                title: {
-                    text: 'Count'
-                }
-            },
+            chart: { type: 'column' },
+            title: { text: 'summary of domains' },
+            xAxis: { categories: this.state.categories },
+            yAxis: { title: { text: 'Count' } },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -155,41 +127,33 @@ class CustomerDetail extends Component{
                 shared: true,
                 useHTML: true
             },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
             series: this.state.dataDomains
         };
 
-        return (
-            <Fragment>
-                <h1>{this.props.match.params.customer}</h1>
-                <HeatMap type={this.heatMapType}/><br/><br/><br/>
-                <h2>Feedback list</h2>
-                <FeedbackList type={this.feedbackListType}/><br/><br/><br/>
-                <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
-                    <Radio.Button value="week">Week</Radio.Button>
-                    <Radio.Button value="month">Month</Radio.Button>
-                    <Radio.Button value="year">Year</Radio.Button>
-                </Radio.Group>
-                <Spin spinning={this.state.loading}>
-                    <HighchartsReact highcharts={Highcharts} options={options}/>
-                </Spin>
-                <Radio.Group value={this.state.periodDomains} onChange={this.handlePeriodDomainsChange}>
-                    <Radio.Button value="week">Week</Radio.Button>
-                    <Radio.Button value="month">Month</Radio.Button>
-                    <Radio.Button value="year">Year</Radio.Button>
-                </Radio.Group>
-                <Spin spinning={this.state.loadingDomains}>
-                    <HighchartsReact highcharts={Highcharts} options={optionsDomains}/>
-                </Spin>
-                <br/><br/><br/>
-                <HeatMapDevice customer={this.props.match.params.customer}/>
-            </Fragment>
-        )
+        return (<Fragment>
+                    <h1>{this.props.match.params.customer}</h1>
+                    <HeatMap type={this.heatMapType}/><br/><br/><br/>
+                    <h2>Feedback list</h2>
+                    <FeedbackList type={this.feedbackListType}/><br/><br/><br/>
+                    <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
+                        <Radio.Button value="week">Week</Radio.Button>
+                        <Radio.Button value="month">Month</Radio.Button>
+                        <Radio.Button value="year">Year</Radio.Button>
+                    </Radio.Group>
+                    <Spin spinning={this.state.loading}>
+                        <HighchartsReact highcharts={Highcharts} options={options}/>
+                    </Spin>
+                    <Radio.Group value={this.state.periodDomains} onChange={this.handlePeriodDomainsChange}>
+                        <Radio.Button value="week">Week</Radio.Button>
+                        <Radio.Button value="month">Month</Radio.Button>
+                        <Radio.Button value="year">Year</Radio.Button>
+                    </Radio.Group>
+                    <Spin spinning={this.state.loadingDomains}>
+                        <HighchartsReact highcharts={Highcharts} options={optionsDomains}/>
+                    </Spin>
+                    <br/><br/><br/>
+                    <HeatMapDevice customer={this.props.match.params.customer}/>
+            </Fragment>)
     }
 }
 

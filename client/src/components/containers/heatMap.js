@@ -61,19 +61,12 @@ class HeatMap extends Component{
 
     render () {
         const opt = {
-            chart : {
-                type: 'heatmap',
-            },
-            title : {
-                text: 'year summary of feedback'
-            },
+            chart : { type: 'heatmap' },
+            title : { text: 'year summary of feedback' },
             xAxis : {
                 categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
             },
-            yAxis : {
-                categories: this.state.categories,
-                title: 'Months'
-            },
+            yAxis : { categories: this.state.categories,  title: 'Months' },
             colorAxis : {
                 min: this.state.min,
                 stops: [
@@ -82,24 +75,13 @@ class HeatMap extends Component{
                     [0.9, '#c4463a']
                 ],
             },
-            legend : {
-                margin: 10,
-                verticalAlign: 'bottom',
-            },
             tooltip : {
                 formatter: function () {
                     return this.point.name + '<br/>' + 'Count: ' + '<b>' +
                             this.point.value + '</b>';
                 }
             },
-            series : [{
-                name: 'Count',
-                data: this.state.data,
-                dataLabels: {
-                    enabled: false,
-                    color: '#000000'
-                }
-            }]
+            series : [{ name: 'Count', data: this.state.data }]
 
         };
 
@@ -111,7 +93,5 @@ class HeatMap extends Component{
             </Spin>)
     }
 }
-
-
 
 export default HeatMap;

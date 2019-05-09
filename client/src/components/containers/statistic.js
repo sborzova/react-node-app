@@ -110,30 +110,23 @@ class Statistic extends Component {
                     });
                     variantSeries.push({name: variantName, y: sum});
                     const options = {
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie',
-                        },
+                        chart: { type: 'pie' },
                         title: { text: variantName},
                         tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
                         plotOptions: {
                             pie: {
-                                allowPointSelect: false,
-                                cursor: 'pointer',
                                 dataLabels: {
                                     enabled: false
                                 },
                                 showInLegend: true,
-                                point: {
-                                    events: {
-                                        click: function () {
-                                            alert(this.name);
+                                        point: {
+                                            events: {
+                                                click: function () {
+                                                    alert(this.name);
+                                                }
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            }
                         },
                         series: [{name: 'Count', colorByPoint: true, data: versionSeries}]
                     };
@@ -156,21 +149,11 @@ class Statistic extends Component {
 
     render() {
         const options = {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Kernun variants'
-            },
-            tooltip: {
-                pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'
-            },
+            chart: { type: 'pie' },
+            title: { text: 'Kernun variants' },
+            tooltip: { pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>' },
             plotOptions: {
                 pie: {
-                    cursor: 'pointer',
                     dataLabels: {
                         enabled: false
                     },
@@ -186,27 +169,16 @@ class Statistic extends Component {
             },
             series: [{
                 name: 'Count',
-                colorByPoint: true,
                 data: this.state.data
             }]
         };
 
         const optionsAuth = {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'cw_auth'
-            },
-            tooltip: {
-                pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'
-            },
+            chart: { type: 'pie' },
+            title: { text: 'cw_auth' },
+            tooltip: { pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>' },
             plotOptions: {
                 pie: {
-                    cursor: 'pointer',
                     dataLabels: {
                         enabled: false
                     },
@@ -220,29 +192,15 @@ class Statistic extends Component {
                     }
                 }
             },
-            series: [{
-                name: 'Count',
-                colorByPoint: true,
-                data: this.state.dataAuth
-            }]
+            series: [{ name: 'Count', data: this.state.dataAuth }]
         };
 
         const optionsKcw = {
-            chart: {
-                type: 'column',
-            },
-            title: {
-                text: 'kcw functions'
-            },
-            xAxis: {
-                categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
-                    'cw_https_insp', 'cw_sshd_enabled', 'cw_sshd_kernun']
-            },
-            yAxis: {
-                title: {
-                    text: 'Count'
-                }
-            },
+            chart: { type: 'column' },
+            title: { text: 'kcw functions' },
+            xAxis: { categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
+                    'cw_https_insp', 'cw_sshd_enabled', 'cw_sshd_kernun'] },
+            yAxis: { title: { text: 'Count' } },
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name} </span>',
                 pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}'
