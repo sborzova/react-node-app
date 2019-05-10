@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Tabs} from "antd";
 import moment from 'moment';
 import {getFeedback} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 const { TabPane } = Tabs;
 
@@ -55,48 +56,48 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>fa_id</th>
+                                <th>{strings.FB_DETAIL_FA_ID}</th>
                                 <td>{this.state.feedback.fa_id}</td>
                             </tr>
                             <tr>
-                                <th>determined_customer</th>
+                                <th>{strings.FB_DETAIL_DETERMINED_CUSTOMER}</th>
                                 <td>{this.state.feedback.determined_customer}</td>
                             </tr>
                             <tr>
-                                <th>domains</th>
+                                <th>{strings.FB_DETAIL_DOMAINS}</th>
                                 <td>{parseInt(this.state.feedback.domains).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>feedback_hostname</th>
+                                <th>{strings.FB_DETAIL_FB_HOSTNAME}</th>
                                 <td>{this.state.feedback.feedback_hostname}</td>
                             </tr>
                             <tr>
-                                <th>feedback_ip</th>
+                                <th>{strings.FB_DETAIL_FB_IP}</th>
                                 <td>{this.state.feedback.feedback_ip}</td>
                             </tr>
                             <tr>
-                                <th>fn</th>
+                                <th>{strings.FB_DETAIL_FN}</th>
                                 <td>{this.state.feedback.fn}</td>
                             </tr>
                             <tr>
-                                <th>hits</th>
+                                <th>{strings.FB_DETAIL_HITS}</th>
                                 <td>{parseInt(this.state.feedback.hits).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>size</th>
+                                <th>{strings.FB_DETAIL_SIZE}</th>
                                 <td>{parseInt(this.state.feedback.size).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>processed</th>
+                                <th>{strings.FB_DETAIL_PROCESSED}</th>
                                 <td>{moment(this.state.feedback.processed).format('DD.MM.YYYY HH:mm:ss')}</td>
                             </tr>
                             <tr>
-                                <th>upload_start</th>
+                                <th>{strings.FB_DETAIL_UPLOAD_START}</th>
                                 <td>{this.state.feedback.upload_start != null && this.state.feedback.upload_start !== '' ?
                                     moment(this.state.feedback.upload_start).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
                             <tr>
-                                <th>upload_finish</th>
+                                <th>{strings.FB_DETAIL_UPLOAD_FINISH}</th>
                                 <td>{this.state.feedback.upload_finish != null && this.state.feedback.upload_finish !== '' ?
                                     moment(this.state.feedback.upload_finish).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
@@ -107,35 +108,35 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>ident</th>
+                                <th>{strings.FB_DETAIL_IDENT}</th>
                                 <td>{this.state.license.ident}</td>
                             </tr>
                             <tr>
-                                <th>customer</th>
+                                <th>{strings.FB_DETAIL_CUSTOMER}</th>
                                 <td>{this.state.license.customer}</td>
                             </tr>
                             <tr>
-                                <th>serial</th>
+                                <th>{strings.FB_DETAIL_SERIAL}</th>
                                 <td>{this.state.license.serial}</td>
                             </tr>
                             <tr>
-                                <th>devcount</th>
+                                <th>{strings.FB_DETAIL_DEVCOUNT}</th>
                                 <td>{this.state.license.devcount}</td>
                             </tr>
                             <tr>
-                                <th>hw</th>
+                                <th>{strings.FB_DETAIL_HW}</th>
                                 <td>{this.state.license.hw}</td>
                             </tr>
                             <tr>
-                                <th>expiration</th>
+                                <th>{strings.FB_DETAIL_EXPIRATION}</th>
                                 <td>{expiration}</td>
                             </tr>
                             <tr>
-                                <th>upgrade</th>
+                                <th>{strings.FB_DETAIL_UPGRADE}</th>
                                 <td>{upgrade}</td>
                             </tr>
                             <tr>
-                                <th>group_type</th>
+                                <th>{strings.FB_DETAIL_GROUP_TYPE}</th>
                                 <td>{this.state.license.group_type}</td>
                             </tr>
                             </tbody>
@@ -145,35 +146,35 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>cpu_model</th>
+                                <th>{strings.FB_DETAIL_CPU_MODEL}</th>
                                 <td>{this.state.device.cpu_model}</td>
                             </tr>
                             <tr>
-                                <th>cpu_number</th>
+                                <th>{strings.FB_DETAIL_CPU_NUMBER}</th>
                                 <td>{this.state.device.cpu_number}</td>
                             </tr>
                             <tr>
-                                <th>dmi_product</th>
+                                <th>{strings.FB_DETAIL_DMI_PRODUCT}</th>
                                 <td>{this.state.device.dmi_product}</td>
                             </tr>
                             <tr>
-                                <th>hostid</th>
+                                <th>{strings.FB_DETAIL_HOSTID}</th>
                                 <td>{this.state.device.hostid}</td>
                             </tr>
                             <tr>
-                                <th>hostname</th>
+                                <th>{strings.FB_DETAIL_HOSTNAME}</th>
                                 <td>{this.state.device.hostname}</td>
                             </tr>
                             <tr>
-                                <th>kernun_variant</th>
+                                <th>{strings.FB_DETAIL_KERNUN_VARIANT}</th>
                                 <td>{this.state.device.kernun_variant}</td>
                             </tr>
                             <tr>
-                                <th>kernun_version</th>
+                                <th>{strings.FB_DETAIL_KERNUN_VERSION}</th>
                                 <td>{this.state.device.kernun_version}</td>
                             </tr>
                             <tr>
-                                <th>vm_guest</th>
+                                <th>{strings.FB_DETAIL_VM_GUEST}</th>
                                 <td>{this.state.device.vm_guest}</td>
                             </tr>
                             </tbody>
@@ -183,35 +184,35 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>uptime</th>
+                                <th>{strings.FB_DETAIL_UPTIME}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.uptime}</td>
                             </tr>
                             <tr>
-                                <th>disk_space</th>
+                                <th>{strings.FB_DETAIL_DISK_SPACE}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.disk_space}</td>
                             </tr>
                             <tr>
-                                <th>system_table</th>
+                                <th>{strings.FB_DETAIL_SYSTEM_TABLE}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.system_table}</td>
                             </tr>
                             <tr>
-                                <th>vm_stat</th>
+                                <th>{strings.FB_DETAIL_VM_STAT}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.vm_stat}</td>
                             </tr>
                             <tr>
-                                <th>core_dumps</th>
+                                <th>{strings.FB_DETAIL_CORE_DUMPS}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.core_dumps}</td>
                             </tr>
                             <tr>
-                                <th>rrd_proxies</th>
+                                <th>{strings.FB_DETAIL_RRD_PROXIES}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.rrd_proxies}</td>
                             </tr>
                             <tr>
-                                <th>n_panics</th>
+                                <th>{strings.FB_DETAIL_N_PANICS}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.n_panics}</td>
                             </tr>
                             <tr>
-                                <th>n_aborts</th>
+                                <th>{strings.FB_DETAIL_N_ABORTS}</th>
                                 <td>{this.state.deviceStatus && this.state.deviceStatus.n_aborts}</td>
                             </tr>
                             </tbody>
@@ -221,37 +222,37 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>reporter_min_time</th>
+                                <th>{strings.FB_DETAIL_REP_MIN_TIME}</th>
                                 <td>{this.state.reporter && this.state.reporter.reporter_min_time != null && this.state.reporter.reporter_min_time !== '' ?
                                     moment(this.state.reporter.reporter_min_time).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
                             <tr>
-                                <th>reporter_max_time</th>
+                                <th>{strings.FB_DETAIL_REP_MAX_TIME}</th>
                                 <td>{this.state.reporter && this.state.reporter.reporter_max_time != null && this.state.reporter.reporter_max_time !== '' ?
                                     moment(this.state.reporter.reporter_max_time).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
                             <tr>
-                                <th>reporter_users</th>
+                                <th>{strings.FB_DETAIL_REP_USERS}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_users).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>reporter_clients</th>
+                                <th>{strings.FB_DETAIL_REP_CLIENTS}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_clients).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>reporter_cw_categorized</th>
+                                <th>{strings.FB_DETAIL_CW_CATEGORIZED}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_cw_categorized).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>reporter_cw_total</th>
+                                <th>{strings.FB_DETAIL_CW_TOTAL}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_cw_total).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>reporter_web_categorized</th>
+                                <th>{strings.FB_DETAIL_WEB_CATEGORIZED}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_web_categorized).toLocaleString()}</td>
                             </tr>
                             <tr>
-                                <th>reporter_web_total</th>
+                                <th>{strings.FB_DETAIL_WEB_TOTAL}</th>
                                 <td>{this.state.reporter && parseInt(this.state.reporter.reporter_web_total).toLocaleString()}</td>
                             </tr>
                             </tbody>
@@ -261,59 +262,59 @@ class FeedbackDetail extends Component {
                         <table className="table-vertical">
                             <tbody>
                             <tr>
-                                <th>cw_deployment</th>
+                                <th>{strings.KCW_FUNC_DEPLOYMENT}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_deployment}</td>
                             </tr>
                             <tr>
-                                <th>cw_dhcp_client</th>
+                                <th>{strings.KCW_FUNC_DHCP_CLIENT}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_dhcp_client}</td>
                             </tr>
                             <tr>
-                                <th>cw_netif_devices</th>
+                                <th>{strings.KCW_FUNC_NETIF_DEVICES}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_netif_devices}</td>
                             </tr>
                             <tr>
-                                <th>cw_time_zone</th>
+                                <th>{strings.KCW_FUNC_TIME_ZONE}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_time_zone}</td>
                             </tr>
                             <tr>
-                                <th>cw_sshd_enabled</th>
+                                <th>{strings.KCW_FUNC_SSHD_ENABLED}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_sshd_enabled}</td>
                             </tr>
                             <tr>
-                                <th>cw_sshd_kernun</th>
+                                <th>{strings.KCW_FUNC_SSHD_KERNUN}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_sshd_kernun}</td>
                             </tr>
                             <tr>
-                                <th>cw_auto_update</th>
+                                <th>{strings.KCW_FUNC_AUTO_UPDATE}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_auto_update}</td>
                             </tr>
                             <tr>
-                                <th>cw_log_rotation</th>
+                                <th>{strings.KCW_FUNC_LOG_ROTATION}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_log_rotation}</td>
                             </tr>
                             <tr>
-                                <th>cw_proxy_lang</th>
+                                <th>{strings.KCW_FUNC_PROXY_LANG}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_proxy_lang}</td>
                             </tr>
                             <tr>
-                                <th>cw_hand_off</th>
+                                <th>{strings.KCW_FUNC_HAND_OFF}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_hand_off}</td>
                             </tr>
                             <tr>
-                                <th>cw_dhcp_server</th>
+                                <th>{strings.KCW_FUNC_DHCP_SERVER}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_dhcp_server}</td>
                             </tr>
                             <tr>
-                                <th>cw_https_insp</th>
+                                <th>{strings.KCW_FUNC_HTTPS_INSP}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_https_insp}</td>
                             </tr>
                             <tr>
-                                <th>cw_auth</th>
+                                <th>{strings.KCW_FUNC_AUTH}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_auth}</td>
                             </tr>
                             <tr>
-                                <th>cw_antivirus</th>
+                                <th>{strings.KCW_FUNC_ANTIVIRUS}</th>
                                 <td>{this.state.kcwFunction && this.state.kcwFunction.cw_antivirus}</td>
                             </tr>
                             </tbody>

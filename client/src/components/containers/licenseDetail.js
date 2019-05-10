@@ -4,6 +4,7 @@ import FeedbackList from "./feedbackList";
 
 import {Link} from "react-router-dom";
 import {getLicense} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 class LicenseDetail extends Component{
     state = {
@@ -33,11 +34,11 @@ class LicenseDetail extends Component{
     render(){
         return (
             <Fragment>
-                <h1>Serial number: {this.props.match.params.serial}</h1>
+                <h1>{strings.HEADER_LICENSE_SERIAL} {this.props.match.params.serial}</h1>
                 <table className="table-vertical">
                     <tbody>
                     <tr>
-                        <th>determined_customer</th>
+                        <th>{strings.FB_DETAIL_DETERMINED_CUSTOMER}</th>
                         <td>
                             <Link to={`/customers/detail/${this.state.feedback.determined_customer}`}>
                             {this.state.feedback.determined_customer}
@@ -45,15 +46,15 @@ class LicenseDetail extends Component{
                         </td>
                     </tr>
                     <tr>
-                        <th>ident</th>
+                        <th>{strings.FB_DETAIL_IDENT}</th>
                         <td>{this.state.license.ident}</td>
                     </tr>
                     <tr>
-                        <th>expiration</th>
+                        <th>{strings.FB_DETAIL_EXPIRATION}</th>
                         <td>{this.state.license.expiration}</td>
                     </tr>
                     <tr>
-                        <th>upgrade</th>
+                        <th>{strings.FB_DETAIL_UPGRADE}</th>
                         <td>{this.state.license.upgrade}</td>
                     </tr>
                     </tbody>
@@ -63,7 +64,7 @@ class LicenseDetail extends Component{
                 <br/>
                 <br/>
                 <br/>
-                <h2>Feedback list</h2>
+                <h2>Feedback list{strings.HEADER_FB_LIST}</h2>
                 <FeedbackList type={this.feedbackListType}/>
 
             </Fragment>

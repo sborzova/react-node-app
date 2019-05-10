@@ -6,6 +6,7 @@ import moment from 'moment';
 import { DatePicker } from 'antd';
 import {getAllFeedbacksForInterval} from "../../services/api";
 import FeedbackTable from "./feedbacTable";
+import {strings} from "../../constants/strings";
 const { RangePicker } = DatePicker;
 const dateFormat = 'DD.MM.YYYY';
 
@@ -85,10 +86,18 @@ class FeedbackList extends Component {
         return (
             <React.Fragment>
                 <Radio.Group value={this.state.period}>
-                    <Radio.Button value="today" onClick={this.onToday.bind(this)}>Today</Radio.Button>
-                    <Radio.Button value="week" onClick={this.onWeek.bind(this)}>Week</Radio.Button>
-                    <Radio.Button value="month" onClick={this.onMonth.bind(this)}>Month</Radio.Button>
-                    <Radio.Button value="year" onClick={this.onYear.bind(this)}>Year</Radio.Button>
+                    <Radio.Button value="today" onClick={this.onToday.bind(this)}>
+                        {strings.PERIOD_TODAY}
+                    </Radio.Button>
+                    <Radio.Button value="week" onClick={this.onWeek.bind(this)}>
+                        {strings.PERIOD_WEEK}
+                    </Radio.Button>
+                    <Radio.Button value="month" onClick={this.onMonth.bind(this)}>
+                        {strings.PERIOD_MONTH}
+                    </Radio.Button>
+                    <Radio.Button value="year" onClick={this.onYear.bind(this)}>
+                        {strings.PERIOD_YEAR}
+                    </Radio.Button>
                 </Radio.Group>
                 <RangePicker format={dateFormat} onChange={this.onCalendar.bind(this)}/>
             <FeedbackTable feedback={this.state.feedback} loading={this.state.loading}/>

@@ -3,38 +3,37 @@ import {Table, Badge, Tooltip, Popover, Icon} from 'antd';
 import {Link} from "react-router-dom";
 import moment from 'moment';
 import {getAllCustomers} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 const tooltips  = {
-    green : 'Active with today\'s feedback',
-    red: 'Active with no today\'s feedback',
-    blue: 'Inactive with today\'s feedback',
-    yellow: 'Inactive with no today\'s feedback',
-    grey: 'Other'
+    green : strings.TOOLTIP_ACTIVE_FB,
+    red: strings.TOOLTIP_ACTIVE_NO_FB,
+    blue: strings.TOOLTIP_INACTIVE_FB,
+    yellow: strings.TOOLTIP_INACTIVE_NO_FB,
+    grey: strings.TOOLTIP_OTHER
 };
-
 
 const popup = (
     <div>
-        <h4>Active customers (license upgrade in the future)</h4>
-        <Badge color="green" text="There was a feedback today" />
+        <h4>{strings.HEADER_ACTIVE_CUSTOMERS}</h4>
+        <Badge color="green" text={strings.TOOLTIP_FB} />
         <br />
-        <Badge color="red" text="There was no feedback today" />
-        <br />
-        <br />
-        <h4>Inactive customers</h4>
-        <Badge color="blue" text="There was a feedback today" />
-        <br />
-        <Badge color="yellow" text="There was no feedback today" />
+        <Badge color="red" text={strings.TOOLTIP_NO_FB} />
         <br />
         <br />
-        <Badge color="grey" text="Other" />
+        <h4>{strings.HEADER_INACTIVE_CUSTOMERS}</h4>
+        <Badge color="blue" text={strings.TOOLTIP_FB} />
+        <br />
+        <Badge color="yellow" text={strings.TOOLTIP_NO_FB} />
+        <br />
+        <br />
+        <Badge color="grey" text={strings.TOOLTIP_OTHER} />
     </div>
 );
 
 const columns = [
     {
         title: null,
-        key: 'feedbacks',
         dataIndex: 'feedbacks',
         width: '10%',
         render: feedbacks => (
@@ -49,7 +48,7 @@ const columns = [
         ),
     },
     {
-    title: 'Customer',
+    title: strings.TABLE_COLUMN_CUSTOMER,
     dataIndex: 'determined_customer',
     render: (customer) =>
         <div>
@@ -69,19 +68,19 @@ const columnsNested = [
             </Tooltip>
     },
     {
-        title: 'Fa_id',
+        title: strings.TABLE_COLUMN_FA_ID,
         dataIndex: 'fa_id',
         render: (id) =>
             <div>
                 <Link to={`/feedback/detail/${id}`}>{id}</Link>
             </div>
     }, {
-        title: 'Upload_start',
+        title: strings.TABLE_COLUMN_UPLOAD_START,
         dataIndex: 'upload_start',
         render: (datetime) =>
             <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
     }, {
-        title: 'License expiration',
+        title: strings.TABLE_COLUMN_EXPIRATION,
         dataIndex: 'expiration',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
@@ -98,7 +97,7 @@ const columnsNested = [
                 return <div className="infinity">∞</div>
             }}
     }, {
-        title: 'License upgrade',
+        title: strings.TABLE_COLUMN_UPGRADE,
         dataIndex: 'upgrade',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
@@ -113,17 +112,16 @@ const columnsNested = [
                 return <div className={className}>{moment(datetime).format('L')}</div>
             }}
     }, {
-        title: 'Ident',
+        title: strings.TABLE_COLUMN_IDENT,
         dataIndex: 'ident',
     },{
-        title: 'Serial',
+        title: 'strings.TABLE_COLUMN_SERIAL',
         dataIndex: 'serial',
         render: (serial) =>
             <div>
                 <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
             </div>
     }
-
 ];
 
 class CustomerList extends Component {
@@ -156,7 +154,6 @@ class CustomerList extends Component {
                         customers: response.data.data,
                     });
                 }
-
             })
             .catch( (e) => console.log(e))
     };
@@ -184,7 +181,7 @@ class CustomerList extends Component {
                     loading={this.state.loading}
                 />
                 <div>
-                    <h2>Legend for customer
+                    <h2>{strings.HEADER_LEGEND_CUSTOMER}
                         <Popover  content={popup} placement="right">
                             &nbsp;<Icon type="info-circle" theme="filled"/>
                         </Popover>

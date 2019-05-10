@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import {Layout, Menu} from 'antd';
 import 'antd/dist/antd.css';
+import {strings} from "../../constants/strings";
 
 const {Header, Content} = Layout;
 
@@ -27,19 +28,19 @@ class LayoutMenu extends Component {
                             style={{ lineHeight: '64px'}}
                         >
                             <Menu.Item key="dashboard">
-                                <NavLink to="/">Dashboard</NavLink>
+                                <NavLink to="/">{strings.MENU_ITEM_DASHBOARD}</NavLink>
                             </Menu.Item>
                             <Menu.Item key="feedback">
-                                <NavLink to="/feedback">Feedback</NavLink>
+                                <NavLink to="/feedback">{strings.MENU_ITEM_FEEDBACKS}</NavLink>
                             </Menu.Item>
                             <Menu.Item key="customers">
-                                <NavLink to="/customers">Customers</NavLink>
+                                <NavLink to="/customers">{strings.MENU_ITEM_CUSTOMERS}</NavLink>
                             </Menu.Item>
                             <Menu.Item key="licenses">
-                                <NavLink to="/licenses">Licenses</NavLink>
+                                <NavLink to="/licenses">{strings.MENU_ITEM_LICENSES}</NavLink>
                             </Menu.Item>
                             <Menu.Item key="statistics">
-                                <NavLink to="/statistics">Statistics</NavLink>
+                                <NavLink to="/statistics">{strings.MENU_ITEM_STATISTICS}</NavLink>
                             </Menu.Item>
                             <Menu.Item style={{float: 'right'}} key="4">
                                 <span onClick={() => this.logout()}>Logout</span>

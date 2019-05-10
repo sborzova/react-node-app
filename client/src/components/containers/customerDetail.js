@@ -9,6 +9,7 @@ import {Radio, Spin} from "antd";
 import HeatMapDevice from "./heatMapDevice";
 
 import {getCountDomains, getCountHits} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 class CustomerDetail extends Component{
     state = {
@@ -103,9 +104,9 @@ class CustomerDetail extends Component{
     render(){
         const options = {
             chart: { type: 'column' },
-            title: { text: 'summary of hits' },
+            title: { text: strings.CHART_HITS_TITLE },
             xAxis: { categories: this.state.categories },
-            yAxis: { title: { text: 'Count' } },
+            yAxis: { title: { text: strings.CHART_HITS_YAXIS_TITLE } },
             tooltip: {
                 headerFormat: '<span>{point.key}</span><br/>',
                 pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}',
@@ -116,9 +117,9 @@ class CustomerDetail extends Component{
 
         const optionsDomains = {
             chart: { type: 'column' },
-            title: { text: 'summary of domains' },
+            title: { text: strings.CHART_DOMAINS_TITLE },
             xAxis: { categories: this.state.categories },
-            yAxis: { title: { text: 'Count' } },
+            yAxis: { title: { text: strings.CHART_DOMAINS_YAXIS_TITLE} },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -136,17 +137,17 @@ class CustomerDetail extends Component{
                     <h2>Feedback list</h2>
                     <FeedbackList type={this.feedbackListType}/><br/><br/><br/>
                     <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
-                        <Radio.Button value="week">Week</Radio.Button>
-                        <Radio.Button value="month">Month</Radio.Button>
-                        <Radio.Button value="year">Year</Radio.Button>
+                        <Radio.Button value="week">{strings.PERIOD_WEEK}</Radio.Button>
+                        <Radio.Button value="month">{strings.PERIOD_MONTH}</Radio.Button>
+                        <Radio.Button value="year">{strings.PERIOD_YEAR}</Radio.Button>
                     </Radio.Group>
                     <Spin spinning={this.state.loading}>
                         <HighchartsReact highcharts={Highcharts} options={options}/>
                     </Spin>
                     <Radio.Group value={this.state.periodDomains} onChange={this.handlePeriodDomainsChange}>
-                        <Radio.Button value="week">Week</Radio.Button>
-                        <Radio.Button value="month">Month</Radio.Button>
-                        <Radio.Button value="year">Year</Radio.Button>
+                        <Radio.Button value="week">{strings.PERIOD_WEEK}</Radio.Button>
+                        <Radio.Button value="month">{strings.PERIOD_MONTH}</Radio.Button>
+                        <Radio.Button value="year">{strings.PERIOD_YEAR}</Radio.Button>
                     </Radio.Group>
                     <Spin spinning={this.state.loadingDomains}>
                         <HighchartsReact highcharts={Highcharts} options={optionsDomains}/>

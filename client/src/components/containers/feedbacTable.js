@@ -4,17 +4,17 @@ import {Link} from "react-router-dom";
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
+import {strings} from "../../constants/strings";
 
 const tooltips  = {
-    black : 'Reboot',
-    red: 'LicenseDetail expiration',
-    yellow: 'Nonzero n_panics',
-    orange: 'Nonzero n_aborts',
-    green: 'Nonempty core_dumps',
-    blue: 'devcount greater than reporter_users',
-    pink: 'devcount greater than reporter_clients'
+    black : strings.TOOLTIP_REBOOT,
+    red: strings.TOOLTIP_EXPIRATION,
+    yellow: strings.TOOLTIP_PANICS,
+    orange: strings.TOOLTIP_ABORTS,
+    green: strings.TOOLTIP_CORE_DUMPS,
+    blue: strings.TOOLTIP_HIGH_REPORTER_USERS,
+    pink: strings.TOOLTIP_HIGH_REPORTER_CLIENTS
 };
-
 
 const popup = (
     <div>
@@ -30,42 +30,42 @@ const popup = (
 
 const columns = [
     {
-    title: 'Fa id',
+    title: strings.TABLE_COLUMN_FA_ID,
     dataIndex: 'fa_id',
     render: (id) =>
         <div>
             <Link to={`/feedback/detail/${id}`}>{id}</Link>
         </div>
 }, {
-    title: 'Upload start',
+    title: strings.TABLE_COLUMN_UPLOAD_START,
     dataIndex: 'upload_start',
     render: (datetime) =>
         <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
 },{
-    title: 'CustomerDetail',
+    title: strings.TABLE_COLUMN_CUSTOMER,
     dataIndex: 'determined_customer',
     render: (customer) =>
         <div>
             <Link to={`/customers/detail/${customer}`}>{customer}</Link>
         </div>
 },{
-    title: 'Hostname',
+    title: strings.TABLE_COLUMN_HOSTNAME,
     dataIndex: 'device.hostname',
 },{
-    title: 'Ident',
+    title: strings.TABLE_COLUMN_IDENT,
     dataIndex: 'license.ident',
 },{
-    title: 'Serial',
+    title: strings.TABLE_COLUMN_SERIAL,
     dataIndex: 'license.serial',
     render: (serial) =>
         <div>
             <Link to={`/licenses/detail/${serial}`}>{serial}</Link>
         </div>
     },{
-    title: 'Feedback hostname',
+    title: strings.TABLE_COLUMN_FB_HOSTNAME,
     dataIndex: 'feedback_hostname',
 },{
-    title: 'Status',
+    title: strings.TABLE_COLUMN_STATUS,
     dataIndex: 'color',
     render: color => (
         <span>
@@ -96,12 +96,11 @@ class FeedbackTable extends Component {
                 size="small"
             />
                 <div>
-                    <h2>Legend for status
+                    <h2>{strings.HEADER_LEGEND_STATUS}
                         <Popover  content={popup} placement="right">
                             &nbsp;<Icon type="info-circle" theme="filled"/>
                         </Popover>
                     </h2>
-
                 </div>
             </React.Fragment>)
     }

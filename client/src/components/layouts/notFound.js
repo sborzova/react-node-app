@@ -1,4 +1,6 @@
 import React from 'react'
-const Notfound = () => <h1>Not found</h1>;
+import {strings} from "../../constants/strings";
+
+const Notfound = () => <h1>{strings.PAGE_NOT_FOUND}</h1>;
 
 export default Notfound

@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
 import {getCountFeedback} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 class HeatMap extends Component{
     state = {
@@ -62,7 +63,7 @@ class HeatMap extends Component{
     render () {
         const opt = {
             chart : { type: 'heatmap' },
-            title : { text: 'year summary of feedback' },
+            title : { text: strings.CHART_FEEDBACKS_TITLE_YEAR },
             xAxis : {
                 categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
             },
@@ -82,7 +83,6 @@ class HeatMap extends Component{
                 }
             },
             series : [{ name: 'Count', data: this.state.data }]
-
         };
 
         return (

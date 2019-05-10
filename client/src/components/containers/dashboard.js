@@ -7,6 +7,7 @@ import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import HeatMap from "./heatMap";
 import {getCountAllFeedback} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 class Dashboard extends Component {
     state = {
@@ -14,7 +15,6 @@ class Dashboard extends Component {
         categories: [],
         data: [],
         period: 'week',
-        title: 'week summary of feedback'
     };
 
     componentDidMount(){
@@ -39,7 +39,6 @@ class Dashboard extends Component {
                 this.setState({
                     categories: categories,
                     data:count,
-                    title: period + ' summary of feedback',
                     period: period})
             })
             .catch(error => console.log(error));
@@ -58,7 +57,7 @@ class Dashboard extends Component {
 
     render() {
         const options = {
-                title: { text: this.state.title },
+                title: { text: strings.CHART_FEEDBACKS_TITLE },
                 xAxis: { categories: this.state.categories },
                 yAxis: { title: { text: 'Count' } },
                 series: [{ name: 'Count', data: this.state.data }]
@@ -66,9 +65,9 @@ class Dashboard extends Component {
 
         return (<Fragment>
                 <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
-                    <Radio.Button value="week">Week</Radio.Button>
-                    <Radio.Button value="month">Month</Radio.Button>
-                    <Radio.Button value="year">Year</Radio.Button>
+                    <Radio.Button value="week">{strings.PERIOD_WEEK}</Radio.Button>
+                    <Radio.Button value="month">{strings.PERIOD_MONTH}</Radio.Button>
+                    <Radio.Button value="year">{strings.PERIOD_YEAR}</Radio.Button>
                 </Radio.Group>
                 {this.renderSwitch(this.state.period, options)}
             </Fragment>)

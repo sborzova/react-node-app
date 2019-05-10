@@ -4,6 +4,7 @@ import Highlighter from 'react-highlight-words';
 import moment from 'moment';
 import {Link} from "react-router-dom";
 import {getAllLicenses} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 class LicenseList extends Component {
     _isMounted = false;
@@ -101,20 +102,19 @@ class LicenseList extends Component {
     render() {
         const columns = [
             {
-                title: 'Customer',
+                title: strings.TABLE_COLUMN_DETERMINED_CUSTOMER,
                 dataIndex: 'determined_customer',
                 ...this.getColumnSearchProps('determined_customer'),
                 render: (customer) =>
                     <div>
                         <Link to={`/customers/detail/${customer}`}>{customer}</Link>
-
                     </div>
             },
             {
-                title: 'Ident',
+                title: strings.TABLE_COLUMN_IDENT,
                 dataIndex: 'ident',
             },{
-                title: 'Serial',
+                title: strings.TABLE_COLUMN_SERIAL,
                 dataIndex: 'serial',
                 render: (serial) =>
                     <div>
@@ -122,7 +122,7 @@ class LicenseList extends Component {
                     </div>
             },
              {
-                title: 'Expiration',
+                title: strings.TABLE_COLUMN_EXPIRATION,
                 dataIndex: 'expiration',
                  render: (datetime) => {
                      if (datetime !== '∞' && datetime !== 'unlimited'){
@@ -140,7 +140,7 @@ class LicenseList extends Component {
                      }}
             },
             {
-                title: 'Upgrade',
+                title: strings.TABLE_COLUMN_UPGRADE,
                 dataIndex: 'upgrade',
                 defaultSortOrder: 'descend',
                 render: (datetime) => {
@@ -157,7 +157,7 @@ class LicenseList extends Component {
                     }}
             },
             {
-                title: 'Sale',
+                title: strings.TABLE_COLUMN_SALE_TYPE,
                 dataIndex: 'saleType',
                 filters: [
                     { text: 'sale', value: 'sale' },
@@ -171,7 +171,7 @@ class LicenseList extends Component {
                     }}
             },
              {
-                title: 'Type',
+                title: strings.TABLE_COLUMN_LICENSE_TYPE,
                 dataIndex: 'licenseType',
                 filters: [
                     { text: 'edu', value: 'edu' },
@@ -198,7 +198,7 @@ class LicenseList extends Component {
                         return <Tag color={color} key={licenseType}>{licenseType}</Tag>
                     }}
             },{
-                title: 'Kernun variant',
+                title: strings.TABLE_COLUMN_KERNUN_VARIANT,
                 dataIndex: 'kernun_variant',
                 filters: [
                     { text: 'kcw', value: 'kernun_clear_web' },
@@ -227,13 +227,13 @@ class LicenseList extends Component {
                     }}
             },
             {
-                title: 'Upload start',
+                title: strings.TABLE_COLUMN_UPLOAD_START,
                 dataIndex: 'upload_start',
                 render: (datetime) =>
                     <div>{moment(datetime).format('L') + " " + moment(datetime).format('LTS')}</div>
             },
             {
-                title: 'Fa id',
+                title: strings.TABLE_COLUMN_FA_ID,
                 dataIndex: 'fa_id',
                 render: (id) =>
                     <div>

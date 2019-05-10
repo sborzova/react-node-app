@@ -5,6 +5,7 @@ import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import { DatePicker } from 'antd';
 import {getCountKcw, getCountKernunVersion} from "../../services/api";
+import {strings} from "../../constants/strings";
 
 const dateFormat = 'DD.MM.YYYY';
 
@@ -115,9 +116,7 @@ class Statistic extends Component {
                         tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
                         plotOptions: {
                             pie: {
-                                dataLabels: {
-                                    enabled: false
-                                },
+                                dataLabels: { enabled: false },
                                 showInLegend: true,
                                         point: {
                                             events: {
@@ -128,7 +127,8 @@ class Statistic extends Component {
                                             }
                                         }
                         },
-                        series: [{name: 'Count', colorByPoint: true, data: versionSeries}]
+                        series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
+                            colorByPoint: true, data: versionSeries}]
                     };
                     graphs.push(
                         <div className="center-chart">
@@ -150,7 +150,7 @@ class Statistic extends Component {
     render() {
         const options = {
             chart: { type: 'pie' },
-            title: { text: 'Kernun variants' },
+            title: { text: strings.CHART_KERNUN_VARIANTS_TITLE },
             tooltip: { pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>' },
             plotOptions: {
                 pie: {
@@ -168,14 +168,14 @@ class Statistic extends Component {
                 }
             },
             series: [{
-                name: 'Count',
+                name: strings.CHART_KERNUN_VARIANTS_SERIES_NAME,
                 data: this.state.data
             }]
         };
 
         const optionsAuth = {
             chart: { type: 'pie' },
-            title: { text: 'cw_auth' },
+            title: { text: strings.CHART_KCW_AUTH_TITLE},
             tooltip: { pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>' },
             plotOptions: {
                 pie: {
@@ -192,12 +192,12 @@ class Statistic extends Component {
                     }
                 }
             },
-            series: [{ name: 'Count', data: this.state.dataAuth }]
+            series: [{ name: strings.CHART_KCW_AUTH_SERIES_NAME, data: this.state.dataAuth }]
         };
 
         const optionsKcw = {
             chart: { type: 'column' },
-            title: { text: 'kcw functions' },
+            title: { text: strings.CHART_KCW_FUNCTIONS_TITLE },
             xAxis: { categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
                     'cw_https_insp', 'cw_sshd_enabled', 'cw_sshd_kernun'] },
             yAxis: { title: { text: 'Count' } },
