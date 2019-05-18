@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './app.css';
 import {Route, Switch} from 'react-router-dom';
-import FeedbackList from './components/containers/feedbackList';
-import CustomerList from './components/containers/customerList';
-import LayoutMenu from "./components/layouts/layout";
-import FeedbackDetail from "./components/containers/feedbackDetail";
-import LicenseList from "./components/containers/licenseList";
-import Statistic from "./components/containers/statistic";
+import FeedbackList from './components/containers/feedbackList.jsx';
+import CustomerList from './components/containers/customerList.jsx';
+import LayoutMenu from "./components/layouts/layout.jsx";
+import FeedbackDetail from "./components/containers/feedbackDetail.jsx";
+import LicenseList from "./components/containers/licenseList.jsx";
+import Statistic from "./components/containers/statistic.jsx";
 import moment from 'moment';
 import 'moment/locale/cs';
-import Dashboard from "./components/containers/dashboard";
-import Notfound from "./components/layouts/notFound";
+import Dashboard from "./components/containers/dashboard.jsx";
+import Notfound from "./components/layouts/notFound.jsx";
 import { HashRouter } from "react-router-dom";
-import CustomerDetail from "./components/containers/customerDetail";
-import LicenseDetail from "./components/containers/licenseDetail";
+import CustomerDetail from "./components/containers/customerDetail.jsx";
+import LicenseDetail from "./components/containers/licenseDetail.jsx";
 
 moment.locale('cs'); // change the global locale
 

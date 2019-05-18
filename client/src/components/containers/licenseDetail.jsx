@@ -5,6 +5,7 @@ import FeedbackList from "./feedbackList";
 import {Link} from "react-router-dom";
 import {getLicense} from "../../services/api";
 import {strings} from "../../constants/strings";
+import moment from "moment";
 
 class LicenseDetail extends Component{
     state = {
@@ -51,11 +52,13 @@ class LicenseDetail extends Component{
                     </tr>
                     <tr>
                         <th>{strings.FB_DETAIL_EXPIRATION}</th>
-                        <td>{this.state.license.expiration}</td>
+                        <td>{this.state.license.expiration && this.state.license.expiration !== 'unlimited'
+                            ? moment(this.state.license.expiration).format('L')
+                            : <span className="infinity">∞</span>}</td>
                     </tr>
                     <tr>
                         <th>{strings.FB_DETAIL_UPGRADE}</th>
-                        <td>{this.state.license.upgrade}</td>
+                        <td>{moment(this.state.license.upgrade).format('L')}</td>
                     </tr>
                     </tbody>
                 </table>

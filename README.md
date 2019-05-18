@@ -1,1 +1,3 @@
-"Application for Master Thesis" 
+### Application for Master Thesis
+
+Read README in server and client 
