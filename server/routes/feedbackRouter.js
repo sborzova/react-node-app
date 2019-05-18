@@ -10,8 +10,6 @@ const DeviceStatus = require('../models/deviceStatus.ts');
 const Reporter = require('../models/reporter.ts');
 const KcwFunction = require('../models/kcwFunction.ts');
 const db = require('../database');
-const utils = require('../utils/utils');
-
 
 const feedbackRouter = express.Router();
 
@@ -36,7 +34,6 @@ feedbackRouter.get('/feedback/all', function(req, res, next) {
         order: [['upload_start', 'DESC']]
     })
     .then(data => {
-        data = utils.processFeedbacksStatus(data);
         res.status(200).send({
             data: data
         })
@@ -66,7 +63,6 @@ feedbackRouter.get('/feedback/:customer', function(req, res, next) {
         order: [['upload_start', 'DESC']]
     })
     .then(data => {
-        data = utils.processFeedbacksStatus(data);
         res.status(200).send({
             data: data
         })
@@ -96,7 +92,6 @@ feedbackRouter.get('/feedback/license/:serial', function(req, res, next) {
         order: [['upload_start', 'DESC']]
     })
     .then(data => {
-        data = utils.processFeedbacksStatus(data);
         res.status(200).send({
             data: data
         })

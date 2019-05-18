@@ -7,6 +7,7 @@ export const strings = {
 
     PAGE_NOT_FOUND: 'Not found',
     ERROR: 'Something went wrong.',
+    STATUS_OK: 'OK',
 
     CHART_HITS_TITLE: 'Summary of hits',
     CHART_HITS_YAXIS_TITLE: 'Count',

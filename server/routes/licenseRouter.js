@@ -35,7 +35,6 @@ licenseRouter.get('/licenses' ,function(req, res, next) {
         "ON a.fa_id = device.fa_id " +
         "ORDER BY upgrade", { type: db.QueryTypes.SELECT}
     ).then(data => {
-        data = [].concat.apply([], data);
         data.forEach(d => {
             if (d.expiration == 'unlimited'){
                  d.saleType = 'sale';

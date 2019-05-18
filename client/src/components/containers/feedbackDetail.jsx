@@ -4,6 +4,7 @@ import moment from 'moment';
 import {getFeedback} from "../../services/api";
 import {strings} from "../../constants/strings";
 import {Link} from "react-router-dom";
+import FeedbackStatus from "./feedbackStatus";
 
 const { TabPane } = Tabs;
 
@@ -54,6 +55,7 @@ class FeedbackDetail extends Component {
         return (
             <div>
                 <h1>{strings.HEADER_FB_DETAIL}</h1>
+                <b>Status: </b><FeedbackStatus feedback={this.state.feedback}/>
                 <Tabs defaultActiveKey="1" size="small">
                     <TabPane tab="Basic info" key="1">
                         <table className="table-vertical">
@@ -388,7 +390,6 @@ class FeedbackDetail extends Component {
                             </tbody>
                         </table>}
                     </TabPane>
-
                 </Tabs>
             </div>
         )

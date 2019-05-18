@@ -1,5 +1,5 @@
 const express = require('express');
-const underscore = require('underscore');
+const utils = require('../utils/utils');
 
 const db = require('../database');
 
@@ -13,9 +13,7 @@ hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })
@@ -31,9 +29,7 @@ hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })
@@ -49,9 +45,7 @@ hitRouter.get('/hits/year/:customer' ,function(req, res, next) {
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })

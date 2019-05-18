@@ -171,16 +171,71 @@
 }
 
 .dot {
-  height: 7px;
-  width: 7px;
-  background-color: #bbb;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   display: inline-block;
 }
 
-.square {
-  height: 7px;
-  width: 7px;
-  background-color: #bbb;
+/*.square {*/
+/*  height: 10px;*/
+/*  width: 10px;*/
+/*  background-color: #bbb;*/
+/*  display: inline-block;*/
+/*}*/
+
+.reboot {
+  background-color: black;
+  margin-right: 2px;
+}
+
+.expiration {
+  height: 10px;
+  width: 10px;
   display: inline-block;
+  background-color: magenta;
+  margin-right: 2px;
+}
+
+.panics {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: orange;
+  margin-right: 2px;
+}
+
+.aborts {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: yellow;
+  margin-right: 2px;
+}
+
+.coredumps {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: red;
+  margin-right: 2px;
+}
+
+.reporterusers {
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  background-color: blue;
+  margin-right: 2px;
+}
+
+.reporterclients {
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  background-color: lightgreen;
+  margin-right: 2px;
 }

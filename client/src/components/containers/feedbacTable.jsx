@@ -1,30 +1,22 @@
 import React, {Component} from 'react';
-import {Badge, Table, Tooltip, Icon, Popover} from 'antd';
+import {Table, Icon, Popover} from 'antd';
 import {Link} from "react-router-dom";
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
 import {strings} from "../../constants/strings";
-
-const tooltips  = {
-    black : strings.TOOLTIP_REBOOT,
-    red: strings.TOOLTIP_EXPIRATION,
-    yellow: strings.TOOLTIP_PANICS,
-    orange: strings.TOOLTIP_ABORTS,
-    green: strings.TOOLTIP_CORE_DUMPS,
-    blue: strings.TOOLTIP_HIGH_REPORTER_USERS,
-    pink: strings.TOOLTIP_HIGH_REPORTER_CLIENTS
-};
+import FeedbackStatus from "./feedbackStatus";
+import {tooltips} from "../../constants/tooltips";
 
 const popup = (
     <div>
-        <Badge color="black" text={tooltips['black']}/><br/>
-        <Badge color="red" text={tooltips['red']}/><br/>
-        <Badge color="yellow" text={tooltips['yellow']}/><br/>
-        <Badge color="orange" text={tooltips['orange']}/><br/>
-        <Badge color="green" text={tooltips['green']}/><br/>
-        <Badge color="blue" text={tooltips['blue']}/><br/>
-        <Badge color="pink" text={tooltips['pink']}/><br/>
+        <div><span className="dot reboot"/>{tooltips['reboot']}</div>
+        <div><span className="dot panics"/>{tooltips['panics']}</div>
+        <div><span className="dot aborts"/>{tooltips['aborts']}</div>
+        <div><span className="dot coredumps"/>{tooltips['coredumps']}</div>
+        <div><span className="square expiration"/>{tooltips['expiration']}</div>
+        <div><span className="square reporterusers"/>{tooltips['reporterusers']}</div>
+        <div><span className="square reporterclients"/>{tooltips['reporterclients']}</div>
     </div>
 );
 
@@ -66,24 +58,13 @@ const columns = [
     dataIndex: 'feedback_hostname',
 },{
     title: strings.TABLE_COLUMN_STATUS,
-    dataIndex: 'color',
-    render: color => (
-        <span>
-          {color.map(c => {
-              return(
-                  <Tooltip placement="top" title={tooltips[c]}>
-                      <Badge color={c}/>
-                  </Tooltip>)
-          })}
-        </span>),
+    dataIndex: 'license',
+    render: (text, record) => (
+        <FeedbackStatus feedback={record}/>),
     },
 ];
 
 class FeedbackTable extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
