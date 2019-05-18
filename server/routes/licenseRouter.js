@@ -7,7 +7,7 @@ const Op = Sequelize.Op;
 
 const express = require('express');
 const moment = require('moment');
-const db = require('../database.ts');
+const db = require('../database');
 
 const licenseRouter = express.Router();
 
@@ -55,15 +55,16 @@ licenseRouter.get('/licenses' ,function(req, res, next) {
         res.status(200).send({
             data: data
         })
-    }).catch((e) => console.log(e))
+    })
+    .catch(next)
 });
 
 licenseRouter.get('/license/detail/:serial' ,function(req, res, next) {
     Feedback.findOne({
         where: {
             upload_start: {
-                [Op.gte]: moment().subtract(1, 'month').format(),
-                [Op.lte]: moment().format(),
+                [Op.gte]: moment().startOf('day').subtract(1, 'month'),
+                [Op.lte]: moment().endOf('day'),
             },
             '$License.serial$' : req.params.serial
         },
@@ -95,7 +96,8 @@ licenseRouter.get('/license/detail/:serial' ,function(req, res, next) {
         res.status(200).send({
             data: d
         })
-    }).catch((e) => console.log(e))
+    })
+    .catch(next)
 });
 
 module.exports = licenseRouter;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Tag, Input, Button, Icon,} from 'antd';
+import {Table, Tag, Input, Button, Icon, message,} from 'antd';
 import Highlighter from 'react-highlight-words';
 import moment from 'moment';
 import {Link} from "react-router-dom";
@@ -96,7 +96,9 @@ class LicenseList extends Component {
                     });
                 }
             })
-            .catch( (e) => console.log(e))
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     render() {

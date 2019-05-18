@@ -1,13 +1,14 @@
 import React, {Component, Fragment} from 'react';
-import { Radio} from "antd";
+import { Radio, message} from "antd";
 
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import HeatMap from "./heatMap";
+import HeatMapUploadStart from "./heatMapUploadStart";
 import {getCountAllFeedback} from "../../services/api";
 import {strings} from "../../constants/strings";
+import HeatMapProcessed from "./heatMapProcessed";
 
 class Dashboard extends Component {
     state = {
@@ -41,7 +42,9 @@ class Dashboard extends Component {
                     data:count,
                     period: period})
             })
-            .catch(error => console.log(error));
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     renderSwitch(period, options) {
@@ -51,7 +54,10 @@ class Dashboard extends Component {
             case 'month':
                 return <HighchartsReact highcharts={Highcharts} options={options}/>;
             case 'year':
-                return <HeatMap type="all/year"/>;
+                return (<Fragment>
+                            <HeatMapUploadStart title={strings.CHART_FEEDBACKS_TITLE_YEAR} type="all/year"/>
+                            <HeatMapProcessed title={strings.CHART_PROCESSED_TITLE_YEAR}/>
+                        </Fragment>);
         }
     };
 

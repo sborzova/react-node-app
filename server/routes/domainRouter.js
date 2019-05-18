@@ -1,61 +1,55 @@
-const Sequelize = require('sequelize');
+const utils = require('../utils/utils');
+
 const express = require('express');
-const moment = require('moment');
-const underscore = require('underscore');
+const db = require('../database');
+const domainRouter = express.Router();
 
-const db = require('../database.ts');
-
-const hitRouter = express.Router();
-
-hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
-    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+domainRouter.get('/domains/week/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
         "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 6 DAY) AND NOW() " +
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })
         })
+        .catch(next)
 });
 
-hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
-    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
-        "FROM feedback left join device ON feedback.fa_id = device.fa_id " +
+domainRouter.get('/domains/month/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
+        "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() " +
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })
         })
+        .catch(next)
 });
 
-hitRouter.get('/hits/year/:customer' ,function(req, res, next) {
-    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+domainRouter.get('/domains/year/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
         "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() " +
         "ORDER BY DATE(upload_start)",
         { replacements: {customer: req.params.customer }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.hostid;
-            });
+            let groups = utils.groupByHostid(data);
             res.status(200).send({
                 data: groups
             })
         })
+        .catch(next)
 });
 
-module.exports = hitRouter;
+module.exports = domainRouter;

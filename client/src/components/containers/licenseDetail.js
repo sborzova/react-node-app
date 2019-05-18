@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import HeatMap from "./heatMap";
+import HeatMapUploadStart from "./heatMapUploadStart";
 import FeedbackList from "./feedbackList";
 
 import {Link} from "react-router-dom";
@@ -60,11 +60,11 @@ class LicenseDetail extends Component{
                     </tbody>
                 </table>
 
-                <HeatMap type={this.heatMapType}/>
+                <HeatMapUploadStart type={this.heatMapType}/>
                 <br/>
                 <br/>
                 <br/>
-                <h2>Feedback list{strings.HEADER_FB_LIST}</h2>
+                <h2>{strings.HEADER_FB_LIST}</h2>
                 <FeedbackList type={this.feedbackListType}/>
 
             </Fragment>

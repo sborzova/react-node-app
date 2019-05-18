@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Table, Badge, Tooltip, Popover, Icon} from 'antd';
+import {Table, Badge, Tooltip, Popover, Icon, message} from 'antd';
 import {Link} from "react-router-dom";
 import moment from 'moment';
 import {getAllCustomers} from "../../services/api";
@@ -115,7 +115,7 @@ const columnsNested = [
         title: strings.TABLE_COLUMN_IDENT,
         dataIndex: 'ident',
     },{
-        title: 'strings.TABLE_COLUMN_SERIAL',
+        title: strings.TABLE_COLUMN_SERIAL,
         dataIndex: 'serial',
         render: (serial) =>
             <div>
@@ -155,7 +155,9 @@ class CustomerList extends Component {
                     });
                 }
             })
-            .catch( (e) => console.log(e))
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     expandedRowRender = record => {

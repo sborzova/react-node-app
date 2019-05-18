@@ -1,17 +1,17 @@
 const express = require('express');
 
-const hitRouter = require('./routes/hitRouter.ts');
-const feedbackRouter = require('./routes/feedbackRouter.ts');
-const customerRouter = require('./routes/customerRouter.ts');
-const domainRouter = require('./routes/domainRouter.ts');
-const licenseRouter = require('./routes/licenseRouter.ts');
-const deviceRouter = require('./routes/deviceRouter.ts');
-const statisticRouter = require('./routes/statisticRouter.ts');
+const hitRouter = require('./routes/hitRouter');
+const feedbackRouter = require('./routes/feedbackRouter');
+const customerRouter = require('./routes/customerRouter');
+const domainRouter = require('./routes/domainRouter');
+const licenseRouter = require('./routes/licenseRouter');
+const deviceRouter = require('./routes/deviceRouter');
+const statisticRouter = require('./routes/statisticRouter');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-const {port} = require('./config.ts');
+const {port} = require('./config');
 
 const session = require('express-session');
 const Keycloak = require('keycloak-connect');
@@ -23,7 +23,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const crypto = require('crypto');
 // @ts-ignore
 const sessionSecret =  crypto.randomBytes(100);
-const sequelize = require('./database.ts');
+const sequelize = require('./database');
 
 const app = express();
 

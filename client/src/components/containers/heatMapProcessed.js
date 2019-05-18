@@ -1,25 +1,21 @@
 import React, {Component} from 'react';
-import {Spin} from 'antd';
+import {Spin, message} from 'antd';
 
-import HighchartsReact from 'highcharts-react-official'
-import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
-import {getCountFeedback} from "../../services/api";
-import {strings} from "../../constants/strings";
+import { getCountProcessed} from "../../services/api";
+import HeatMapView from "./heatMapView";
 
-class HeatMap extends Component{
+class HeatMapProcessed extends Component{
     state = {
         loading: false,
         data: [],
         categories: [],
-        min: 0,
     };
 
     mapper = new Map();
     _isMounted = false;
 
     componentDidMount(){
-        const min = this.props.type == 'year' ? 60 : 1;
         this._isMounted = true;
         let date = new Date();
         let categories = [];
@@ -29,7 +25,7 @@ class HeatMap extends Component{
             date = moment(date).subtract(1, "month");
             categories.push(date.format('MMM YYYY'));
         }
-        this.setState({categories:categories, min: min});
+        this.setState({categories:categories});
         this.fetch();
     };
 
@@ -39,7 +35,7 @@ class HeatMap extends Component{
 
     fetch = () => {
         this.setState({ loading: true });
-        getCountFeedback(this.props.type)
+        getCountProcessed()
             .then((response) => {
                 let days = [];
                 const array = response.data.data;
@@ -57,41 +53,22 @@ class HeatMap extends Component{
                     })
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                    console.log(error)
+            });
     };
 
     render () {
-        const opt = {
-            chart : { type: 'heatmap' },
-            title : { text: strings.CHART_FEEDBACKS_TITLE_YEAR },
-            xAxis : {
-                categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-            },
-            yAxis : { categories: this.state.categories,  title: 'Months' },
-            colorAxis : {
-                min: this.state.min,
-                stops: [
-                    [0, '#FFFF4D'],
-                    [0.5, '#FFAE19'],
-                    [0.9, '#c4463a']
-                ],
-            },
-            tooltip : {
-                formatter: function () {
-                    return this.point.name + '<br/>' + 'Count: ' + '<b>' +
-                            this.point.value + '</b>';
-                }
-            },
-            series : [{ name: 'Count', data: this.state.data }]
-        };
-
         return (
             <Spin spinning={this.state.loading}>
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={opt}/>
+                <HeatMapView
+                    yCategories={this.state.categories}
+                    data={this.state.data}
+                    min={60}
+                    title={this.props.title}/>
+                mountNode
             </Spin>)
     }
 }
 
-export default HeatMap;
+export default HeatMapProcessed;

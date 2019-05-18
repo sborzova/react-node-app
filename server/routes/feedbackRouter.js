@@ -9,7 +9,9 @@ const Device = require('../models/device.ts');
 const DeviceStatus = require('../models/deviceStatus.ts');
 const Reporter = require('../models/reporter.ts');
 const KcwFunction = require('../models/kcwFunction.ts');
-const db = require('../database.ts');
+const db = require('../database');
+const utils = require('../utils/utils');
+
 
 const feedbackRouter = express.Router();
 
@@ -17,8 +19,8 @@ feedbackRouter.get('/feedback/all', function(req, res, next) {
     Feedback.findAll({
         where: {
             upload_start: {
-                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').format('YYYY-MM-DD'),
-                [Op.lt]: moment(req.query.to, 'DD.MM.YYYY').add(1, 'day').format('YYYY-MM-DD')
+                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.to, 'DD.MM.YYYY').endOf('day')
             },
         },
         include: [{
@@ -30,44 +32,16 @@ feedbackRouter.get('/feedback/all', function(req, res, next) {
         },{
             model: Reporter
         }
-        ]
+        ],
+        order: [['upload_start', 'DESC']]
     })
     .then(data => {
-        data.forEach(d => {
-            let color = [];
-            if (d.license && moment(d.license.expiration).isBefore(moment())){
-                color.push('red');
-                let devcount = parseInt(d.license.devcount);
-                if (devcount && d.reporter){
-                    if (devcount > d.reporter.reporter_users){
-                        color.push('blue');
-                    }
-                    if (devcount > d.reporter.reporter_clients){
-                        color.push('pink')
-                    }
-                }
-            }
-            if (d.deviceStatus){
-                if (!d.deviceStatus.uptime.includes('day')){
-                    color.push('black');
-                }
-                if (d.deviceStatus.n_panics != 0){
-                    color.push('yellow');
-                }
-                if (d.deviceStatus.n_aborts != 0){
-                    color.push('orange');
-                }
-                if (d.deviceStatus.core_dumps && d.deviceStatus.core_dumps.length > 0){
-                    color.push('green');
-                }
-            }
-
-            d.color = color;
-        });
+        data = utils.processFeedbacksStatus(data);
         res.status(200).send({
             data: data
         })
-    }).catch((e) => console.log(e))
+    })
+    .catch(next);
 });
 
 feedbackRouter.get('/feedback/:customer', function(req, res, next) {
@@ -75,8 +49,8 @@ feedbackRouter.get('/feedback/:customer', function(req, res, next) {
         where: {
             determined_customer: req.params.customer,
             upload_start: {
-                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').format('YYYY-MM-DD'),
-                [Op.lt]: moment(req.query.to, 'DD.MM.YYYY').add(1, 'day').format('YYYY-MM-DD')
+                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.to, 'DD.MM.YYYY').endOf('day')
             },
         },
         include: [{
@@ -88,55 +62,26 @@ feedbackRouter.get('/feedback/:customer', function(req, res, next) {
         },{
             model: Reporter
         }
-        ]
+        ],
+        order: [['upload_start', 'DESC']]
     })
-        .then(data => {
-            data.forEach(d => {
-                let color = [];
-                if (d.license && moment(d.license.expiration).isBefore(moment())){
-                    color.push('red');
-                    let devcount = parseInt(d.license.devcount);
-                    if (devcount && d.reporter){
-                        if (devcount > d.reporter.reporter_users){
-                            color.push('blue');
-                        }
-                        if (devcount > d.reporter.reporter_clients){
-                            color.push('pink')
-                        }
-                    }
-                }
-                if (d.deviceStatus){
-                    if (!d.deviceStatus.uptime.includes('day')){
-                        color.push('black');
-                    }
-                    if (d.deviceStatus.n_panics != 0){
-                        color.push('yellow');
-                    }
-                    if (d.deviceStatus.n_aborts != 0){
-                        color.push('orange');
-                    }
-                    if (d.deviceStatus.core_dumps.length > 0){
-                        color.push('green');
-                    }
-                }
-
-                d.color = color;
-            });
-            res.status(200).send({
-                data: data
-            })
-        }).catch((e) => console.log(e))
+    .then(data => {
+        data = utils.processFeedbacksStatus(data);
+        res.status(200).send({
+            data: data
+        })
+    })
+    .catch(next)
 });
 
 feedbackRouter.get('/feedback/license/:serial', function(req, res, next) {
     Feedback.findAll({
         where: {
             upload_start: {
-                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').format('YYYY-MM-DD'),
-                [Op.lt]: moment(req.query.to, 'DD.MM.YYYY').add(1, 'day').format('YYYY-MM-DD')
+                [Op.gte]: moment(req.query.from, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.to, 'DD.MM.YYYY').endOf('day')
             },
             '$License.serial$' : req.params.serial
-
         },
         include: [{
             model: License,
@@ -147,45 +92,16 @@ feedbackRouter.get('/feedback/license/:serial', function(req, res, next) {
         },{
             model: Reporter
         }
-        ]
+        ],
+        order: [['upload_start', 'DESC']]
     })
-        .then(data => {
-
-            data.forEach(d => {
-                let color = [];
-                if (d.license && moment(d.license.expiration).isBefore(moment())){
-                    color.push('red');
-                    let devcount = parseInt(d.license.devcount);
-                    if (devcount && d.reporter){
-                        if (devcount > d.reporter.reporter_users){
-                            color.push('blue');
-                        }
-                        if (devcount > d.reporter.reporter_clients){
-                            color.push('pink')
-                        }
-                    }
-                }
-                if (d.deviceStatus){
-                    if (!d.deviceStatus.uptime.includes('day')){
-                        color.push('black');
-                    }
-                    if (d.deviceStatus.n_panics != 0){
-                        color.push('yellow');
-                    }
-                    if (d.deviceStatus.n_aborts != 0){
-                        color.push('orange');
-                    }
-                    if (d.deviceStatus.core_dumps.length > 0){
-                        color.push('green');
-                    }
-                }
-
-                d.color = color;
-            });
-            res.status(200).send({
-                data: data
-            })
-        }).catch((e) => console.log(e))
+    .then(data => {
+        data = utils.processFeedbacksStatus(data);
+        res.status(200).send({
+            data: data
+        })
+    })
+    .catch(next)
 });
 
 feedbackRouter.get('/feedback/detail/:id', function(req, res, next){
@@ -210,6 +126,7 @@ feedbackRouter.get('/feedback/detail/:id', function(req, res, next){
             data: data
         })
     })
+    .catch(next)
 });
 
 feedbackRouter.get('/feedback/all/week' ,function(req, res, next) {
@@ -223,6 +140,7 @@ feedbackRouter.get('/feedback/all/week' ,function(req, res, next) {
                 data: data
             })
         })
+        .catch(next)
 });
 
 feedbackRouter.get('/feedback/all/month', function(req, res, next) {
@@ -236,6 +154,7 @@ feedbackRouter.get('/feedback/all/month', function(req, res, next) {
                 data: data
             })
         })
+        .catch(next)
 });
 
 feedbackRouter.get('/feedback/all/year', function(req, res, next) {
@@ -249,6 +168,7 @@ feedbackRouter.get('/feedback/all/year', function(req, res, next) {
                 data: data
             })
         })
+        .catch(next)
 });
 
 feedbackRouter.get('/feedback/year/:customer', function(req, res, next) {
@@ -263,6 +183,7 @@ feedbackRouter.get('/feedback/year/:customer', function(req, res, next) {
                 data: data
             })
         })
+        .catch(next)
 });
 
 feedbackRouter.get('/feedback/year/license/:serial', function(req, res, next) {
@@ -271,12 +192,91 @@ feedbackRouter.get('/feedback/year/license/:serial', function(req, res, next) {
         "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
         "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
         "GROUP BY DATE(upload_start)",
-        {replacements: {serial: req.params.serial}, type: db.QueryTypes.SELECT})
+       {replacements: {serial: req.params.serial}, type: db.QueryTypes.SELECT})
+       .then(data => {
+            res.status(200).send({
+                data: data
+            })
+       })
+        .catch(next)
+});
+
+feedbackRouter.get('/feedback/kernunversion', function(req, res, next) {
+
+    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
+        "FROM feedback " +
+        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
+        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
+        "GROUP BY DATE(upload_start)",
+        {replacements: {kernunVersion: req.query.kernunVersion, uploadStart: req.query.uploadStart}, type: db.QueryTypes.SELECT})
         .then(data => {
             res.status(200).send({
                 data: data
             })
         })
+        .catch(next)
+});
+
+feedbackRouter.get('/feedback/kernunvariant', function(req, res, next) {
+    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
+        "FROM feedback " +
+        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
+        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
+        "GROUP BY DATE(upload_start)",
+        {replacements: {kernun_variant: req.query.kernunVariant, uploadStart: req.query.uploadStart},
+            type: db.QueryTypes.SELECT})
+        .then(data => {
+            res.status(200).send({
+                data: data
+            })
+        })
+        .catch(next)
+});
+
+feedbackRouter.get('/feedback/kcwfunction', function(req, res, next) {
+    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
+        "FROM feedback " +
+        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
+        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
+        "GROUP BY DATE(upload_start)",
+        {replacements: {kcwfunction: req.query.kcwFunction, uploadStart: req.query.uploadStart, value: req.query.value },
+            type: db.QueryTypes.SELECT})
+        .then(data => {
+            res.status(200).send({
+                data: data
+            })
+        })
+        .catch(next)
+});
+
+feedbackRouter.get('/feedback/kcwauth', function(req, res, next) {
+    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
+        "FROM feedback " +
+        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
+        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
+        "GROUP BY DATE(upload_start)",
+        {replacements: {kcwAuth: req.query.kcwAuth, uploadStart: req.query.uploadStart},
+            type: db.QueryTypes.SELECT})
+        .then(data => {
+            res.status(200).send({
+                data: data
+            })
+        })
+        .catch(next)
+});
+
+feedbackRouter.get('/feedback/all/processed', function(req, res, next) {
+    db.query("SELECT count(*) AS count,DATE(processed) AS date " +
+        "FROM feedback " +
+        "WHERE processed BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY) " +
+        "GROUP by DATE(processed)",
+        {type: db.QueryTypes.SELECT})
+        .then(data => {
+            res.status(200).send({
+                data: data
+            })
+        })
+        .catch(next)
 });
 
 module.exports = feedbackRouter;

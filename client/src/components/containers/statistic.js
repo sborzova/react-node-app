@@ -1,16 +1,24 @@
 import React, {Component, Fragment} from 'react';
-import {Spin} from "antd";
+import {message, Spin} from "antd";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import { DatePicker } from 'antd';
-import {getCountKcw, getCountKernunVersion} from "../../services/api";
+import {
+    getAllFeedbacksForKcwAuth,
+    getAllFeedbacksForKcwFunction,
+    getAllFeedbacksForKernunVariant, getAllFeedbacksForKernunVersion,
+    getCountKcw,
+    getCountKernunVersion
+} from "../../services/api";
 import {strings} from "../../constants/strings";
+import FeedbackTable from "./feedbacTable";
 
 const dateFormat = 'DD.MM.YYYY';
 
 class Statistic extends Component {
     _isMounted = false;
+    colors = Highcharts.getOptions().colors;
 
     kcw = {
         cw_antivirus: { 'true': 0, 'false': 0},
@@ -26,17 +34,21 @@ class Statistic extends Component {
 
     state = {
         loading : false,
+        loadingTable: false,
         date: moment().format(dateFormat),
-        data: {},
         graphs: [],
         dataKcw: [],
-        dataAuth: {}
+        dataAuth: [],
+        feedback: [],
+        saleTypeSeries: [],
+        kernunVariantSeries: []
     };
+
 
     componentDidMount() {
         this._isMounted = true;
-        this.fetchKernun(this.date);
-        this.fetchKcw(this.date);
+        this.fetchKernun(this.state.date);
+        this.fetchKcw(this.state.date);
     }
 
     componentWillUnmount() {
@@ -51,7 +63,7 @@ class Statistic extends Component {
 
     fetchKcw = (date) => {
         this.setState({ loading: true });
-        getCountKcw(moment(date).format('YYYY-MM-DD'))
+        getCountKcw(moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD'))
             .then((response) => {
                 response.data.data.forEach(d => {
                         for (const prop in d) {
@@ -90,61 +102,131 @@ class Statistic extends Component {
                     });
                 }
             })
-            .catch(error => console.log(error));
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     fetchKernun = (date) => {
         this.setState({ loading: true });
-        getCountKernunVersion(moment(date).format('YYYY-MM-DD'))
+        getCountKernunVersion(moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD'))
             .then((response) => {
                 const data = response.data.data;
-                const variantNames = Object.keys(data);
-                let variantSeries = [];
+                const saleTypes = Object.keys(data);
                 let graphs = [];
-                variantNames.forEach(variantName => {
-                    let versionSeries = [];
-                    const versions = data[variantName];
-                    let sum = 0;
-                    versions.forEach(v => {
-                        sum += v.count;
-                        versionSeries.push({name: v.kernun_version, y: v.count})
-                    });
-                    variantSeries.push({name: variantName, y: sum});
-                    const options = {
-                        chart: { type: 'pie' },
-                        title: { text: variantName},
-                        tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
-                        plotOptions: {
-                            pie: {
-                                dataLabels: { enabled: false },
-                                showInLegend: true,
+                let saleTypesSeries = [];
+                let kernunVariantSeries = [];
+                let colorIndex = 0;
+                saleTypes.forEach(saletype => {
+                    let sumSaleType = 0;
+                    const array = data[saletype];
+                    const kernunTypes = Object.keys(array);
+                    kernunTypes.forEach(kernunType => {
+                        let sumKernunVariant = 0;
+                        const arrayKernun = array[kernunType];
+                        arrayKernun.forEach(object => {
+                            sumSaleType += object.count;
+                            sumKernunVariant += object.count;
+                        });
+                        kernunVariantSeries.push({name: kernunType, y: sumKernunVariant, color: this.colors[colorIndex]});
+                        colorIndex++;
+                        console.log(arrayKernun);
+
+                        //MUSI SA TO INAK SPRAVIT AKO SA TO SPRACOVAVA!!!!!!
+                        const options = {
+                            chart: { type: 'pie' },
+                            title: { text: kernunType},
+                            tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
+                            plotOptions: {
+                                pie: {
+                                    dataLabels: { enabled: false },
+                                    showInLegend: true,
                                         point: {
                                             events: {
-                                                click: function () {
-                                                    alert(this.name);
-                                                }
+                                                click: (e) => {
+                                                    getAllFeedbacksForKernunVersion(e.point.options.name, this.state.date)
+                                                        .then((response) => {
+
+
+                                                        })
+                                                        .catch(e => {
+                                                            message.error(strings.ERROR)
+                                                        });
                                                 }
                                             }
-                                        }
-                        },
-                        series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
-                            colorByPoint: true, data: versionSeries}]
-                    };
-                    graphs.push(
-                        <div className="center-chart">
-                        <HighchartsReact key={variantName}  highcharts={Highcharts} options={options}/>
-                        </div>
-                    );
+                                    }
+                                }
+                            },
+                            series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
+                                colorByPoint: true, data: []}]
+                        };
+                        graphs.push(
+                            <div className="center-chart">
+                            <HighchartsReact key={kernunType}  highcharts={Highcharts} options={options}/>
+                            </div>
+                        );
+
+                    });
+                    saleTypesSeries.push({name: saletype, y: sumSaleType, color: this.colors[colorIndex]});
+                    colorIndex++;
                 });
+                // let variantSeries = [];
+                // variantNames.forEach(variantName => {
+                //     let versionSeries = [];
+                //     const versions = data[variantName];
+                //     let sum = 0;
+                //     versions.forEach(v => {
+                //         sum += v.count;
+                //         versionSeries.push({name: v.kernun_version, y: v.count})
+                //     });
+                //     variantSeries.push({name: variantName, y: sum});
+                //     const options = {
+                //         chart: { type: 'pie' },
+                //         title: { text: variantName},
+                //         tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
+                //         plotOptions: {
+                //             pie: {
+                //                 dataLabels: { enabled: false },
+                //                 showInLegend: true,
+                //                         point: {
+                //                             events: {
+                //                                 click: (e) => {
+                //                                     this.setState({ loadingTable: true });
+                //                                     getAllFeedbacksForKernunVersion(e.point.options.name, this.state.date)
+                //                                         .then((response) => {
+                //                                             const data = response.data;
+                //                                             this.setState({
+                //                                                 loadingTable: false,
+                //                                                 feedback: data.data,
+                //                                             });
+                //                                         })
+                //                                         .catch(error => console.log(error));
+                //                                 }
+                //                                 }
+                //                             }
+                //                         }
+                //         },
+                //         series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
+                //             colorByPoint: true, data: versionSeries}]
+                //     };
+                //     graphs.push(
+                //         <div className="center-chart">
+                //         <HighchartsReact key={variantName}  highcharts={Highcharts} options={options}/>
+                //         </div>
+                //     );
+                // });
                 if (this._isMounted) {
                     this.setState({
                         loading: false,
-                        data: variantSeries,
+                        saleTypeSeries: saleTypesSeries,
+                        kernunVariantSeries: kernunVariantSeries,
                         graphs: graphs
                     });
                 }
             })
-            .catch(error => console.log(error));
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     render() {
@@ -160,16 +242,49 @@ class Statistic extends Component {
                     showInLegend: true,
                     point: {
                         events: {
-                            click: function () {
-                                alert('Category: ' + this.name);
+                            click: (e) => {
+                                this.setState({ loadingTable: true });
+                                getAllFeedbacksForKernunVariant(e.point, this.state.date)
+                                    .then((response) => {
+                                        const data = response.data;
+                                        this.setState({
+                                            loadingTable: false,
+                                            feedback: data.data,
+                                        });
+                                    })
+                                    .catch(e => {
+                                        message.error(strings.ERROR)
+                                    });
+                                alert(e.point.options.name, this.state.date);
                             }
                         }
                     }
                 }
             },
             series: [{
+                name: strings.CHART_SALETYPE_TITLE,
+                data: this.state.saleTypeSeries,
+                size: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        return this.y > 5 ? this.point.name : null;
+                    },
+                    color: '#ffffff',
+                    distance: -30
+                }
+            }, {
                 name: strings.CHART_KERNUN_VARIANTS_SERIES_NAME,
-                data: this.state.data
+                data: this.state.kernunVariantSeries,
+                size: '80%',
+                innerSize: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        // display only if larger than 1
+                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                            this.y + '%' : null;
+                    }
+                },
+                id: 'versions'
             }]
         };
 
@@ -186,7 +301,18 @@ class Statistic extends Component {
                     point: {
                         events: {
                             click: function () {
-                                alert('Category: ' + this.name);
+                                this.setState({ loadingTable: true });
+                                getAllFeedbacksForKcwAuth(this.name)
+                                    .then((response) => {
+                                        const data = response.data;
+                                        this.setState({
+                                            loadingTable: false,
+                                            feedback: data.data,
+                                        });
+                                    })
+                                    .catch(e => {
+                                        message.error(strings.ERROR)
+                                    });
                             }
                         }
                     }
@@ -200,7 +326,7 @@ class Statistic extends Component {
             title: { text: strings.CHART_KCW_FUNCTIONS_TITLE },
             xAxis: { categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
                     'cw_https_insp', 'cw_sshd_enabled', 'cw_sshd_kernun'] },
-            yAxis: { title: { text: 'Count' } },
+            yAxis: { title: { text: 'Count', moje: '' } },
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name} </span>',
                 pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}'
@@ -213,7 +339,23 @@ class Statistic extends Component {
                     },
                     point: {
                         events: {
-                            click: function () {
+                            click: function (){
+                                console.log(
+                                    document.getElementsByClassName(
+                                        'ant-calendar-picker-input')
+                                        .item(0).getAttribute('value'));
+                                this.setState({ loadingTable: true });
+                                getAllFeedbacksForKcwFunction(this.category, this.series.name)
+                                    .then((response) => {
+                                        const data = response.data;
+                                        this.setState({
+                                            loadingTable: false,
+                                            feedback: data.data,
+                                        });
+                                    })
+                                    .catch(e => {
+                                        message.error(strings.ERROR)
+                                    });
                                 alert(this.category + this.series.name);
                             }
                         }
@@ -234,13 +376,14 @@ class Statistic extends Component {
                         </div>
                         <div className="column-center">
                             {this.state.graphs}
-                            <div className="center-chart">
-                                <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
-                            </div>
                         </div>
                     </div><br/><br/>
-                    <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
+                    <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
+                    <div>
+                        <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
+                    </div>
                 </Spin>
+                <FeedbackTable feedback={this.state.feedback}/>
             </Fragment>
         )
     }

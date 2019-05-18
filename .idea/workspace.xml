@@ -2,21 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73aecdfd-f815-4d55-9bf1-5a4fcfbc4ce3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/containers/heatMapProcessed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/containers/heatMapUploadStart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layouts/errorBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/statisticRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/utils/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/customerDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/customerDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/customerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/customerList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/containers/feedbacTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/feedbacTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/feedbackList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/feedbackList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/containers/heatMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/heatMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/containers/heatMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/heatMapView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/licenseDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/licenseDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/licenseList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/licenseList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/statistic.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/layouts/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layouts/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layouts/notFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layouts/notFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/constants/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/strings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/constants/strings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/strings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/device.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/device.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/deviceStatus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/deviceStatus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/feedback.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/feedback.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/kcwFunction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/kcwFunction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/license.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/license.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/reporter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/reporter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/customerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/customerRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/deviceRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/deviceRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/domainRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/domainRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/feedbackRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/feedbackRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/hitRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/hitRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/licenseRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/licenseRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/statisticRouter.ts" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,22 +58,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="58" column="61" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
+            <state relative-caret-position="-213">
+              <caret line="76" column="44" lean-forward="true" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -57,82 +70,76 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbacTable.js">
+        <entry file="file://$PROJECT_DIR$/server/database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="215">
+              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/constants/strings.js">
+        <entry file="file://$PROJECT_DIR$/server/routes/feedbackRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="55" column="38" lean-forward="true" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+            <state relative-caret-position="436">
+              <caret line="281" column="32" lean-forward="true" selection-start-line="281" selection-start-column="32" selection-end-line="281" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js">
+        <entry file="file://$PROJECT_DIR$/server/routes/hitRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <marker date="1557477850927" expanded="true" signature="1443:2695" ph="..." />
-                <marker date="1557477850927" expanded="true" signature="3439:3626" ph="..." />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseDetail.js">
+        <entry file="file://$PROJECT_DIR$/server/routes/domainRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="62" lean-forward="true" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="207" column="73" lean-forward="true" selection-start-line="207" selection-start-column="73" selection-end-line="207" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/statistic.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="208" column="25" lean-forward="true" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-216">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerList.js">
+        <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbacTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="183" column="55" selection-start-line="183" selection-start-column="55" selection-end-line="183" selection-end-column="55" />
+            <state relative-caret-position="226">
+              <caret line="75" column="29" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="75" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/routes/deviceRouter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="38" column="6" lean-forward="true" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="172" selection-start-line="172" selection-end-line="185" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/containers/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -141,12 +148,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/layouts/layout.js">
+        <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="42" column="87" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
+            <state relative-caret-position="232">
+              <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,27 +171,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SELECT count(*) AS count</find>
-      <find>uplo</find>
-      <find>NAME_OF_ACTION</find>
-      <find>moment</find>
-      <find>oncal</find>
-      <find>spinn</find>
-      <find>series</find>
-      <find>class</find>
-      <find>cu</find>
-      <find>console.lo</find>
-      <find>variantName</find>
-      <find>pie-chart</find>
-      <find>style</find>
-      <find>state.data</find>
-      <find>pagination</find>
-      <find>optionsKcw</find>
-      <find>data</find>
-      <find>reducer</find>
       <find>dataAuth</find>
       <find>axio</find>
-      <find>options</find>
       <find>getColumnSearchProps</find>
       <find>tooltip</find>
       <find>columns</find>
@@ -194,6 +182,25 @@
       <find>axios</find>
       <find>legen</find>
       <find>legend</find>
+      <find>year</find>
+      <find>dataKcw</find>
+      <find>&lt;tool</find>
+      <find>min</find>
+      <find>forma</find>
+      <find>customer</find>
+      <find>serial</find>
+      <find>options</find>
+      <find>center</find>
+      <find>column</find>
+      <find>charts</find>
+      <find>express();</find>
+      <find>n_aborts</find>
+      <find>TIMESTAM</find>
+      <find>This is a message of error</find>
+      <find>database.ts</find>
+      <find>HeatMapProcessed</find>
+      <find>message.</find>
+      <find>catch</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\borzo\Diplomovka\react-node-app\server\routes</dir>
@@ -205,57 +212,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/constants/actions.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Feedback.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/HeatMap.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/DevicesHeatMap.js" />
-        <option value="$PROJECT_DIR$/server/models/feedback.ts" />
-        <option value="$PROJECT_DIR$/client/src/App.css" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/License.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Licenses.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Customers.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/LicenseDetail.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Dev.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layouts/Layout.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Statistics.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/FeedbackList.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Customer.js" />
-        <option value="$PROJECT_DIR$/server/routes/hitRoutes.ts" />
-        <option value="$PROJECT_DIR$/server/routes/feedbackRoutes.ts" />
-        <option value="$PROJECT_DIR$/server/routes/customerRoutes.ts" />
-        <option value="$PROJECT_DIR$/server/routes/routes.ts" />
-        <option value="$PROJECT_DIR$/client/src/App.jsx" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/Dashboard.js" />
-        <option value="$PROJECT_DIR$/server/app.ts" />
-        <option value="$PROJECT_DIR$/server/routes/deviceRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/domainRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/hitRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/licenseRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/feedbackRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/customerRouter.ts" />
-        <option value="$PROJECT_DIR$/server/routes/statisticRouter.ts" />
-        <option value="$PROJECT_DIR$/client/src/app.css" />
-        <option value="$PROJECT_DIR$/client/src/index.js" />
-        <option value="$PROJECT_DIR$/client/src/services/apiCalls.js" />
-        <option value="$PROJECT_DIR$/client/src/services/api.js" />
-        <option value="$PROJECT_DIR$/server/models/license.ts" />
-        <option value="$PROJECT_DIR$/server/config.ts" />
         <option value="$PROJECT_DIR$/client/src/stores/store.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/feedbackTable.js" />
         <option value="$PROJECT_DIR$/client/src/components/layouts/notFound.js" />
-        <option value="$PROJECT_DIR$/client/src/components/layouts/layout.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/customerDetail.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/dashboard.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/feedbackList.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/feedbacTable.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/heatMap.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/licenseDetail.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/licenseList.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/statistic.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMap.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapFeedbackUploadStart.js" />
+        <option value="$PROJECT_DIR$/client/src/services/api.js" />
+        <option value="$PROJECT_DIR$/server/routes/statisticRouter.ts" />
+        <option value="$PROJECT_DIR$/client/src/components/layouts/errorBoundary.js" />
+        <option value="$PROJECT_DIR$/client/src/components/layouts/layout.js" />
+        <option value="$PROJECT_DIR$/client/src/app.jsx" />
+        <option value="$PROJECT_DIR$/server/routes/feedbackRouter.ts" />
+        <option value="$PROJECT_DIR$/server/routes/licenseRouter.ts" />
+        <option value="$PROJECT_DIR$/server/utils/utils.ts.js" />
+        <option value="$PROJECT_DIR$/server/utils/utils.ts" />
+        <option value="$PROJECT_DIR$/server/routes/domainRouter.ts" />
+        <option value="$PROJECT_DIR$/server/routes/deviceRouter.ts" />
+        <option value="$PROJECT_DIR$/server/app.ts" />
+        <option value="$PROJECT_DIR$/server/database.js" />
+        <option value="$PROJECT_DIR$/server/models/device.ts" />
+        <option value="$PROJECT_DIR$/server/package.json" />
+        <option value="$PROJECT_DIR$/server/models/feedback.ts" />
+        <option value="$PROJECT_DIR$/server/models/license.ts" />
+        <option value="$PROJECT_DIR$/server/models/deviceStatus.ts" />
+        <option value="$PROJECT_DIR$/server/models/reporter.ts" />
+        <option value="$PROJECT_DIR$/server/models/kcwFunction.ts" />
+        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/client/README.md" />
+        <option value="$PROJECT_DIR$/server/README.md" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapProcessed.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapView.js" />
+        <option value="$PROJECT_DIR$/server/utils/utils.js" />
+        <option value="$PROJECT_DIR$/server/routes/feedbackRouter.js" />
+        <option value="$PROJECT_DIR$/server/routes/customerRouter.js" />
+        <option value="$PROJECT_DIR$/server/routes/deviceRouter.js" />
+        <option value="$PROJECT_DIR$/server/routes/hitRouter.js" />
+        <option value="$PROJECT_DIR$/server/routes/licenseRouter.js" />
+        <option value="$PROJECT_DIR$/server/routes/statisticRouter.js" />
         <option value="$PROJECT_DIR$/client/src/constants/strings.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/feedbackList.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/customerList.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/dashboard.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapUploadStart.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/customerDetail.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/statistic.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/licenseList.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js" />
+        <option value="$PROJECT_DIR$/server/routes/domainRouter.js" />
+        <option value="$PROJECT_DIR$/client/src/app.css" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/feedbacTable.js" />
       </list>
     </option>
   </component>
@@ -298,44 +305,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="presentation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="constants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -346,7 +315,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/components/containers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/utils" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -362,11 +331,11 @@
       <recent name="C:\Users\Silvia\Diplomovka\react-node-app" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\borzo\Diplomovka\react-node-app\server\utils" />
+      <recent name="C:\Users\borzo\Diplomovka\react-node-app\server" />
+      <recent name="C:\Users\borzo\Diplomovka\react-node-app\client\src\components\layouts" />
       <recent name="C:\Users\borzo\Diplomovka\react-node-app\client\src\components\containers" />
       <recent name="C:\Users\borzo\Diplomovka\react-node-app\server\routes" />
-      <recent name="C:\Users\Silvia\Diplomovka\react-node-app\client\src\components\layouts" />
-      <recent name="C:\Users\Silvia\Diplomovka\react-node-app\client\src\components\containers" />
-      <recent name="C:\Users\Silvia\Diplomovka\react-node-app\server\models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -382,19 +351,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.debug">
-    <configuration name="app.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/app.ts" working-dir="$PROJECT_DIR$">
+    <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="debug" type="NodeJSConfigurationType" path-to-js-file="$PROJECT_DIR$/server/app.ts" working-dir="$PROJECT_DIR$">
+    <configuration name="debug" type="NodeJSConfigurationType" path-to-js-file="$PROJECT_DIR$/server/app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Node.js.debug" />
-      <item itemvalue="Node.js.app.ts" />
+      <item itemvalue="Node.js.app.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.app.ts" />
+        <item itemvalue="Node.js.app.js" />
       </list>
     </recent_temporary>
   </component>
@@ -479,12 +448,21 @@
       <workItem from="1557299402423" duration="33326000" />
       <workItem from="1557392256748" duration="37772000" />
       <workItem from="1557476873094" duration="971000" />
-      <workItem from="1557479974495" duration="2056000" />
+      <workItem from="1557479974495" duration="12359000" />
+      <workItem from="1557581644063" duration="252000" />
+      <workItem from="1557601374841" duration="9519000" />
+      <workItem from="1557751401148" duration="12166000" />
+      <workItem from="1557819289287" duration="5359000" />
+      <workItem from="1557834185925" duration="7848000" />
+      <workItem from="1557874920882" duration="1013000" />
+      <workItem from="1557950716082" duration="4410000" />
+      <workItem from="1558015271022" duration="1052000" />
+      <workItem from="1558111149006" duration="27612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="690627000" />
+    <option name="totallyTimeSpent" value="770161000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -499,247 +477,54 @@
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8522954" visible="true" weight="0.19554849" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8522954" visible="true" weight="0.2599364" />
       <window_info id="Structure" order="1" sideWeight="0.14770459" side_tool="true" weight="0.22893482" />
       <window_info id="Favorites" order="2" sideWeight="0.5012854" side_tool="true" weight="0.19494048" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49523053" weight="0.62833333" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4936407" weight="0.325" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.3184524" weight="0.42190015" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5136876" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925596" weight="0.32692307" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49841017" weight="0.32666665" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49682036" weight="0.20666666" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.50317967" side_tool="true" visible="true" weight="0.23333333" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49602544" weight="0.20666666" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5063593" side_tool="true" visible="true" weight="0.175" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8522954" visible="true" weight="0.24642289" />
-      <window_info id="Structure" order="1" sideWeight="0.14770459" side_tool="true" weight="0.22893482" />
-      <window_info id="Favorites" order="2" sideWeight="0.5012854" side_tool="true" weight="0.19494048" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49523053" weight="0.62833333" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.3184524" weight="0.42190015" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5136876" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925596" weight="0.32692307" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49682036" weight="0.20666666" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.50317967" side_tool="true" visible="true" weight="0.23333333" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32850242" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/node_modules/express/lib/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5899">
-          <caret line="353" column="13" selection-start-line="353" selection-start-column="13" selection-end-line="353" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/build/static/js/1.4b9fcd16.chunk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret column="33613" selection-start-column="33613" selection-end-column="33613" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/build/static/js/main.ea887d82.chunk.js.map">
-      <provider editor-type-id="sourcemapFileViewerProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24296" selection-start-column="24296" selection-end-column="24296" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/domainRoutes.ts" />
-    <entry file="file://$PROJECT_DIR$/client/src/App.test.js" />
-    <entry file="file://$PROJECT_DIR$/server/node_modules/sequelize/lib/dialects/mysql/query.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4369">
-          <caret line="257" selection-start-line="257" selection-end-line="257" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/node_modules/redux/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="348" column="46" selection-start-line="348" selection-start-column="37" selection-end-line="348" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/node_modules/redux-thunk/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" lean-forward="true" selection-start-column="24" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/deviceRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/domainRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/hitRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/licenseRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/routes.ts" />
-    <entry file="file://$PROJECT_DIR$/client/public/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/emptyReducer.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/actions/emptyActions.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3876" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/device.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/deviceStatus.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/feedback.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/kcwFunction.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/license.ts">
+    <entry file="file://$PROJECT_DIR$/client/node_modules/antd/es/table/Table.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        <state relative-caret-position="22593">
+          <caret line="1349" selection-start-line="1349" selection-end-line="1349" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/reporter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/database.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/app.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/node_modules/highcharts-react-official/dist/highcharts-react.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="33" lean-forward="true" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/stores/store.js" />
-    <entry file="file://$PROJECT_DIR$/server/routes/customerRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/statisticRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/feedbackRouter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackTable.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/services/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app.jsx">
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="27" column="81" selection-start-line="27" selection-start-column="81" selection-end-line="27" selection-end-column="81" />
+          <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/antd/lib/layout/layout.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -753,33 +538,277 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/presentation/empty.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerDetail.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/layouts/errorBoundary.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="139" column="87" selection-start-line="139" selection-start-column="87" selection-end-line="139" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-column="3" selection-end-line="9" selection-end-column="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMap.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/layouts/layout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+        <state relative-caret-position="218">
+          <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/dashboard.js">
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="205" column="53" selection-start-line="205" selection-start-column="53" selection-end-line="205" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="60" column="47" lean-forward="true" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1558171815466" expanded="true" signature="1452:2704" ph="..." />
+            <marker date="1558171815466" expanded="true" signature="3448:3635" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/node_modules/sequelize/lib/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="414" column="11" selection-start-line="414" selection-start-column="11" selection-end-line="414" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/utils/utils.ts.">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/localhost.cert">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/services/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/license.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/deviceStatus.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/feedback.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/reporter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/kcwFunction.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="68">
+            <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/keycloak.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/keycloak.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/device.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/statistic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapUploadStart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapProcessed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/.env">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/utils/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/customerRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/licenseRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="98" column="6" lean-forward="true" selection-start-line="98" selection-start-column="6" selection-end-line="98" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/statisticRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1032">
+          <caret line="3" column="41" lean-forward="true" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/constants/strings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="157" column="25" lean-forward="true" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
@@ -788,100 +817,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="58" column="61" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="61" />
+        <state relative-caret-position="232">
+          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/heatMapDevice.js">
+    <entry file="file://$PROJECT_DIR$/server/database.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1557477850927" expanded="true" signature="1443:2695" ph="..." />
-            <marker date="1557477850927" expanded="true" signature="3439:3626" ph="..." />
-          </folding>
+        <state relative-caret-position="215">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/layouts/layout.js">
+    <entry file="file://$PROJECT_DIR$/server/routes/feedbackRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="42" column="87" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="436">
+          <caret line="281" column="32" lean-forward="true" selection-start-line="281" selection-start-column="32" selection-end-line="281" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseDetail.js">
+    <entry file="file://$PROJECT_DIR$/server/routes/hitRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="62" lean-forward="true" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/domainRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/deviceRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="38" column="6" lean-forward="true" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
+        <state relative-caret-position="-213">
+          <caret line="76" column="44" lean-forward="true" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/licenseList.js">
+    <entry file="file://$PROJECT_DIR$/client/src/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="207" column="73" lean-forward="true" selection-start-line="207" selection-start-column="73" selection-end-line="207" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/statistic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="208" column="25" lean-forward="true" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/constants/strings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="55" column="38" lean-forward="true" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+        <state relative-caret-position="141">
+          <caret line="172" selection-start-line="172" selection-end-line="185" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbacTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+        <state relative-caret-position="226">
+          <caret line="75" column="29" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="75" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="183" column="55" selection-start-line="183" selection-start-column="55" selection-end-line="183" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

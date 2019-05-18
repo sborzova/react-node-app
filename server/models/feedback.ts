@@ -1,11 +1,11 @@
-const sequelize = require('../database.ts');
+const sequelize = require('../database');
 const Sequelize = require('sequelize');
 const License = require('../models/license.ts');
 const Device = require('../models/device.ts');
 const DeviceStatus = require('../models/deviceStatus.ts');
 const Reporter = require('../models/reporter.ts');
 const KcwFunction = require('../models/kcwFunction.ts');
-const TIMESTAMP = require('sequelize-mysql-timestamp')(sequelize);
+const TIMESTAMP = require('sequelize-mysql-timestamp')(sequelize, { warnings: false });
 
 
 const Feedback = sequelize.define('feedback', {

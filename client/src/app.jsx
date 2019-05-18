@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import FeedbackList from './components/containers/feedbackList';
 import CustomerList from './components/containers/customerList';
 import LayoutMenu from "./components/layouts/layout";
@@ -18,6 +18,7 @@ import LicenseDetail from "./components/containers/licenseDetail";
 moment.locale('cs'); // change the global locale
 
 class App extends Component {
+
     render() {
         return (
                 <HashRouter>

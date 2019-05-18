@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import HeatMap from "./heatMap";
+import HeatMapUploadStart from "./heatMapUploadStart";
 import FeedbackList from "./feedbackList";
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import {Radio, Spin} from "antd";
+import {Radio, Spin, message} from "antd";
 import HeatMapDevice from "./heatMapDevice";
 
 import {getCountDomains, getCountHits} from "../../services/api";
@@ -66,7 +66,10 @@ class CustomerDetail extends Component{
                     loading: false,
                 })
 
-            }).catch(error => console.log(error));
+            })
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
 
@@ -98,7 +101,10 @@ class CustomerDetail extends Component{
                     loadingDomains: false,
                 })
 
-            }).catch(error => console.log(error));
+            })
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     render(){
@@ -133,8 +139,8 @@ class CustomerDetail extends Component{
 
         return (<Fragment>
                     <h1>{this.props.match.params.customer}</h1>
-                    <HeatMap type={this.heatMapType}/><br/><br/><br/>
-                    <h2>Feedback list</h2>
+                    <HeatMapUploadStart type={this.heatMapType} title={strings.CHART_FEEDBACKS_TITLE_YEAR}/><br/><br/><br/>
+                    <h2>{strings.HEADER_FB_LIST}</h2>
                     <FeedbackList type={this.feedbackListType}/><br/><br/><br/>
                     <Radio.Group value={this.state.period} onChange={this.handlePeriodChange}>
                         <Radio.Button value="week">{strings.PERIOD_WEEK}</Radio.Button>

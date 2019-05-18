@@ -1,4 +1,4 @@
-const sequelize = require('../database.ts');
+const sequelize = require('../database');
 const Sequelize = require('sequelize');
 const Feedback = require('../models/feedback.ts');
 
@@ -17,6 +17,9 @@ const DeviceStatus = sequelize.define('deviceStatus', {
                 type: Sequelize.STRING
         },
         disk_space: {
+                type: Sequelize.STRING
+        },
+        swap_space: {
                 type: Sequelize.STRING
         },
         system_table: {

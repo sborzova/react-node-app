@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Spin} from 'antd';
+import {message, Spin} from 'antd';
 
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
@@ -102,7 +102,9 @@ class HeatMapDevice extends Component{
                     })
                 }
             })
-            .catch(error => console.log(error));
+            .catch(e => {
+                message.error(strings.ERROR)
+            });
     };
 
     render () {

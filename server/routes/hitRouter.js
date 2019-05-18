@@ -1,14 +1,12 @@
-const Sequelize = require('sequelize');
 const express = require('express');
-const moment = require('moment');
 const underscore = require('underscore');
 
-const db = require('../database.ts');
+const db = require('../database');
 
-const domainRouter = express.Router();
+const hitRouter = express.Router();
 
-domainRouter.get('/domains/week/:customer' ,function(req, res) {
-    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
+hitRouter.get('/hits/week/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
         "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 6 DAY) AND NOW() " +
@@ -22,11 +20,12 @@ domainRouter.get('/domains/week/:customer' ,function(req, res) {
                 data: groups
             })
         })
+        .catch(next)
 });
 
-domainRouter.get('/domains/month/:customer' ,function(req, res, next) {
-    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
-        "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
+hitRouter.get('/hits/month/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
+        "FROM feedback left join device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() " +
         "ORDER BY DATE(upload_start)",
@@ -39,10 +38,11 @@ domainRouter.get('/domains/month/:customer' ,function(req, res, next) {
                 data: groups
             })
         })
+        .catch(next)
 });
 
-domainRouter.get('/domains/year/:customer' ,function(req, res, next) {
-    db.query("SELECT feedback.fa_id, domains AS count, date(upload_start) AS date, hostid, hostname " +
+hitRouter.get('/hits/year/:customer' ,function(req, res, next) {
+    db.query("SELECT feedback.fa_id, hits AS count, DATE(upload_start) AS date, hostid, hostname " +
         "FROM feedback LEFT JOIN device ON feedback.fa_id = device.fa_id " +
         "WHERE determined_customer = :customer AND " +
         "upload_start BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() " +
@@ -56,6 +56,7 @@ domainRouter.get('/domains/year/:customer' ,function(req, res, next) {
                 data: groups
             })
         })
+        .catch(next)
 });
 
-module.exports = domainRouter;
+module.exports = hitRouter;

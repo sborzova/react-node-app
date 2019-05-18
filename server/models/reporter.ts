@@ -1,4 +1,4 @@
-const sequelize = require('../database.ts');
+const sequelize = require('../database');
 const Sequelize = require('sequelize');
 const Feedback = require('../models/feedback.ts');
 

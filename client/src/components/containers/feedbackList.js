@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Radio } from 'antd';
+import {message, Radio} from 'antd';
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
@@ -76,10 +76,11 @@ class FeedbackList extends Component {
                         loading: false,
                         feedback: data.data,
                     });
-                    console.log(this.state.feedback);
                 }
         })
-        .catch(error => console.log(error));
+        .catch(e => {
+            message.error(strings.ERROR)
+        });
     };
 
     render() {

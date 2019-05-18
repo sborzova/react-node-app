@@ -149,15 +149,15 @@
   /*margin-right: 30px;*/
 }
 
-.column-left {
-  float: left;
-  width: 30%;
-}
+/*.column-left {*/
+/*  float: left;*/
+/*  width: 30%;*/
+/*}*/
 
-.column-center {
-  display: inline-block;
-  width: 70%;
-}
+/*.column-center {*/
+/*  display: inline-block;*/
+/*  width: 70%;*/
+/*}*/
 
 /*.column-right {*/
 /*  float: right;*/
@@ -165,3 +165,22 @@
 /*  flex: 1;*/
 /*  !*flex-wrap: nowrap*!*/
 /*}*/
+
+.charts {
+  float: left;
+}
+
+.dot {
+  height: 7px;
+  width: 7px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.square {
+  height: 7px;
+  width: 7px;
+  background-color: #bbb;
+  display: inline-block;
+}
