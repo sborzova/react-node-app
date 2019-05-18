@@ -10,13 +10,13 @@ import {tooltips} from "../../constants/tooltips";
 
 const popup = (
     <div>
-        <div><span className="dot reboot"/>{tooltips['reboot']}</div>
-        <div><span className="dot panics"/>{tooltips['panics']}</div>
-        <div><span className="dot aborts"/>{tooltips['aborts']}</div>
-        <div><span className="dot coredumps"/>{tooltips['coredumps']}</div>
-        <div><span className="square expiration"/>{tooltips['expiration']}</div>
-        <div><span className="square reporterusers"/>{tooltips['reporterusers']}</div>
-        <div><span className="square reporterclients"/>{tooltips['reporterclients']}</div>
+        <div><span className="reboot"/>{tooltips['reboot']}</div>
+        <div><span className="panics"/>{tooltips['panics']}</div>
+        <div><span className="aborts"/>{tooltips['aborts']}</div>
+        <div><span className="coredumps"/>{tooltips['coredumps']}</div>
+        <div><span className="expiration"/>{tooltips['expiration']}</div>
+        <div><span className="reporterusers"/>{tooltips['reporterusers']}</div>
+        <div><span className="reporterclients"/>{tooltips['reporterclients']}</div>
     </div>
 );
 

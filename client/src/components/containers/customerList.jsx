@@ -4,30 +4,19 @@ import {Link} from "react-router-dom";
 import moment from 'moment';
 import {getAllCustomers} from "../../services/api";
 import {strings} from "../../constants/strings";
-
-const tooltips  = {
-    green : strings.TOOLTIP_ACTIVE_FB,
-    red: strings.TOOLTIP_ACTIVE_NO_FB,
-    blue: strings.TOOLTIP_INACTIVE_FB,
-    yellow: strings.TOOLTIP_INACTIVE_NO_FB,
-    grey: strings.TOOLTIP_OTHER
-};
+import {tooltips} from "../../constants/tooltips";
 
 const popup = (
     <div>
         <h4>{strings.HEADER_ACTIVE_CUSTOMERS}</h4>
-        <Badge color="green" text={strings.TOOLTIP_FB} />
-        <br />
-        <Badge color="red" text={strings.TOOLTIP_NO_FB} />
-        <br />
+        <div><span className="activeWithFb"/>{tooltips['activeWithFb']}</div>
+        <div><span className="activeNoFb"/>{tooltips['activeNoFb']}</div>
         <br />
         <h4>{strings.HEADER_INACTIVE_CUSTOMERS}</h4>
-        <Badge color="blue" text={strings.TOOLTIP_FB} />
+        <div><span className="inactiveWithFb"/>{tooltips['inactiveWithFb']}</div>
+        <div><span className="inactiveNoFb"/>{tooltips['inactiveNoFb']}</div>
         <br />
-        <Badge color="yellow" text={strings.TOOLTIP_NO_FB} />
-        <br />
-        <br />
-        <Badge color="grey" text={strings.TOOLTIP_OTHER} />
+        <div><span className="other"/>{tooltips['other']}</div>
     </div>
 );
 
@@ -40,8 +29,8 @@ const columns = [
             <span>
               {feedbacks.map(fb => {
                   return(
-                      <Tooltip placement="top" title={tooltips[fb.color]}>
-                          <Badge color={fb.color} key={fb.fa_id}/>
+                      <Tooltip placement="top" title={tooltips[fb.status]}>
+                          <span className={fb.status}/>
                       </Tooltip>)
               })}
             </span>
@@ -61,10 +50,10 @@ const columns = [
 const columnsNested = [
     {
         title: null,
-        dataIndex: 'color',
-        render: (color) =>
-            <Tooltip placement="top" title={tooltips[color]}>
-                <Badge color={color}/>
+        dataIndex: 'status',
+        render: (status) =>
+            <Tooltip placement="top" title={tooltips[status]}>
+                <span className={status}/>
             </Tooltip>
     },
     {

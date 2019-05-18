@@ -19,33 +19,29 @@ const processDataCustomers = (data) => {
     let groups = underscore.groupBy(data, function(object) {
         return object.determined_customer;
     });
-    const customersIds = Object.keys(groups);
+    const determinedCustomers = Object.keys(groups);
     let customers = [];
-    customersIds.forEach(customerId => {
-        const feedbacks = groups[customerId];
+    determinedCustomers.forEach(customer => {
+        const feedbacks = groups[customer];
         feedbacks.forEach(feedback =>{
-            let color = 'grey';
+            let status = 'other';
             if (moment(feedback.upgrade).isAfter(moment())){
                 if (moment(feedback.upload_start).format('L') == moment().format('L')){
-                    color = 'green';
+                    status = 'activeWithFb';
                 }else{
-                    color = 'red';
+                    status = 'activeNoFb';
                 }
             }else if(!moment(feedback.upgrade).isAfter(moment())){
                 if (moment(feedback.upload_start).format('L') == moment().format('L')){
-                    color = 'blue';
+                    status = 'inactiveWithFb';
                 }else{
-                    color = 'yellow';
+                    status = 'inactiveNoFb';
                 }
             }
-            feedback.color = color;
+            feedback.status = status;
         });
-        customers.push({
-            determined_customer: customerId,
-            feedbacks: feedbacks,
-        });
+        customers.push({determined_customer: customer, feedbacks: feedbacks});
     });
-
     return customers;
 };
 

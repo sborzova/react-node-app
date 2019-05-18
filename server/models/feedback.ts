@@ -42,7 +42,7 @@ const Feedback = sequelize.define('feedback', {
     domains: {
         type: Sequelize.INTEGER(11)
     },
-    color: Sequelize.VIRTUAL,
+    status: Sequelize.VIRTUAL,
     },
 
     {
