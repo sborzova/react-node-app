@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
-import { Radio, message} from "antd";
+import { Radio, message} from "antd/lib/index";
 
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import HeatMapUploadStart from "./heatMapUploadStart";
-import {getCountAllFeedback} from "../../services/api";
-import {strings} from "../../constants/strings";
-import HeatMapProcessed from "./heatMapProcessed";
+import HeatMapUploadStart from "../components/heatMapUploadStart";
+import {getCountAllFeedback} from "../services/api";
+import {strings} from "../constants/strings";
+import HeatMapProcessed from "../components/heatMapProcessed";
 
 class Dashboard extends Component {
     state = {

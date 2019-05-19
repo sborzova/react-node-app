@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {message, Spin} from 'antd';
+import {message, Spin} from 'antd/lib/index';
 
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
 import moment from 'moment';
-import {getCountDevices} from "../../services/api";
-import {strings} from "../../constants/strings";
+import {getCountDevices} from "../services/api";
+import {strings} from "../constants/strings";
 
 class HeatMapDevice extends Component{
     state = {

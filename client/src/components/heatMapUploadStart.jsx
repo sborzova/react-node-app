@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
-import {Spin} from 'antd';
+import {message, Spin} from 'antd/lib/index';
 
 import moment from 'moment';
-import { getCountProcessed} from "../../services/api";
+import {getCountFeedback} from "../services/api";
+import {strings} from "../constants/strings";
 import HeatMapView from "./heatMapView";
 
-class HeatMapProcessed extends Component{
+class HeatMapUploadStart extends Component{
     state = {
         loading: false,
         data: [],
         categories: [],
+        min: 0,
     };
 
     mapper = new Map();
     _isMounted = false;
 
     componentDidMount(){
+        const min = this.props.type.includes('all/year') ? 60 : 1;
         this._isMounted = true;
         let date = new Date();
         let categories = [];
@@ -25,7 +28,7 @@ class HeatMapProcessed extends Component{
             date = moment(date).subtract(1, "month");
             categories.push(date.format('MMM YYYY'));
         }
-        this.setState({categories:categories});
+        this.setState({categories:categories, min: min});
         this.fetch();
     };
 
@@ -35,7 +38,7 @@ class HeatMapProcessed extends Component{
 
     fetch = () => {
         this.setState({ loading: true });
-        getCountProcessed()
+        getCountFeedback(this.props.type)
             .then((response) => {
                 let days = [];
                 const array = response.data.data;
@@ -53,8 +56,8 @@ class HeatMapProcessed extends Component{
                     })
                 }
             })
-            .catch(error => {
-                    console.log(error)
+            .catch(e => {
+                message.error(strings.ERROR)
             });
     };
 
@@ -64,10 +67,10 @@ class HeatMapProcessed extends Component{
                 <HeatMapView
                     yCategories={this.state.categories}
                     data={this.state.data}
-                    min={60}
+                    min={this.state.min}
                     title={this.props.title}/>
             </Spin>)
     }
 }
 
-export default HeatMapProcessed;
+export default HeatMapUploadStart;

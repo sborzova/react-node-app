@@ -1,16 +1,16 @@
 import React, {Component, Fragment} from 'react';
 import moment from 'moment';
-import {DatePicker, Spin} from 'antd';
+import {DatePicker, Spin} from 'antd/lib/index';
 
-import FeedbackTable from "./feedbacTable";
-import KernunVariants from "./kernunVariants";
-import KernunVersions from "./kernunVersions";
-import KernunKcw from "./kernunKcw";
+import FeedbackTable from "../components/feedbackTable";
+import KernunVariants from "../components/kernunVariants";
+import KernunVersions from "../components/kernunVersions";
+import KernunKcw from "../components/kernunKcw";
 import {
     getAllFeedbacksForKcwAuth,
     getAllFeedbacksForKernunVariant, getAllFeedbacksForKernunVersion,
     getAllFeedbacksForSaleType
-} from "../../services/api";
+} from "../services/api";
 
 const dateFormat = 'DD.MM.YYYY';
 

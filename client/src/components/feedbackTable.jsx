@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Table, Icon, Popover} from 'antd';
+import {Table, Icon, Popover} from 'antd/lib/index';
 import {Link} from "react-router-dom";
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
-import {strings} from "../../constants/strings";
+import {tooltips} from "../constants/tooltips";
+import {strings} from "../constants/strings";
 import FeedbackStatus from "./feedbackStatus";
-import {tooltips} from "../../constants/tooltips";
 
 const popup = (
     <div>

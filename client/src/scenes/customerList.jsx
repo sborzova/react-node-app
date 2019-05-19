@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
-import {Table, Tooltip, Popover, Icon, message} from 'antd';
+import {Table, Tooltip, Popover, Icon, message} from 'antd/lib/index';
 import {Link} from "react-router-dom";
 import moment from 'moment';
-import {getAllCustomers} from "../../services/api";
-import {strings} from "../../constants/strings";
-import {tooltips} from "../../constants/tooltips";
+import {getAllCustomers} from "../services/api";
+import {strings} from "../constants/strings";
+import {tooltips} from "../constants/tooltips";
 
 const popup = (
     <div>
@@ -19,6 +19,18 @@ const popup = (
         <div><span className="other"/>{tooltips['other']}</div>
     </div>
 );
+
+const getClassName = (datetime) => {
+    let className = '';
+    if (moment(datetime).isBefore(moment())){
+        className = 'font-red'
+    }else if (moment(datetime).diff(moment(), 'days') <= 7){
+        className = 'font-orange'
+    }else if (moment(datetime).diff(moment(), 'days') <= 31){
+        className = 'font-yellow'
+    }
+    return className;
+};
 
 const columns = [
     {
@@ -73,14 +85,7 @@ const columnsNested = [
         dataIndex: 'expiration',
         render: (datetime) => {
             if (datetime !== 'undefined' && datetime !== 'unlimited'){
-                let className = '';
-                if (moment(datetime).isBefore(moment())){
-                    className = 'font-red'
-                }else if (moment(datetime).diff(moment(), 'days') <= 7){
-                    className = 'font-orange'
-                }else if (moment(datetime).diff(moment(), 'days') <= 31){
-                    className = 'font-yellow'
-                }
+                let className = getClassName(datetime);
                 return <div className={className}>{moment(datetime).format('L')}</div>
             }else {
                 return <div className="infinity">∞</div>
@@ -89,15 +94,8 @@ const columnsNested = [
         title: strings.TABLE_COLUMN_UPGRADE,
         dataIndex: 'upgrade',
         render: (datetime) => {
-            if (datetime !== 'undefined' && datetime !== 'unlimited'){
-                let className = '';
-                if (moment(datetime).isBefore(moment())){
-                    className = 'font-red'
-                }else if (moment(datetime).diff(moment(), 'days') <= 7){
-                    className = 'font-orange'
-                }else if (moment(datetime).diff(moment(), 'days') <= 31){
-                    className = 'font-yellow'
-                }
+            if (datetime !== 'undefined'){
+                let className = getClassName(datetime);
                 return <div className={className}>{moment(datetime).format('L')}</div>
             }}
     }, {

@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
-import HeatMapUploadStart from "./heatMapUploadStart";
+import HeatMapUploadStart from "../components/heatMapUploadStart";
 import FeedbackList from "./feedbackList";
 
 import {Link} from "react-router-dom";
-import {getLicense} from "../../services/api";
-import {strings} from "../../constants/strings";
+import {getLicense} from "../services/api";
+import {strings} from "../constants/strings";
 import moment from "moment";
 
 class LicenseDetail extends Component{

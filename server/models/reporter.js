@@ -1,6 +1,6 @@
 const sequelize = require('../database');
 const Sequelize = require('sequelize');
-const Feedback = require('../models/feedback.ts');
+const Feedback = require('../models/feedback');
 
 const Reporter = sequelize.define('reporter', {
         id: {

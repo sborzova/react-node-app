@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {message, Spin} from "antd";
+import {message, Spin} from "antd/lib/index";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import {
     getCountKernunVariants
-} from "../../services/api";
-import {strings} from "../../constants/strings";
+} from "../services/api";
+import {strings} from "../constants/strings";
 
 const dateFormat = 'DD.MM.YYYY';
 

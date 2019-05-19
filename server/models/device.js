@@ -1,9 +1,9 @@
-const sequelize = require('../database');
+const db = require('../database');
 const Sequelize = require('sequelize');
-const Feedback = require('../models/feedback.ts');
+const Feedback = require('../models/feedback');
 
 
-const Device = sequelize.define('device', {
+const Device = db.define('device', {
         id: {
             type: Sequelize.INTEGER(11), primaryKey: true
         },

@@ -1,6 +1,6 @@
-const Feedback = require('../models/feedback.ts');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
+const Feedback = require('../models/feedback');
+const License = require('../models/license');
+const Device = require('../models/device');
 const utils = require('../utils/utils');
 
 const Sequelize = require('sequelize');

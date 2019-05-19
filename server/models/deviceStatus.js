@@ -1,6 +1,6 @@
 const sequelize = require('../database');
 const Sequelize = require('sequelize');
-const Feedback = require('../models/feedback.ts');
+const Feedback = require('../models/feedback');
 
 const DeviceStatus = sequelize.define('deviceStatus', {
         id: {
@@ -40,9 +40,6 @@ const DeviceStatus = sequelize.define('deviceStatus', {
         n_aborts: {
                 type: Sequelize.STRING
         },
-    //     n_deadlocks: {
-    //     type: Sequelize.STRING
-    // }
         },
     {
         timestamps: false,

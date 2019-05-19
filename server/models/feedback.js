@@ -1,10 +1,10 @@
 const sequelize = require('../database');
 const Sequelize = require('sequelize');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
-const DeviceStatus = require('../models/deviceStatus.ts');
-const Reporter = require('../models/reporter.ts');
-const KcwFunction = require('../models/kcwFunction.ts');
+const License = require('../models/license');
+const Device = require('../models/device');
+const DeviceStatus = require('../models/deviceStatus');
+const Reporter = require('../models/reporter');
+const KcwFunction = require('../models/kcwFunction');
 const TIMESTAMP = require('sequelize-mysql-timestamp')(sequelize, { warnings: false });
 
 

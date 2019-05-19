@@ -18,7 +18,7 @@ statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
             let sales = [];
             let rental = [];
             data.forEach(data => {
-                if (data.expiration == 'unlimited'){
+                if (data.expiration === 'unlimited'){
                     sales.push(data);
                 }else {
                     rental.push(data);

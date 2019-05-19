@@ -3,9 +3,8 @@ import { Tooltip } from 'antd';
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
-import {tooltips} from "../../constants/tooltips";
-import {strings} from "../../constants/strings";
-
+import {strings} from "../constants/strings";
+import {tooltips} from "../constants/tooltips";
 
 class FeedbackStatus extends Component {
 

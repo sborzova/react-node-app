@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {message, Radio} from 'antd';
+import {message, Radio} from 'antd/lib/index';
 
 import 'antd/dist/antd.css';
 import moment from 'moment';
 import { DatePicker } from 'antd';
-import {getAllFeedbacksForInterval} from "../../services/api";
-import FeedbackTable from "./feedbacTable";
-import {strings} from "../../constants/strings";
+import {strings} from "../constants/strings";
+import {getAllFeedbacksForInterval} from "../services/api";
+import FeedbackTable from "../components/feedbackTable";
 const { RangePicker } = DatePicker;
+
 const dateFormat = 'DD.MM.YYYY';
 
 class FeedbackList extends Component {

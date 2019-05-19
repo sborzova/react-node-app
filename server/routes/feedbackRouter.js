@@ -3,12 +3,12 @@ const moment = require('moment');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const Feedback = require('../models/feedback.ts');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
-const DeviceStatus = require('../models/deviceStatus.ts');
-const Reporter = require('../models/reporter.ts');
-const KcwFunction = require('../models/kcwFunction.ts');
+const Feedback = require('../models/feedback');
+const License = require('../models/license');
+const Device = require('../models/device');
+const DeviceStatus = require('../models/deviceStatus');
+const Reporter = require('../models/reporter');
+const KcwFunction = require('../models/kcwFunction');
 const db = require('../database');
 
 const feedbackRouter = express.Router();

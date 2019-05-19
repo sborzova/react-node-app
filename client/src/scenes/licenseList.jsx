@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Table, Tag, Input, Button, Icon, message,} from 'antd';
+import {Table, Tag, Input, Button, Icon, message,} from 'antd/lib/index';
 import Highlighter from 'react-highlight-words';
 import moment from 'moment';
 import {Link} from "react-router-dom";
-import {getAllLicenses} from "../../services/api";
-import {strings} from "../../constants/strings";
+import {getAllLicenses} from "../services/api";
+import {strings} from "../constants/strings";
 
 class LicenseList extends Component {
     _isMounted = false;

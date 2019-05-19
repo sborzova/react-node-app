@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './app.css';
 import {Route, Switch} from 'react-router-dom';
-import FeedbackList from './components/containers/feedbackList.jsx';
-import CustomerList from './components/containers/customerList.jsx';
-import LayoutMenu from "./components/layouts/layout.jsx";
-import FeedbackDetail from "./components/containers/feedbackDetail.jsx";
-import LicenseList from "./components/containers/licenseList.jsx";
-import Statistic from "./components/containers/statistic.jsx";
+import FeedbackList from './scenes/feedbackList.jsx';
+import CustomerList from './scenes/customerList.jsx';
+import LayoutMenu from "./layouts/layout.jsx";
+import FeedbackDetail from "./scenes/feedbackDetail.jsx";
+import LicenseList from "./scenes/licenseList.jsx";
+import Statistic from "./scenes/statistic.jsx";
 import moment from 'moment';
 import 'moment/locale/cs';
-import Dashboard from "./components/containers/dashboard.jsx";
-import Notfound from "./components/layouts/notFound.jsx";
+import Dashboard from "./scenes/dashboard.jsx";
+import Notfound from "./layouts/notFound.jsx";
 import { HashRouter } from "react-router-dom";
-import CustomerDetail from "./components/containers/customerDetail.jsx";
-import LicenseDetail from "./components/containers/licenseDetail.jsx";
+import CustomerDetail from "./scenes/customerDetail.jsx";
+import LicenseDetail from "./scenes/licenseDetail.jsx";
 
 moment.locale('cs'); // change the global locale
 

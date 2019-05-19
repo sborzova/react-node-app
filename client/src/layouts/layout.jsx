@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import {Layout, Menu} from 'antd';
+import {Layout, Menu} from 'antd/lib/index';
 import 'antd/dist/antd.css';
-import {strings} from "../../constants/strings";
+import {strings} from "../constants/strings";
 
 const {Header, Content} = Layout;
 

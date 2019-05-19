@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {message, Tabs, Tooltip} from "antd";
+import {message, Tabs, Tooltip} from "antd/lib/index";
 import moment from 'moment';
-import {getFeedback} from "../../services/api";
-import {strings} from "../../constants/strings";
+import {getFeedback} from "../services/api";
+import {strings} from "../constants/strings";
 import {Link} from "react-router-dom";
-import FeedbackStatus from "./feedbackStatus";
+import FeedbackStatus from "../components/feedbackStatus";
 
 const { TabPane } = Tabs;
 

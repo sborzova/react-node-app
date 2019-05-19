@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {message, Spin} from "antd";
+import {message, Spin} from "antd/lib/index";
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import {
     getCountKernunVersions,
-} from "../../services/api";
-import {strings} from "../../constants/strings";
+} from "../services/api";
+import {strings} from "../constants/strings";
 import HighchartsReact from "highcharts-react-official/src/HighchartsReact";
 
 class KernunVersions extends Component {
@@ -36,7 +36,10 @@ class KernunVersions extends Component {
                     let series = [];
                     const kernunversions = data[kernunVariant];
                     kernunversions.forEach(kernunVersion => {
-                       series.push({name: kernunVersion.kernun_version, y: kernunVersion.count, kernunVariant: kernunVariant });
+                       series.push({
+                           name: kernunVersion.kernun_version,
+                           y: kernunVersion.count,
+                           kernunVariant: kernunVariant });
                     });
 
                     const options = {

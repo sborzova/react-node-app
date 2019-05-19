@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You have to download and configure Keycloak
 
+You need run npm install to install all dependencies
+
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -3,10 +3,10 @@ const Op = Sequelize.Op;
 const express = require('express');
 const moment = require('moment');
 
-const Feedback = require('../models/feedback.ts');
-const License = require('../models/license.ts');
-const Device = require('../models/device.ts');
-const DeviceStatus = require('../models/deviceStatus.ts');
+const Feedback = require('../models/feedback');
+const License = require('../models/license');
+const Device = require('../models/device');
+const DeviceStatus = require('../models/deviceStatus');
 const utils = require('../utils/utils');
 
 const deviceRouter = express.Router();

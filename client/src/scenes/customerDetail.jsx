@@ -1,15 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import HeatMapUploadStart from "./heatMapUploadStart";
+import HeatMapUploadStart from "../components/heatMapUploadStart";
 import FeedbackList from "./feedbackList";
 import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import {Radio, Spin, message} from "antd";
-import HeatMapDevice from "./heatMapDevice";
+import {Radio, Spin, message} from "antd/lib/index";
+import HeatMapDevice from "../components/heatMapDevice";
 
-import {getCountDomains, getCountHits} from "../../services/api";
-import {strings} from "../../constants/strings";
+import {getCountDomains, getCountHits} from "../services/api";
+import {strings} from "../constants/strings";
 
 class CustomerDetail extends Component{
     state = {

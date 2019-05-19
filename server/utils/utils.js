@@ -15,10 +15,15 @@ const groupByHostid = (data) => {
     return groups;
 };
 
-const processDataCustomers = (data) => {
+const groupByDeterminedCustomer = (data) => {
     let groups = underscore.groupBy(data, function(object) {
         return object.determined_customer;
     });
+    return groups
+};
+
+const processDataCustomers = (data) => {
+    let groups = groupByDeterminedCustomer(data);
     const determinedCustomers = Object.keys(groups);
     let customers = [];
     determinedCustomers.forEach(customer => {
@@ -47,7 +52,7 @@ const processDataCustomers = (data) => {
 
 const processDataLicenses = (data) => {
     data.forEach(d => {
-        if (d.expiration == 'unlimited'){
+        if (d.expiration === 'unlimited'){
             d.saleType = 'sale';
         }else {
             d.saleType = 'rental'

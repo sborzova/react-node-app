@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from 'highcharts/highmaps';
-import {strings} from "../../constants/strings";
+import {strings} from "../constants/strings";
 
 class HeatMapView extends Component{
     render () {
