@@ -1,18 +1,12 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {message, Spin} from "antd";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import { DatePicker } from 'antd';
 import {
-    getAllFeedbacksForKcwAuth,
-    getAllFeedbacksForKcwFunction,
-    getAllFeedbacksForKernunVariant, getAllFeedbacksForKernunVersion,
-    getCountKcw,
     getCountKernunVariants
 } from "../../services/api";
 import {strings} from "../../constants/strings";
-import FeedbackTable from "./feedbacTable";
 
 const dateFormat = 'DD.MM.YYYY';
 
@@ -58,7 +52,10 @@ class KernunVariants extends Component {
                             sumSaleType += object.count;
                             sumKernunVariant += object.count;
                         });
-                        kernunVariantSeries.push({name: kernunVariant, y: sumKernunVariant, color: this.colors[colorIndex]});
+                        kernunVariantSeries.push({
+                            name: kernunVariant, y: sumKernunVariant,
+                            saleType: saletype,
+                            color: this.colors[colorIndex]});
                         colorIndex++;
                     });
                     saleTypesSeries.push({name: saletype, y: sumSaleType, color: this.colors[colorIndex]});
@@ -93,53 +90,32 @@ class KernunVariants extends Component {
                     point: {
                         events: {
                             click: (e) => {
-                                this.setState({ loadingTable: true });
-                                getAllFeedbacksForKernunVariant(e.point, this.state.date)
-                                    .then((response) => {
-                                        const data = response.data;
-                                        this.setState({
-                                            loadingTable: false,
-                                            feedback: data.data,
-                                        });
-                                    })
-                                    .catch(e => {
-                                        message.error(strings.ERROR)
-                                    });
-                                alert(e.point.options.name, this.state.date);
+                                if (e.point.options.saleType){
+                                    this.props.onClick(e.point.options.saleType, e.point.options.name);
+                                }else {
+                                    this.props.onClick(e.point.options.name, undefined);
+                                }
                             }
                         }
                     }
                 }
             },
             series: [{
-                name: strings.CHART_SALETYPE_TITLE,
+                name: strings.CHART_COUNT,
                 data: this.state.saleTypeSeries,
                 size: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        return this.y > 5 ? this.point.name : null;
-                    },
-                    color: '#ffffff',
-                    distance: -30
-                }
             }, {
                 name: strings.CHART_COUNT,
                 data: this.state.kernunVariantSeries,
                 size: '80%',
                 innerSize: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
-                            this.y + '%' : null;
-                    }
-                },
                 id: 'versions'
             }]
         };
 
         return (
             <Spin spinning={this.state.loading}>
-                <HighchartsReact highcharts={Highcharts} options={options}/>
+                <HighchartsReact  highcharts={Highcharts} options={options}/>
             </Spin>
         )
     }

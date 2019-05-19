@@ -41,7 +41,7 @@ feedbackRouter.get('/feedback/all', function(req, res, next) {
     .catch(next);
 });
 
-feedbackRouter.get('/feedback/:customer', function(req, res, next) {
+feedbackRouter.get('/feedback/customer/:customer', function(req, res, next) {
     Feedback.findAll({
         where: {
             determined_customer: req.params.customer,
@@ -197,13 +197,96 @@ feedbackRouter.get('/feedback/year/license/:serial', function(req, res, next) {
 });
 
 feedbackRouter.get('/feedback/kernunversion', function(req, res, next) {
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$Device.kernun_variant$' : req.query.kernunVariant,
+            '$Device.kernun_version$' : req.query.kernunVersion,
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
+    .then(data => {
+        res.status(200).send({
+            data: data
+        })
+    })
+    .catch(next)
+});
 
-    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
-        "FROM feedback " +
-        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
-        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
-        "GROUP BY DATE(upload_start)",
-        {replacements: {kernunVersion: req.query.kernunVersion, uploadStart: req.query.uploadStart}, type: db.QueryTypes.SELECT})
+feedbackRouter.get('/feedback/rental/kernunvariant', function(req, res, next) {
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$Device.kernun_variant$' : req.query.kernunVariant,
+            '$License.expiration$' : {
+                [Op.ne]: 'unlimited'
+            }
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
+    .then(data => {
+        res.status(200).send({
+            data: data
+        })
+    })
+    .catch(next)
+});
+
+feedbackRouter.get('/feedback/rental', function(req, res, next) {
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$License.expiration$' : {
+                [Op.ne]: 'unlimited'
+            }
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
         .then(data => {
             res.status(200).send({
                 data: data
@@ -212,14 +295,30 @@ feedbackRouter.get('/feedback/kernunversion', function(req, res, next) {
         .catch(next)
 });
 
-feedbackRouter.get('/feedback/kernunvariant', function(req, res, next) {
-    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
-        "FROM feedback " +
-        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
-        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
-        "GROUP BY DATE(upload_start)",
-        {replacements: {kernun_variant: req.query.kernunVariant, uploadStart: req.query.uploadStart},
-            type: db.QueryTypes.SELECT})
+feedbackRouter.get('/feedback/sales/kernunvariant', function(req, res, next) {
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$Device.kernun_variant$' : req.query.kernunVariant,
+            '$License.expiration$' : 'unlimited'
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
         .then(data => {
             res.status(200).send({
                 data: data
@@ -228,14 +327,29 @@ feedbackRouter.get('/feedback/kernunvariant', function(req, res, next) {
         .catch(next)
 });
 
-feedbackRouter.get('/feedback/kcwfunction', function(req, res, next) {
-    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
-        "FROM feedback " +
-        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
-        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
-        "GROUP BY DATE(upload_start)",
-        {replacements: {kcwfunction: req.query.kcwFunction, uploadStart: req.query.uploadStart, value: req.query.value },
-            type: db.QueryTypes.SELECT})
+feedbackRouter.get('/feedback/sales', function(req, res, next) {
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$License.expiration$' : 'unlimited'
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
         .then(data => {
             res.status(200).send({
                 data: data
@@ -245,19 +359,35 @@ feedbackRouter.get('/feedback/kcwfunction', function(req, res, next) {
 });
 
 feedbackRouter.get('/feedback/kcwauth', function(req, res, next) {
-    db.query("SELECT count(*) AS count, DATE(upload_start) AS date " +
-        "FROM feedback " +
-        "WHERE fa_id IN (SELECT fa_id FROM license WHERE serial= :serial) AND " +
-        "(upload_start BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND DATE_SUB(CURDATE(), INTERVAL -1 DAY)) " +
-        "GROUP BY DATE(upload_start)",
-        {replacements: {kcwAuth: req.query.kcwAuth, uploadStart: req.query.uploadStart},
-            type: db.QueryTypes.SELECT})
-        .then(data => {
-            res.status(200).send({
-                data: data
-            })
+    Feedback.findAll({
+        where: {
+            upload_start: {
+                [Op.gte]: moment(req.query.uploadStart, 'DD.MM.YYYY').startOf('day'),
+                [Op.lte]: moment(req.query.uploadStart, 'DD.MM.YYYY').endOf('day')
+            },
+            '$Device.kernun_variant$' : 'kernun_clear_web',
+            '$KcwFunction.cw_auth$' : req.query.value
+        },
+        include: [{
+            model: License,
+        },{
+            model: Device,
+        },{
+            model: DeviceStatus
+        },{
+            model: Reporter
+        },{
+            model: KcwFunction
+        }
+        ],
+        order: [['upload_start', 'DESC']]
+    })
+    .then(data => {
+        res.status(200).send({
+            data: data
         })
-        .catch(next)
+    })
+    .catch(next)
 });
 
 feedbackRouter.get('/feedback/all/processed', function(req, res, next) {

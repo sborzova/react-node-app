@@ -11,7 +11,7 @@ class FeedbackStatus extends Component {
 
     getStatusWithTooltip(status){
         return (
-            <Tooltip placement="top" title={tooltips[status]}>
+            <Tooltip key={this.props.feedback.fa_id + status} placement="top" title={tooltips[status]}>
                 <span className={status}/>
             </Tooltip>
         )

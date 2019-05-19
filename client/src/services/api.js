@@ -13,21 +13,21 @@ export const getFeedback = (id) => axios.get(`/api/feedback/detail/${id}`);
 export const getAllFeedbacksForInterval = (type, fromDate, toDate) =>
     axios.get(`/api/${type}`,{params: {from: fromDate, to: toDate}});
 
-export const getAllFeedbacksForKernunVariant = (kernunVariant, uploadStart) =>
-    axios.get(`/api/feedback/kernunvariant`,
+export const getAllFeedbacksForKernunVariant = (kernunVariant, saleType, uploadStart) =>
+    axios.get(`/api/feedback/${saleType}/kernunvariant`,
         {params : {kernunVariant: kernunVariant, uploadStart: uploadStart}});
 
-export const getAllFeedbacksForKernunVersion = (kernunVersion, uploadStart) =>
+export const getAllFeedbacksForSaleType = (saleType, uploadStart) =>
+    axios.get(`/api/feedback/${saleType}`,
+        {params : {uploadStart: uploadStart}});
+
+export const getAllFeedbacksForKernunVersion = (kernunVariant, kernunVersion, uploadStart) =>
     axios.get(`/api/feedback/kernunversion`,
-        {params : {kernunVersion: kernunVersion, uploadStart: uploadStart}});
+        {params : {kernunVariant: kernunVariant, kernunVersion: kernunVersion, uploadStart: uploadStart}});
 
-export const getAllFeedbacksForKcwFunction = (kcwFunction, uploadStart, value) =>
-    axios.get(`/api/feedback/kcwfunction`,
-        {params : {kcwFunction: kcwFunction, uploadStart: uploadStart, value: value}});
-
-export const getAllFeedbacksForKcwAuth = (kcwAuth, uploadStart) =>
+export const getAllFeedbacksForKcwAuth = (value, uploadStart) =>
     axios.get(`/api/feedback/kcwauth`,
-        {params : {kcwAuth: kcwAuth, uploadStart: uploadStart}});
+        {params : {value: value, uploadStart: uploadStart}});
 
 export const getCountFeedback = (type) => axios.get(`/api/feedback/${type}`,);
 

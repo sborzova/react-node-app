@@ -1,24 +1,14 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {message, Spin} from "antd";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
-import { DatePicker } from 'antd';
-import {
-    getAllFeedbacksForKcwAuth,
-    getAllFeedbacksForKcwFunction,
-    getCountKcw,
-} from "../../services/api";
+import {getCountKcw} from "../../services/api";
 import {strings} from "../../constants/strings";
-import FeedbackTable from "./feedbacTable";
-import KernunVariants from "./kernunVariants";
-import KernunVersions from "./kernunVersions";
 
-const dateFormat = 'DD.MM.YYYY';
 
-class Statistic extends Component {
+class KernunKcw extends Component {
     _isMounted = false;
-    colors = Highcharts.getOptions().colors;
 
     kcw = {
         cw_antivirus: { 'true': 0, 'false': 0},
@@ -34,72 +24,69 @@ class Statistic extends Component {
 
     state = {
         loading : false,
-        loadingTable: false,
-        date: moment().format(dateFormat),
-        graphs: [],
-        dataKcw: [],
+        kcwSeries: [],
         dataAuth: [],
-        feedback: [],
-        saleTypeSeries: [],
-        kernunVariantSeries: []
     };
 
     componentDidMount() {
         this._isMounted = true;
-        this.kernunVariants.fetch(this.state.date)
-        this.kernunVersions.fetch(this.state.date)
+        this.props.onRef(this)
     }
-
     componentWillUnmount() {
         this._isMounted = false;
+        this.props.onRef(undefined)
     }
 
-    onCalendar(date, dateString){
-        this.setState({date: dateString});
-        this.kernunVariants.fetch(dateString)
-        this.kernunVersions.fetch(dateString)
-    }
-
-    fetchKcw = (date) => {
-        this.setState({ loading: true });
+    fetch = (date) => {
+        this.setState({ loading: true});
         getCountKcw(moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD'))
             .then((response) => {
-                response.data.data.forEach(d => {
-                        for (const prop in d) {
-                            if (d.hasOwnProperty(prop) && this.kcw[prop]) {
-                                if (prop == 'cw_auth'){
-                                    if (d[prop] == '<ntlm/>'){
-                                        this.kcw[prop]['<ntlm/>']++;
-                                    }else if (d[prop] == '<kerberos/>'){
-                                        this.kcw[prop]['<kerberos/>']++;
-                                    }else if (d[prop] == '<disabled/>'){
-                                        this.kcw[prop]['<disabled/>']++;
-                                    }
-                                }else if (d[prop] == 'true'){
-                                    this.kcw[prop].true++;
-                                }else if (d[prop] == 'false'){
-                                    this.kcw[prop].false++;
+                let data = response.data.data;
+                if (data.length > 0){ data.forEach(d => {
+                    for (const prop in d) {
+                        if (d.hasOwnProperty(prop) && this.kcw[prop]) {
+                            if (prop == 'cw_auth'){
+                                if (d[prop] == '<ntlm/>'){
+                                    this.kcw[prop]['<ntlm/>']++;
+                                }else if (d[prop] == '<kerberos/>'){
+                                    this.kcw[prop]['<kerberos/>']++;
+                                }else if (d[prop] == '<disabled/>'){
+                                    this.kcw[prop]['<disabled/>']++;
                                 }
+                            }else if (d[prop] == 'true'){
+                                this.kcw[prop].true++;
+                            }else if (d[prop] == 'false'){
+                                this.kcw[prop].false++;
                             }
                         }
+                    }
                 });
-                let trueSerie = [];
-                let falseSerie = [];
-                for (const prop in this.kcw) {
-                    trueSerie.push(this.kcw[prop].true);
-                    falseSerie.push(this.kcw[prop].false);
+                    let trueSerie = [];
+                    let falseSerie = [];
+                    for (const prop in this.kcw) {
+                        trueSerie.push(this.kcw[prop].true);
+                        falseSerie.push(this.kcw[prop].false);
+                    }
+
+                    let series = [{name: 'true', data: trueSerie}, {name: 'false', data: falseSerie}];
+                    if (this._isMounted) {
+                        this.setState({
+                            loading: false,
+                            kcwSeries: series,
+                            dataAuth: [
+                                {name: 'ntlm', y: this.kcw.cw_auth['<ntlm/>']},
+                                {name: 'kerberos', y: this.kcw.cw_auth['<kerberos/>']},
+                                {name: 'disabled', y: this.kcw.cw_auth['<disabled/>']}]
+                        });
+                    }}else{
+                    this.setState({
+                        loading: false,
+                        kcwSeries: [],
+                        dataAuth: []
+                    })
                 }
 
-                let series = [{name: 'true', data: trueSerie}, {name: 'false', data: falseSerie}];
-                if (this._isMounted) {
-                    this.setState({
-                        dataKcw: series,
-                        dataAuth: [
-                            {name: 'ntlm', y: this.kcw.cw_auth['<ntlm/>']},
-                            {name: 'kerberos', y: this.kcw.cw_auth['<kerberos/>']},
-                            {name: 'disabled', y: this.kcw.cw_auth['<disabled/>']}]
-                    });
-                }
+
             })
             .catch(e => {
                 message.error(strings.ERROR)
@@ -119,19 +106,8 @@ class Statistic extends Component {
                     showInLegend: true,
                     point: {
                         events: {
-                            click: function () {
-                                this.setState({ loadingTable: true });
-                                getAllFeedbacksForKcwAuth(this.name)
-                                    .then((response) => {
-                                        const data = response.data;
-                                        this.setState({
-                                            loadingTable: false,
-                                            feedback: data.data,
-                                        });
-                                    })
-                                    .catch(e => {
-                                        message.error(strings.ERROR)
-                                    });
+                            click: (e) => {
+                                this.props.onClick('cw_auth', '<' + e.point.name +'/>');
                             }
                         }
                     }
@@ -155,48 +131,20 @@ class Statistic extends Component {
                     stacking: 'normal',
                     dataLabels: {
                         enabled: false,
-                    },
-                    point: {
-                        events: {
-                            click: function (){
-                                console.log(
-                                    document.getElementsByClassName(
-                                        'ant-calendar-picker-input')
-                                        .item(0).getAttribute('value'));
-                                this.setState({ loadingTable: true });
-                                getAllFeedbacksForKcwFunction(this.category, this.series.name)
-                                    .then((response) => {
-                                        const data = response.data;
-                                        this.setState({
-                                            loadingTable: false,
-                                            feedback: data.data,
-                                        });
-                                    })
-                                    .catch(e => {
-                                        message.error(strings.ERROR)
-                                    });
-                                alert(this.category + this.series.name);
-                            }
-                        }
                     }
                 }
             },
-            series: this.state.dataKcw
+            series: this.state.kcwSeries
         };
 
         return (
-            <Fragment>
-                <DatePicker defaultValue={moment()} format={dateFormat} onChange={this.onCalendar.bind(this)}/>
-                <br/>
-                <KernunVariants onRef={ref => (this.kernunVariants = ref)}/>
-                <KernunVersions onRef={ref => (this.kernunVersions = ref)}/>
-                <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
+            <Spin spinning={this.state.loading}>
                 <div>
-                    <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
+                    <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
                 </div>
-                <FeedbackTable feedback={this.state.feedback}/>
-            </Fragment>
+                <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
+            </Spin>
         )
     }
 }
-export default Statistic;
+export default KernunKcw;

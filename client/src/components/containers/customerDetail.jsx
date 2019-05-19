@@ -23,7 +23,7 @@ class CustomerDetail extends Component{
         loadingDomains: false
     };
     heatMapType = 'year/' + this.props.match.params.customer;
-    feedbackListType = 'feedback/' + this.props.match.params.customer;
+    feedbackListType = 'feedback/customer/' + this.props.match.params.customer;
 
     componentDidMount(){
         this.fetchHits(this.state.period);

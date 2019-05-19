@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Table, Badge, Tooltip, Popover, Icon, message} from 'antd';
+import {Table, Tooltip, Popover, Icon, message} from 'antd';
 import {Link} from "react-router-dom";
 import moment from 'moment';
 import {getAllCustomers} from "../../services/api";
@@ -29,7 +29,7 @@ const columns = [
             <span>
               {feedbacks.map(fb => {
                   return(
-                      <Tooltip placement="top" title={tooltips[fb.status]}>
+                      <Tooltip key={fb.fa_id + fb.status} placement="top" title={tooltips[fb.status]}>
                           <span className={fb.status}/>
                       </Tooltip>)
               })}

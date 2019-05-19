@@ -3,7 +3,6 @@ import {message, Spin} from "antd";
 import moment from 'moment';
 import Highcharts from 'highcharts/highstock';
 import {
-    getAllFeedbacksForKcwAuth,
     getCountKernunVersions,
 } from "../../services/api";
 import {strings} from "../../constants/strings";
@@ -11,19 +10,6 @@ import HighchartsReact from "highcharts-react-official/src/HighchartsReact";
 
 class KernunVersions extends Component {
     _isMounted = false;
-    colors = Highcharts.getOptions().colors;
-
-    kcw = {
-        cw_antivirus: { 'true': 0, 'false': 0},
-        cw_auto_update: { 'true': 0, 'false': 0},
-        cw_dhcp_client: { 'true': 0, 'false': 0},
-        cw_dhcp_server: { 'true': 0, 'false': 0},
-        cw_hand_off: { 'true': 0, 'false': 0},
-        cw_https_insp: { 'true': 0, 'false': 0},
-        cw_sshd_enabled: {'true': 0, 'false': 0},
-        cw_sshd_kernun: {'true': 0, 'false': 0},
-        cw_auth: {'<ntlm/>': 0, '<kerberos/>': 0, '<disabled/>': 0}
-    };
 
     state = {
         loading : false,
@@ -50,7 +36,7 @@ class KernunVersions extends Component {
                     let series = [];
                     const kernunversions = data[kernunVariant];
                     kernunversions.forEach(kernunVersion => {
-                       series.push({name: kernunVersion.kernun_version, y: kernunVersion.count});
+                       series.push({name: kernunVersion.kernun_version, y: kernunVersion.count, kernunVariant: kernunVariant });
                     });
 
                     const options = {
@@ -62,13 +48,8 @@ class KernunVersions extends Component {
                                     showInLegend: true,
                                     point: {
                                         events: {
-                                            click: function () {
-                                                getAllFeedbacksForKcwAuth(this.name)
-                                                    .then((response) => {
-                                                    })
-                                                    .catch((e) => {
-                                                        message.error(strings.ERROR)
-                                                    });
+                                            click: (e) => {
+                                               this.props.onClick(e.point.kernunVariant, e.point.name);
                                             }
                                         }
                                     }
@@ -77,7 +58,11 @@ class KernunVersions extends Component {
                         series: [{ name: strings.CHART_COUNT, data: series }]
                     };
 
-                    graphs.push(<HighchartsReact highcharts={Highcharts} options={options}/>);
+                    graphs.push(
+                        <div key={kernunVariant} style={{width:'35%', float:'left'}}>
+                        <HighchartsReact highcharts={Highcharts} options={options} />
+                        </div>
+                    );
                 });
 
                 if (this._isMounted) {

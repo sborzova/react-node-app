@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Spin, message} from 'antd';
+import {Spin} from 'antd';
 
 import moment from 'moment';
 import { getCountProcessed} from "../../services/api";
