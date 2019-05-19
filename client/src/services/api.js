@@ -39,7 +39,7 @@ export const getLicense = (serial) => axios.get(`/api/license/detail/${serial}`)
 
 export const getAllLicenses = () => axios.get(`/api/licenses`, );
 
-export const getCountKernunVersion = (date) => axios.get(`/api/statistic/kernun`, {params: {date: date}});
+export const getCountKernunVersion = (date) => axios.get(`/api/statistic/kernunvariants`, {params: {date: date}});
 
 export const getCountKcw = (date) => axios.get(`/api/statistic/kcw`, {params: {date: date}});
 

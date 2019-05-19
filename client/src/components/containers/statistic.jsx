@@ -7,12 +7,11 @@ import { DatePicker } from 'antd';
 import {
     getAllFeedbacksForKcwAuth,
     getAllFeedbacksForKcwFunction,
-    getAllFeedbacksForKernunVariant, getAllFeedbacksForKernunVersion,
     getCountKcw,
-    getCountKernunVersion
 } from "../../services/api";
 import {strings} from "../../constants/strings";
 import FeedbackTable from "./feedbacTable";
+import KernunVariants from "./kernunVariants";
 
 const dateFormat = 'DD.MM.YYYY';
 
@@ -44,11 +43,10 @@ class Statistic extends Component {
         kernunVariantSeries: []
     };
 
-
     componentDidMount() {
         this._isMounted = true;
-        this.fetchKernun(this.state.date);
-        this.fetchKcw(this.state.date);
+        //this.fetchKcw(this.state.date);
+        this.kernunVariants.fetch(this.state.date)
     }
 
     componentWillUnmount() {
@@ -56,9 +54,8 @@ class Statistic extends Component {
     }
 
     onCalendar(date, dateString){
-        this.fetchKernun(dateString);
-        this.fetchKcw(dateString);
-        this.setState({date: dateString})
+        this.setState({date: dateString});
+        this.kernunVariants.fetch(dateString)
     }
 
     fetchKcw = (date) => {
@@ -107,187 +104,7 @@ class Statistic extends Component {
             });
     };
 
-    fetchKernun = (date) => {
-        this.setState({ loading: true });
-        getCountKernunVersion(moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD'))
-            .then((response) => {
-                const data = response.data.data;
-                const saleTypes = Object.keys(data);
-                let graphs = [];
-                let saleTypesSeries = [];
-                let kernunVariantSeries = [];
-                let colorIndex = 0;
-                saleTypes.forEach(saletype => {
-                    let sumSaleType = 0;
-                    const array = data[saletype];
-                    const kernunTypes = Object.keys(array);
-                    kernunTypes.forEach(kernunType => {
-                        let sumKernunVariant = 0;
-                        const arrayKernun = array[kernunType];
-                        arrayKernun.forEach(object => {
-                            sumSaleType += object.count;
-                            sumKernunVariant += object.count;
-                        });
-                        kernunVariantSeries.push({name: kernunType, y: sumKernunVariant, color: this.colors[colorIndex]});
-                        colorIndex++;
-                        console.log(arrayKernun);
-
-                        //MUSI SA TO INAK SPRAVIT AKO SA TO SPRACOVAVA!!!!!!
-                        const options = {
-                            chart: { type: 'pie' },
-                            title: { text: kernunType},
-                            tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
-                            plotOptions: {
-                                pie: {
-                                    dataLabels: { enabled: false },
-                                    showInLegend: true,
-                                        point: {
-                                            events: {
-                                                click: (e) => {
-                                                    getAllFeedbacksForKernunVersion(e.point.options.name, this.state.date)
-                                                        .then((response) => {
-
-
-                                                        })
-                                                        .catch(e => {
-                                                            message.error(strings.ERROR)
-                                                        });
-                                                }
-                                            }
-                                    }
-                                }
-                            },
-                            series: [{name: strings.CHART_COUNT,
-                                colorByPoint: true, data: []}]
-                        };
-                        graphs.push(
-                            <div className="center-chart">
-                            <HighchartsReact key={kernunType}  highcharts={Highcharts} options={options}/>
-                            </div>
-                        );
-
-                    });
-                    saleTypesSeries.push({name: saletype, y: sumSaleType, color: this.colors[colorIndex]});
-                    colorIndex++;
-                });
-                // let variantSeries = [];
-                // variantNames.forEach(variantName => {
-                //     let versionSeries = [];
-                //     const versions = data[variantName];
-                //     let sum = 0;
-                //     versions.forEach(v => {
-                //         sum += v.count;
-                //         versionSeries.push({name: v.kernun_version, y: v.count})
-                //     });
-                //     variantSeries.push({name: variantName, y: sum});
-                //     const options = {
-                //         chart: { type: 'pie' },
-                //         title: { text: variantName},
-                //         tooltip: {pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>'},
-                //         plotOptions: {
-                //             pie: {
-                //                 dataLabels: { enabled: false },
-                //                 showInLegend: true,
-                //                         point: {
-                //                             events: {
-                //                                 click: (e) => {
-                //                                     this.setState({ loadingTable: true });
-                //                                     getAllFeedbacksForKernunVersion(e.point.options.name, this.state.date)
-                //                                         .then((response) => {
-                //                                             const data = response.data;
-                //                                             this.setState({
-                //                                                 loadingTable: false,
-                //                                                 feedback: data.data,
-                //                                             });
-                //                                         })
-                //                                         .catch(error => console.log(error));
-                //                                 }
-                //                                 }
-                //                             }
-                //                         }
-                //         },
-                //         series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
-                //             colorByPoint: true, data: versionSeries}]
-                //     };
-                //     graphs.push(
-                //         <div className="center-chart">
-                //         <HighchartsReact key={variantName}  highcharts={Highcharts} options={options}/>
-                //         </div>
-                //     );
-                // });
-                if (this._isMounted) {
-                    this.setState({
-                        loading: false,
-                        saleTypeSeries: saleTypesSeries,
-                        kernunVariantSeries: kernunVariantSeries,
-                        graphs: graphs
-                    });
-                }
-            })
-            .catch(e => {
-                message.error(strings.ERROR)
-            });
-    };
-
     render() {
-        const options = {
-            chart: { type: 'pie' },
-            title: { text: strings.CHART_KERNUN_VARIANTS_TITLE },
-            tooltip: { pointFormat: '{series.name}:{point.y}<br/><b>{point.percentage:.1f}%</b>' },
-            plotOptions: {
-                pie: {
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true,
-                    point: {
-                        events: {
-                            click: (e) => {
-                                this.setState({ loadingTable: true });
-                                getAllFeedbacksForKernunVariant(e.point, this.state.date)
-                                    .then((response) => {
-                                        const data = response.data;
-                                        this.setState({
-                                            loadingTable: false,
-                                            feedback: data.data,
-                                        });
-                                    })
-                                    .catch(e => {
-                                        message.error(strings.ERROR)
-                                    });
-                                alert(e.point.options.name, this.state.date);
-                            }
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: strings.CHART_SALETYPE_TITLE,
-                data: this.state.saleTypeSeries,
-                size: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        return this.y > 5 ? this.point.name : null;
-                    },
-                    color: '#ffffff',
-                    distance: -30
-                }
-            }, {
-                name: strings.CHART_COUNT,
-                data: this.state.kernunVariantSeries,
-                size: '80%',
-                innerSize: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        // display only if larger than 1
-                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
-                            this.y + '%' : null;
-                    }
-                },
-                id: 'versions'
-            }]
-        };
-
         const optionsAuth = {
             chart: { type: 'pie' },
             title: { text: strings.CHART_KCW_AUTH_TITLE},
@@ -369,20 +186,11 @@ class Statistic extends Component {
             <Fragment>
                 <DatePicker defaultValue={moment()} format={dateFormat} onChange={this.onCalendar.bind(this)}/>
                 <br/> <br/>
-                <Spin spinning={this.state.loading}>
-                    <div className="charts">
-                        <div className="column-left">
-                            <HighchartsReact highcharts={Highcharts} options={options}/>
-                        </div>
-                        <div className="column-center">
-                            {this.state.graphs}
-                        </div>
-                    </div><br/><br/>
+                <KernunVariants onRef={ref => (this.kernunVariants = ref)}/>
                     <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
                     <div>
                         <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
                     </div>
-                </Spin>
                 <FeedbackTable feedback={this.state.feedback}/>
             </Fragment>
         )

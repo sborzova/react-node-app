@@ -1,5 +1,5 @@
 ### Before start
-You have download and configure Keycloak
+You have download and configure Keycloak and MySQL
 
 ## Available Scripts
 

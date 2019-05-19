@@ -5,7 +5,7 @@ const underscore = require('underscore');
 
 const statisticRouter = express.Router();
 
-statisticRouter.get('/statistic/kernun' ,function(req, res, next) {
+statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
     db.query("SELECT kernun_variant, kernun_version, expiration " +
         "FROM  " +
         " (SELECT a.fa_id, determined_customer, expiration   " +
@@ -60,6 +60,42 @@ statisticRouter.get('/statistic/kernun' ,function(req, res, next) {
 
             res.status(200).send({
                 data: {rental: rentalGroupsByVersion, sales: salesGroupsByVersion}
+            })
+        })
+        .catch(next)
+});
+
+statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
+    db.query("SELECT kernun_variant, kernun_version, expiration " +
+        "FROM  " +
+        " (SELECT a.fa_id, determined_customer, expiration   " +
+        " FROM   " +
+        "  (SELECT fa_id, determined_customer, upload_start    " +
+        "  FROM feedback WHERE DATE(upload_start) = :date) AS a   " +
+        "   LEFT JOIN license ON a.fa_id = license.fa_id ) AS b  " +
+        "   LEFT JOIN device ON b.fa_id = device.fa_id ",
+        { replacements: {date: req.query.date }, type: db.QueryTypes.SELECT})
+        .then(data => {
+            let groups = underscore.groupBy(data, function(object) {
+                return object.kernun_variant + '#' + object.kernun_version;
+            });
+
+            let groupsObjects = underscore.map(groups, function(group){
+                return {
+                    kernun_variant: group[0].kernun_variant,
+                    kernun_version: group[0].kernun_version,
+                    count: group.length
+                }
+            });
+
+            let groupsByVersion = underscore.groupBy(groupsObjects, function (object) {
+                return object.kernun_variant;
+            });
+
+            console.log(groupsByVersion);
+
+            res.status(200).send({
+                data: groupsByVersion
             })
         })
         .catch(next)
