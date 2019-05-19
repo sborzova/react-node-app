@@ -86,7 +86,6 @@ class KernunKcw extends Component {
                     })
                 }
 
-
             })
             .catch(e => {
                 message.error(strings.ERROR)
@@ -139,9 +138,7 @@ class KernunKcw extends Component {
 
         return (
             <Spin spinning={this.state.loading}>
-                <div>
-                    <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
-                </div>
+                <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
                 <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>
             </Spin>
         )
