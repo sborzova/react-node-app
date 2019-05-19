@@ -55,7 +55,7 @@ class FeedbackDetail extends Component {
         return (
             <div>
                 <h1>{strings.HEADER_FB_DETAIL}</h1>
-                <b>Status: </b><FeedbackStatus feedback={this.state.feedback}/>
+                <b>{strings.FB_DETAIL_STATUS}</b><FeedbackStatus feedback={this.state.feedback}/>
                 <Tabs defaultActiveKey="1" size="small">
                     <TabPane tab="Basic info" key="1">
                         <table className="table-vertical">
@@ -267,128 +267,128 @@ class FeedbackDetail extends Component {
                         </table>
                     </TabPane>
                     <TabPane tab="Reporter" key="5">
-                        {this.state.kcwFunction && <table className="table-vertical">
+                        <table className="table-vertical">
                             <tbody>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_MIN_TIME}>
                                     {strings.FB_DETAIL_REP_MIN_TIME}</Tooltip></th>
-                                <td>{(this.state.reporter.reporter_min_time) ?
+                                <td>{(this.state.reporter && this.state.reporter.reporter_min_time) ?
                                     moment(this.state.reporter.reporter_min_time).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_MAX_TIME}>
                                     {strings.FB_DETAIL_REP_MAX_TIME}</Tooltip></th>
-                                <td>{this.state.reporter.reporter_max_time ?
+                                <td>{this.state.reporter && this.state.reporter.reporter_max_time ?
                                     moment(this.state.reporter.reporter_max_time).format('DD.MM.YYYY HH:mm:ss'):''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_USERS}>
                                     {strings.FB_DETAIL_REP_USERS}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_users).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_users).toLocaleString():''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_CLIENTS}>
                                     {strings.FB_DETAIL_REP_CLIENTS}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_clients).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_clients).toLocaleString():''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_CW_CATEGORIZED}>
                                     {strings.FB_DETAIL_CW_CATEGORIZED}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_cw_categorized).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_cw_categorized).toLocaleString():''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_CW_TOTAL}>
                                     {strings.FB_DETAIL_CW_TOTAL}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_cw_total).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_cw_total).toLocaleString():''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_WEB_CATEGORIZED}>
                                     {strings.FB_DETAIL_WEB_CATEGORIZED}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_web_categorized).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_web_categorized).toLocaleString():''}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_REPORTER_WEB_TOTAL}>
                                     {strings.FB_DETAIL_WEB_TOTAL}</Tooltip></th>
-                                <td>{parseInt(this.state.reporter.reporter_web_total).toLocaleString()}</td>
+                                <td>{this.state.reporter ? parseInt(this.state.reporter.reporter_web_total).toLocaleString():''}</td>
                             </tr>
                             </tbody>
-                        </table>}
+                        </table>
                     </TabPane>
                     <TabPane tab="KCW function" key="6">
-                        {this.state.kcwFunction && <table className="table-vertical">
+                        <table className="table-vertical">
                             <tbody>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_DEPLOYMENT}>
                                     {strings.KCW_FUNC_DEPLOYMENT}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_deployment}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_deployment}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_DHCP_CLIENT}>
                                     {strings.KCW_FUNC_DHCP_CLIENT}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_dhcp_client}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_dhcp_client}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_NETIF_DEVICES}>
                                     {strings.KCW_FUNC_NETIF_DEVICES}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_netif_devices}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_netif_devices}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_TIME_ZONE}>
                                     {strings.KCW_FUNC_TIME_ZONE}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_time_zone}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_time_zone}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_SSHD_ENABLED}>
                                     {strings.KCW_FUNC_SSHD_ENABLED}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_sshd_enabled}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_sshd_enabled}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_SSHD_KERNUN}>
                                     {strings.KCW_FUNC_SSHD_KERNUN}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_sshd_kernun}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_sshd_kernun}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_AUTO_UPDATE}>
                                     {strings.KCW_FUNC_AUTO_UPDATE}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_auto_update}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_auto_update}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_LOG_ROTATION}>
                                     {strings.KCW_FUNC_LOG_ROTATION}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_log_rotation}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_log_rotation}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_PROXY_LANG}>
                                     {strings.KCW_FUNC_PROXY_LANG}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_proxy_lang}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_proxy_lang}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_HAND_OFF}>
                                     {strings.KCW_FUNC_HAND_OFF}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_hand_off}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_hand_off}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_DHCP_SERVER}>
                                     {strings.KCW_FUNC_DHCP_SERVER}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_dhcp_server}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_dhcp_server}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_HTTPS_INSP}>
                                     {strings.KCW_FUNC_HTTPS_INSP}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_https_insp}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_https_insp}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_AUTH}>
                                     {strings.KCW_FUNC_AUTH}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_auth}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_auth}</td>
                             </tr>
                             <tr>
                                 <th><Tooltip placement="right" title={strings.TOOLTIP_FB_CW_ANTIVIRUS}>
                                     {strings.KCW_FUNC_ANTIVIRUS}</Tooltip></th>
-                                <td>{this.state.kcwFunction.cw_antivirus}</td>
+                                <td>{this.state.kcwFunction && this.state.kcwFunction.cw_antivirus}</td>
                             </tr>
                             </tbody>
-                        </table>}
+                        </table>
                     </TabPane>
                 </Tabs>
             </div>

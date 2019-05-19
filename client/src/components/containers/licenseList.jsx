@@ -127,13 +127,13 @@ class LicenseList extends Component {
                 title: strings.TABLE_COLUMN_EXPIRATION,
                 dataIndex: 'expiration',
                  render: (datetime) => {
-                     if (datetime !== '∞' && datetime !== 'unlimited'){
+                     if (datetime !== 'unlimited'){
                          let className = '';
                          if (moment(datetime).isBefore(moment())){
                              className = 'font-red'
-                         }else if (moment().diff(moment(datetime)) <= 7){
+                         }else if (moment(datetime).diff(moment(), 'days') <= 7){
                              className = 'font-orange'
-                         }else if (moment().diff(moment(datetime)) <= 31){
+                         }else if (moment(datetime).diff(moment(), 'days') <= 31){
                              className = 'font-yellow'
                          }
                          return <div className={className}>{moment(datetime).format('L')}</div>
@@ -146,7 +146,7 @@ class LicenseList extends Component {
                 dataIndex: 'upgrade',
                 defaultSortOrder: 'descend',
                 render: (datetime) => {
-                    if (datetime !== 'undefined' && datetime !== 'unlimited'){
+                    if (datetime !== 'unlimited'){
                         let className = '';
                         if (moment(datetime).isBefore(moment())){
                             className = 'font-red'
@@ -156,6 +156,8 @@ class LicenseList extends Component {
                             className = 'font-yellow'
                         }
                         return <div className={className}>{moment(datetime).format('L')}</div>
+                    }else{
+                        return <div className="infinity">∞</div>
                     }}
             },
             {

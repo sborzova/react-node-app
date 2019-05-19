@@ -45,8 +45,29 @@ const processDataCustomers = (data) => {
     return customers;
 };
 
+const processDataLicenses = (data) => {
+    data.forEach(d => {
+        if (d.expiration == 'unlimited'){
+            d.saleType = 'sale';
+        }else {
+            d.saleType = 'rental'
+        }
+        if (d.determined_customer){
+            if (d.determined_customer.match('EDU')){
+                d.licenseType = 'edu';
+            }else if (d.determined_customer.match('TEST')){
+                d.licenseType = 'test';
+            }else if(d.determined_customer.match('NFR')){
+                d.licenseType = 'nfr';
+            }
+        }
+    });
+    return data
+};
+
 module.exports = {
     groupByDeviceHostid: groupByDeviceHostid,
     groupByHostid: groupByHostid,
     processDataCustomers: processDataCustomers,
+    processDataLicenses: processDataLicenses
 };

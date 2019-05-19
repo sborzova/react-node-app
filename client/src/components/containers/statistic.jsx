@@ -157,7 +157,7 @@ class Statistic extends Component {
                                     }
                                 }
                             },
-                            series: [{name: strings.CHART_KERNUN_VERSION_SERIES_NAME,
+                            series: [{name: strings.CHART_COUNT,
                                 colorByPoint: true, data: []}]
                         };
                         graphs.push(
@@ -273,7 +273,7 @@ class Statistic extends Component {
                     distance: -30
                 }
             }, {
-                name: strings.CHART_KERNUN_VARIANTS_SERIES_NAME,
+                name: strings.CHART_COUNT,
                 data: this.state.kernunVariantSeries,
                 size: '80%',
                 innerSize: '60%',
@@ -318,7 +318,7 @@ class Statistic extends Component {
                     }
                 }
             },
-            series: [{ name: strings.CHART_KCW_AUTH_SERIES_NAME, data: this.state.dataAuth }]
+            series: [{ name: strings.CHART_COUNT, data: this.state.dataAuth }]
         };
 
         const optionsKcw = {
@@ -326,10 +326,10 @@ class Statistic extends Component {
             title: { text: strings.CHART_KCW_FUNCTIONS_TITLE },
             xAxis: { categories: ['cw_antivirus','cw_auto_update', 'cw_dhcp_client','cw_dhcp_server','cw_hand_off',
                     'cw_https_insp', 'cw_sshd_enabled', 'cw_sshd_kernun'] },
-            yAxis: { title: { text: 'Count', moje: '' } },
+            yAxis: { title: { text: strings.CHART_COUNT, moje: '' } },
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name} </span>',
-                pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}'
+                pointFormat: '{point.y}<br/><b>' + strings.CHART_TOTAL +'</b>: {point.stackTotal:,.0f}'
             },
             plotOptions: {
                 column: {

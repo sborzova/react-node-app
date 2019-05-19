@@ -65,8 +65,8 @@ class Dashboard extends Component {
         const options = {
                 title: { text: strings.CHART_FEEDBACKS_TITLE },
                 xAxis: { categories: this.state.categories },
-                yAxis: { title: { text: 'Count' } },
-                series: [{ name: 'Count', data: this.state.data }]
+                yAxis: { title: { text: strings.CHART_COUNT } },
+                series: [{ name: strings.CHART_COUNT, data: this.state.data }]
           };
 
         return (<Fragment>

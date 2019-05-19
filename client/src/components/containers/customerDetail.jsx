@@ -112,10 +112,10 @@ class CustomerDetail extends Component{
             chart: { type: 'column' },
             title: { text: strings.CHART_HITS_TITLE },
             xAxis: { categories: this.state.categories },
-            yAxis: { title: { text: strings.CHART_HITS_YAXIS_TITLE } },
+            yAxis: { title: { text: strings.CHART_COUNT } },
             tooltip: {
                 headerFormat: '<span>{point.key}</span><br/>',
-                pointFormat: '{point.y}<br/><b>Total</b>: {point.stackTotal:,.0f}',
+                pointFormat: '{point.y}<br/><b>' +strings.CHART_TOTAL+'</b>: {point.stackTotal:,.0f}',
             },
             plotOptions: { column: { stacking: 'normal' } },
             series: this.state.data
@@ -125,7 +125,7 @@ class CustomerDetail extends Component{
             chart: { type: 'column' },
             title: { text: strings.CHART_DOMAINS_TITLE },
             xAxis: { categories: this.state.categories },
-            yAxis: { title: { text: strings.CHART_DOMAINS_YAXIS_TITLE} },
+            yAxis: { title: { text: strings.CHART_COUNT} },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +

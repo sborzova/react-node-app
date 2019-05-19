@@ -66,7 +66,6 @@ class HeatMapProcessed extends Component{
                     data={this.state.data}
                     min={60}
                     title={this.props.title}/>
-                mountNode
             </Spin>)
     }
 }

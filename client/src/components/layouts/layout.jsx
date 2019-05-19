@@ -43,10 +43,11 @@ class LayoutMenu extends Component {
                                 <NavLink to="/statistics">{strings.MENU_ITEM_STATISTICS}</NavLink>
                             </Menu.Item>
                             <Menu.Item style={{float: 'right'}} key="4">
-                                <span onClick={() => this.logout()}>Logout</span>
+                                <span onClick={() => this.logout()}>{strings.MENU_ITEM_LOGOUT}</span>
                             </Menu.Item>
                             <Menu.Item style={{float: 'right'}} key="5">
-                                <a target="_blank" rel="noopener noreferrer" href="http://localhost:8080/auth/realms/demo/account/">User</a>
+                                <a target="_blank" rel="noopener noreferrer"
+                                   href="http://localhost:8080/auth/realms/demo/account/">{strings.MENU_ITEM_USER}</a>
                             </Menu.Item>
                         </Menu>
                     </Header>

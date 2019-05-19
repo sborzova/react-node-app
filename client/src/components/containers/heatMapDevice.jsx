@@ -66,14 +66,14 @@ class HeatMapDevice extends Component{
                     });
                     const opt = {
                         chart : { type: 'heatmap' },
-                        title : { text: strings.CHART_DEVICE_TITLE + hostid },
+                         title : { text: strings.CHART_DEVICE_TITLE + hostid },
                         subtitle: {
-                            text: 'hostname: ' + hosts[0].device.hostname + ', ident: ' + hosts[0].license.ident
+                             text: 'hostname: ' + hosts[0].device.hostname + ', ident: ' + hosts[0].license.ident
                         },
                         xAxis : {
                             categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
                         },
-                        yAxis : { categories: this.state.categories, title: strings.CHART_DEVICE_YAXIS_TITLE },
+                        yAxis : { categories: this.state.categories, title: strings.CHART_MONTHS },
                         colorAxis : {
                             min: 0,
                             stops: [
@@ -87,7 +87,7 @@ class HeatMapDevice extends Component{
                                 return this.point.name;
                             }
                         },
-                        series : [{ name: strings.CHART_DEVICE_SERIES_NAME, data: days }]
+                        series : [{ name: strings.CHART_COUNT, data: days }]
                     };
                     data.push(<HighchartsReact
                         key={hostid}

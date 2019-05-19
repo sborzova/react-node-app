@@ -1,6 +1,7 @@
 const Feedback = require('../models/feedback.ts');
 const License = require('../models/license.ts');
 const Device = require('../models/device.ts');
+const utils = require('../utils/utils');
 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
@@ -33,26 +34,11 @@ licenseRouter.get('/licenses' ,function(req, res, next) {
         "LEFT JOIN " +
         "device " +
         "ON a.fa_id = device.fa_id " +
-        "ORDER BY upgrade", { type: db.QueryTypes.SELECT}
+        "ORDER BY upgrade DESC", { type: db.QueryTypes.SELECT}
     ).then(data => {
-        data.forEach(d => {
-            if (d.expiration == 'unlimited'){
-                 d.saleType = 'sale';
-            }else {
-                    d.saleType = 'rental'
-            }
-            if (d.determined_customer){
-                if (d.determined_customer.match('EDU')){
-                    d.licenseType = 'edu';
-                }else if (d.determined_customer.match('TEST')){
-                    d.licenseType = 'test';
-                }else if(d.determined_customer.match('NFR')){
-                    d.licenseType = 'nfr';
-                }
-            }
-        });
+        let licenses = utils.processDataLicenses(data);
         res.status(200).send({
-            data: data
+            data: licenses
         })
     })
     .catch(next)
@@ -76,24 +62,9 @@ licenseRouter.get('/license/detail/:serial' ,function(req, res, next) {
         order: [
             [Sequelize.fn('max', Sequelize.col('license.upgrade')), 'DESC'],
         ]
-    }).then(d => {
-        if (d.license && d.license.expiration){
-            if (d.license.expiration === 'unlimited'){
-                d.license.saleType = 'sale'
-            }else {
-                if (d.license.expiration.length > 0)
-                    d.license.saleType = 'rental'
-            }
-        }
-        if (d.determined_customer.match('EDU')){
-            d.license.licenseType = 'edu';
-        }else if (d.determined_customer.match('TEST')){
-            d.license.licenseType = 'test';
-        }else if(d.determined_customer.match('NFR')){
-            d.license.licenseType = 'nfr';
-        }
+    }).then(data => {
         res.status(200).send({
-            data: d
+            data: data
         })
     })
     .catch(next)
