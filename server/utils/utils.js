@@ -65,9 +65,30 @@ const processDataLicenses = (data) => {
     return data
 };
 
+const processVariants = (data) => {
+    let groups = underscore.groupBy(data, function(object) {
+        return object.kernun_variant + '#' + object.kernun_version;
+    });
+
+    let groupsObjects = underscore.map(groups, function(group){
+        return {
+            kernun_variant: group[0].kernun_variant,
+            kernun_version: group[0].kernun_version,
+            count: group.length
+        }
+    });
+
+    let groupsByVersion = underscore.groupBy(groupsObjects, function (object) {
+        return object.kernun_variant;
+    });
+
+    return groupsByVersion;
+};
+
 module.exports = {
     groupByDeviceHostid: groupByDeviceHostid,
     groupByHostid: groupByHostid,
     processDataCustomers: processDataCustomers,
-    processDataLicenses: processDataLicenses
+    processDataLicenses: processDataLicenses,
+    processVariants: processVariants
 };

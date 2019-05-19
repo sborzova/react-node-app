@@ -12,6 +12,7 @@ import {
 import {strings} from "../../constants/strings";
 import FeedbackTable from "./feedbacTable";
 import KernunVariants from "./kernunVariants";
+import KernunVersions from "./kernunVersions";
 
 const dateFormat = 'DD.MM.YYYY';
 
@@ -45,8 +46,8 @@ class Statistic extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        //this.fetchKcw(this.state.date);
         this.kernunVariants.fetch(this.state.date)
+        this.kernunVersions.fetch(this.state.date)
     }
 
     componentWillUnmount() {
@@ -56,6 +57,7 @@ class Statistic extends Component {
     onCalendar(date, dateString){
         this.setState({date: dateString});
         this.kernunVariants.fetch(dateString)
+        this.kernunVersions.fetch(dateString)
     }
 
     fetchKcw = (date) => {
@@ -185,8 +187,9 @@ class Statistic extends Component {
         return (
             <Fragment>
                 <DatePicker defaultValue={moment()} format={dateFormat} onChange={this.onCalendar.bind(this)}/>
-                <br/> <br/>
+                <br/>
                 <KernunVariants onRef={ref => (this.kernunVariants = ref)}/>
+                <KernunVersions onRef={ref => (this.kernunVersions = ref)}/>
                     <HighchartsReact highcharts={Highcharts} options={optionsAuth}/>
                     <div>
                         <HighchartsReact highcharts={Highcharts} options={optionsKcw}/>

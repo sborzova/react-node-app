@@ -9,7 +9,7 @@ import {
     getAllFeedbacksForKcwFunction,
     getAllFeedbacksForKernunVariant, getAllFeedbacksForKernunVersion,
     getCountKcw,
-    getCountKernunVersion
+    getCountKernunVariants
 } from "../../services/api";
 import {strings} from "../../constants/strings";
 import FeedbackTable from "./feedbacTable";
@@ -26,6 +26,7 @@ class KernunVariants extends Component {
         saleTypeSeries: [],
         kernunVariantSeries: []
     };
+
     componentDidMount() {
         this._isMounted = true;
         this.props.onRef(this)
@@ -34,25 +35,10 @@ class KernunVariants extends Component {
         this._isMounted = false;
         this.props.onRef(undefined)
     }
-    // componentDidMount() {
-    //     this._isMounted = true;
-    //     this.fetch(this.state.date);
-    //     //console.log(this.props.date);
-    // }
-
-    // componentDidUpdate() {
-    //     this._isMounted = true;
-    //     this.fetch(this.state.date);
-    //     //console.log(this.props.date);
-    // }
-
-    // componentWillUnmount() {
-    //     this._isMounted = false;
-    // }
 
     fetch = (date) => {
         this.setState({ loading: true });
-        getCountKernunVersion(moment(date, dateFormat).format('YYYY-MM-DD'))
+        getCountKernunVariants(moment(date, dateFormat).format('YYYY-MM-DD'))
             .then((response) => {
                 const data = response.data.data;
                 const saleTypes = Object.keys(data);
@@ -152,11 +138,9 @@ class KernunVariants extends Component {
         };
 
         return (
-            <Fragment>
-                <Spin spinning={this.state.loading}>
-                    <HighchartsReact highcharts={Highcharts} options={options}/>
-                </Spin>
-            </Fragment>
+            <Spin spinning={this.state.loading}>
+                <HighchartsReact highcharts={Highcharts} options={options}/>
+            </Spin>
         )
     }
 }

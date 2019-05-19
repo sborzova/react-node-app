@@ -1,7 +1,6 @@
 const db = require('../database');
-
+const utils = require('../utils/utils');
 const express = require('express');
-const underscore = require('underscore');
 
 const statisticRouter = express.Router();
 
@@ -26,46 +25,17 @@ statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
                 }
             });
 
-            let rentalGroups = underscore.groupBy(rental, function(object) {
-                return object.kernun_variant + '#' + object.kernun_version;
-            });
-
-            let salesGroups = underscore.groupBy(sales, function(object) {
-                return object.kernun_variant + '#' + object.kernun_version;
-            });
-
-            let rentalGroupsObjects = underscore.map(rentalGroups, function(group){
-                return {
-                    kernun_variant: group[0].kernun_variant,
-                    kernun_version: group[0].kernun_version,
-                    count: group.length
-                }
-            });
-
-            let salesGroupsObjects = underscore.map(salesGroups, function(group){
-                return {
-                    kernun_variant: group[0].kernun_variant,
-                    kernun_version: group[0].kernun_version,
-                    count: group.length
-                }
-            });
-
-            let rentalGroupsByVersion = underscore.groupBy(rentalGroupsObjects, function (object) {
-                return object.kernun_variant;
-            });
-
-            let salesGroupsByVersion = underscore.groupBy(salesGroupsObjects, function (object) {
-                return object.kernun_variant;
-            });
+            let rentalGroups = utils.processVariants(rental);
+            let salesGroups = utils.processVariants(sales);
 
             res.status(200).send({
-                data: {rental: rentalGroupsByVersion, sales: salesGroupsByVersion}
+                data: {rental: rentalGroups, sales: salesGroups}
             })
         })
         .catch(next)
 });
 
-statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
+statisticRouter.get('/statistic/kernunversions' ,function(req, res, next) {
     db.query("SELECT kernun_variant, kernun_version, expiration " +
         "FROM  " +
         " (SELECT a.fa_id, determined_customer, expiration   " +
@@ -76,26 +46,9 @@ statisticRouter.get('/statistic/kernunvariants' ,function(req, res, next) {
         "   LEFT JOIN device ON b.fa_id = device.fa_id ",
         { replacements: {date: req.query.date }, type: db.QueryTypes.SELECT})
         .then(data => {
-            let groups = underscore.groupBy(data, function(object) {
-                return object.kernun_variant + '#' + object.kernun_version;
-            });
-
-            let groupsObjects = underscore.map(groups, function(group){
-                return {
-                    kernun_variant: group[0].kernun_variant,
-                    kernun_version: group[0].kernun_version,
-                    count: group.length
-                }
-            });
-
-            let groupsByVersion = underscore.groupBy(groupsObjects, function (object) {
-                return object.kernun_variant;
-            });
-
-            console.log(groupsByVersion);
-
+           let groups = utils.processVariants(data);
             res.status(200).send({
-                data: groupsByVersion
+                data: groups
             })
         })
         .catch(next)

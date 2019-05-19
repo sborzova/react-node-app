@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73aecdfd-f815-4d55-9bf1-5a4fcfbc4ce3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/containers/kernunVersions.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/statistic.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/containers/statistic.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/server/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/statisticRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/statisticRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/utils/utils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,35 +24,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackDetail.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="313" column="36" lean-forward="true" selection-start-line="313" selection-start-column="36" selection-end-line="313" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="17">
-                <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/routes/statisticRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+            <state relative-caret-position="272">
+              <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/routes/licenseRouter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -59,20 +45,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/services/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="41" column="87" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="87" />
+            <state relative-caret-position="284">
+              <caret line="43" column="88" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="88" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/containers/statistic.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+            <state relative-caret-position="204">
+              <caret line="194" column="64" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="64" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
+                <element signature="e#1849#3941#0" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/containers/kernunVersions.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-360">
+              <caret line="61" column="55" lean-forward="true" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="901">
+              <caret line="141" column="36" lean-forward="true" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -123,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/utils/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+            <state relative-caret-position="605">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
             </state>
           </provider>
         </entry>
@@ -141,8 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>This is a message of error</find>
-      <find>database.ts</find>
       <find>HeatMapProcessed</find>
       <find>message.</find>
       <find>catch</find>
@@ -169,8 +166,10 @@
       <find>∞</find>
       <find>upgrade</find>
       <find>statistic/kernun</find>
-      <find>period</find>
       <find>console.l</find>
+      <find>period</find>
+      <find>optionsAuth</find>
+      <find>kernunVariantSeries</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\borzo\Diplomovka\react-node-app\server\routes</dir>
@@ -182,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/models/device.ts" />
         <option value="$PROJECT_DIR$/server/package.json" />
         <option value="$PROJECT_DIR$/server/models/license.ts" />
         <option value="$PROJECT_DIR$/server/models/deviceStatus.ts" />
@@ -223,16 +221,17 @@
         <option value="$PROJECT_DIR$/server/routes/feedbackRouter.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/customerDetail.jsx" />
         <option value="$PROJECT_DIR$/client/src/components/containers/heatMapDevice.jsx" />
-        <option value="$PROJECT_DIR$/server/utils/utils.js" />
         <option value="$PROJECT_DIR$/server/routes/licenseRouter.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/licenseList.jsx" />
         <option value="$PROJECT_DIR$/client/src/components/containers/feedbackStatus.jsx" />
         <option value="$PROJECT_DIR$/client/src/components/containers/feedbackDetail.jsx" />
         <option value="$PROJECT_DIR$/server/README.md" />
         <option value="$PROJECT_DIR$/client/src/services/api.js" />
-        <option value="$PROJECT_DIR$/server/routes/statisticRouter.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx" />
         <option value="$PROJECT_DIR$/client/src/components/containers/statistic.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/kernunVersions.jsx" />
+        <option value="$PROJECT_DIR$/server/utils/utils.js" />
+        <option value="$PROJECT_DIR$/server/routes/statisticRouter.js" />
       </list>
     </option>
   </component>
@@ -287,6 +286,13 @@
             <path>
               <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -294,6 +300,12 @@
               <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-node-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-node-app" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,12 +459,12 @@
       <workItem from="1557950716082" duration="4410000" />
       <workItem from="1558015271022" duration="1052000" />
       <workItem from="1558111149006" duration="61211000" />
-      <workItem from="1558245330280" duration="7664000" />
+      <workItem from="1558245330280" duration="10772000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="811424000" />
+    <option name="totallyTimeSpent" value="814532000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -467,11 +479,11 @@
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8522954" visible="true" weight="0.22416534" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8522954" visible="true" weight="0.17329094" />
       <window_info id="Structure" order="1" sideWeight="0.14770459" side_tool="true" weight="0.22893482" />
       <window_info id="Favorites" order="2" sideWeight="0.5012854" side_tool="true" weight="0.19494048" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4920509" weight="0.455" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49125597" weight="0.455" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.3184524" weight="0.42190015" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5136876" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -479,7 +491,7 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49841017" weight="0.32666665" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49602544" weight="0.20666666" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5079491" side_tool="true" visible="true" weight="0.14833333" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.50874406" side_tool="true" visible="true" weight="0.08166666" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -511,9 +523,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/localhost.cert">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -770,13 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/licenseRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/customerDetail.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2210">
@@ -834,41 +836,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/utils/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/services/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="41" column="87" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/customerRouter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/statisticRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackList.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-621">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,21 +853,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx">
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/feedbackList.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="-621">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/services/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="43" column="88" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/statistic.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+        <state relative-caret-position="204">
+          <caret line="194" column="64" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="64" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#1849#3941#0" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/kernunVariants.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="141" column="36" lean-forward="true" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/kernunVersions.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="61" column="55" lean-forward="true" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/licenseRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/utils/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/statisticRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
         </state>
       </provider>
     </entry>
